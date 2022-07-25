@@ -20,6 +20,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+			
+			setToken: (token) => {
+				localStorage.setItem('access_token_jwt', token);
+
+			},
+
+			getToken: () => {
+				return localStorage.getItem('access_token_jwt');
+			},
+
+			removeToken: () => {
+				localStorage.setItem('access_token_jwt', '');
+				const navigate = useNavigate();
+				navigate("/login", { replace: true });
+			},
 
 			getMessage: async () => {
 				try{
