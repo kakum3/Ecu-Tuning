@@ -37,23 +37,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				navigate("/login", { replace: true });
 			},
 			getSignup: async (data) => {
-				try{
+				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/signup",{
+					const resp = await fetch(process.env.BACKEND_URL + "/signup", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({ data }) 
-	
+						body: JSON.stringify({ data })
+
 
 					})
 					const data = await resp.json()
-					if (data.msg ==='ok'){
+					if (data.msg === 'ok') {
 						const navigate = useNavigate();
-                		navigate("/login", { replace: true });
+						navigate("/login", { replace: true });
 					}
 					// don't forget to return something, that is how the async resolves
 					return data;
-				}catch(error){
+				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
 			},
@@ -61,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getLogin: async (data) => {
 				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
+					const resp = await fetch(process.env.BACKEND_URL + "/login", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify(data)
@@ -80,7 +80,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getProtected: async (token) => {
 				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/protected",
+					const resp = await fetch(process.env.BACKEND_URL + "/protected",
 						{
 							method: 'GET', headers: {
 								'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMessage: async () => {
 				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const resp = await fetch(process.env.BACKEND_URL + "/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves

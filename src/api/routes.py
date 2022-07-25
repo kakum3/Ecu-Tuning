@@ -19,7 +19,7 @@ def handle_hello():
 
 @api.route('/signup', methods=['POST'])
 def Signup():
-     request.get_json()
+     body=request.get_json()
      user=User(email=body['email'])
      password=body['password']
 
