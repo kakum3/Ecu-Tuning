@@ -37,34 +37,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 				navigate("/login", { replace: true });
 			},
 
-			getProtected: async (token) => {
-				try{
+			getLogin: async (data) => {
+				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/protected",
-					{
-						method: 'GET', headers: {
-						  'Content-Type': 'application/json',
-						  'Authorization': 'Bearer '+token,
-						} })
+					const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(data)
+					})
+					const data = await resp.json()
+					if (data.msg === Ok) {
+						getActions().setToken(data.token)
+						navigate("/protected", { replace: true });
+					}
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+				}
+			},
+
+			getProtected: async (token) => {
+				try {
+					// fetching data from the backend
+					const resp = await fetch(process.env.BACKEND_URL + "/api/protected",
+						{
+							method: 'GET', headers: {
+								'Content-Type': 'application/json',
+								'Authorization': 'Bearer ' + token,
+							}
+						})
 					const data = await resp.json()
 					const navigate = useNavigate();
 					data.msg === "Ok" ? setStore({ loggedIn: True }) : setStore({ loggedIn: False })
 					// don't forget to return something, that is how the async resolves
 					return data;
-				}catch(error){
+				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
 			},
 
 			getMessage: async () => {
-				try{
+				try {
 					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
 					return data;
-				}catch(error){
+				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
 			},
