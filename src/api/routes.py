@@ -8,7 +8,6 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 
 api = Blueprint('api', __name__)
 
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -26,21 +25,32 @@ def Signup():
 
       
      return jsonify({'msg':'ok'}), 200
+
 @api.route('/login', methods=['POST']) #{"email: adf, password: asdfasd"}
 def login():
         
     body = request.get_json()
-    email = User.query.filter_by(email=body["email"]).first()
+    usr = User.query.filter_by(email=body["email"]).first()
     password = body["password"]
 
-    if email is None:
+    if usr is None:
         return jsonify("El usuario no existe"), 404
-    if email.password != password:
+    if usr.password != password:
         return jsonify("Contraseña incorrecta"), 401
 
     response_body = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     }
-    my_token = create_access_token(identity=email.id)
+    my_token = create_access_token(identity=usr.id)
 
     return jsonify({ "token": my_token, "user_id": email.id, "msg":"Ok" }), 200
+
+@api.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    # Accede a la identidad del usuario actual con get_jwt_identity
+    current_user = get_jwt_identity()
+    
+    usr = User.query.filter_by(id=current_user).first()
+
+    return jsonify({"msg": "ok", "id": usr.id, "email": usr.email }), 200

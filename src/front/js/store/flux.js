@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			loggedIn: false,
 			demo: [
 				{
 					title: "FIRST",
@@ -20,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			
+
 			setToken: (token) => {
 				localStorage.setItem('access_token_jwt', token);
 
@@ -34,6 +35,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.setItem('access_token_jwt', '');
 				const navigate = useNavigate();
 				navigate("/login", { replace: true });
+			},
+
+			getProtected: async (token) => {
+				try{
+					// fetching data from the backend
+					const resp = await fetch(process.env.BACKEND_URL + "/protected",
+					{
+						method: 'GET', headers: {
+						  'Content-Type': 'application/json',
+						  'Authorization': 'Bearer '+token,
+						} })
+					const data = await resp.json()
+					const navigate = useNavigate();
+					data.msg === "Ok" ? setStore({ loggedIn: True }) : setStore({ loggedIn: False })
+					// don't forget to return something, that is how the async resolves
+					return data;
+				}catch(error){
+					console.log("Error loading message from backend", error)
+				}
 			},
 
 			getMessage: async () => {
