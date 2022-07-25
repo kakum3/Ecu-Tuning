@@ -36,6 +36,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const navigate = useNavigate();
 				navigate("/login", { replace: true });
 			},
+			getSignup: async (data) => {
+				try{
+					// fetching data from the backend
+					const resp = await fetch(process.env.BACKEND_URL + "/api/signup",{
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ data }) 
+	
+
+					})
+					const data = await resp.json()
+					if (data.msg ==='ok'){
+						const navigate = useNavigate();
+                		navigate("/login", { replace: true });
+					}
+					// don't forget to return something, that is how the async resolves
+					return data;
+				}catch(error){
+					console.log("Error loading message from backend", error)
+				}
+			},
 
 			getLogin: async (data) => {
 				try {
