@@ -37,15 +37,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				navigate("/login", { replace: true });
 			},
 			getSignup: async (data) => {
+				console.log(data)
 				try {
 					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/signup", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({ data })
+						body: JSON.stringify(data)
 
 
 					})
+					console.log(resp)
 					const data = await resp.json()
 					if (data.msg === 'ok') {
 						const navigate = useNavigate();

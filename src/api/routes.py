@@ -6,7 +6,10 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
+
+
 api = Blueprint('api', __name__)
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -19,11 +22,11 @@ def handle_hello():
 
 @api.route('/signup', methods=['POST'])
 def Signup():
-     body=request.get_json()
-     user=User(email=body['email'])
-     password=body['password']
-
-      
+     body = request.get_json()
+     usr = User(email=body['email'], password = body['password'])
+     db.session.add(usr)
+     db.session.commit()
+     
      return jsonify({'msg':'ok'}), 200
 
 @api.route('/login', methods=['POST']) #{"email: adf, password: asdfasd"}
@@ -43,7 +46,7 @@ def login():
     }
     my_token = create_access_token(identity=usr.id)
 
-    return jsonify({ "token": my_token, "user_id": email.id, "msg":"Ok" }), 200
+    return jsonify({ "token": my_token, "user_id": email.id, "msg":"ok" }), 200
 
 @api.route("/protected", methods=["GET"])
 @jwt_required()
