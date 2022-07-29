@@ -11,7 +11,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
+@api.route('/hello', methods=['GET'])
 def handle_hello():
 
     response_body = {
@@ -49,7 +49,7 @@ def login():
     return jsonify({ "token": my_token, "user_id": email.id, "msg":"ok" }), 200
 
 @api.route("/protected", methods=["GET"])
-@jwt_required()
+@++()
 def protected():
     # Accede a la identidad del usuario actual con get_jwt_identity
     current_user = get_jwt_identity()
