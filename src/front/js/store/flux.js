@@ -1,3 +1,7 @@
+import React from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -36,14 +40,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const navigate = useNavigate();
 				navigate("/login", { replace: true });
 			},
-			getSignup: async (data) => {
-				console.log(data)
+			getSignup: async (data_front) => {
+
 				try {
 					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/signup", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify(data)
+						body: JSON.stringify(data_front)
 
 
 					})
@@ -60,18 +64,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getLogin: async (data) => {
+			getLogin: async (data_front) => {
 				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/login", {
-						method: "POST",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify(data)
-					})
+					const resp = await fetch(process.env.BACKEND_URL + "/login",
+						{
+							method: 'POST', headers: {
+								'Content-Type': 'application/json'
+							}, body: JSON.stringify(data_front)
+						})
 					const data = await resp.json()
-					if (data.msg === Ok) {
+					if (data.msg === "ok") {
 						getActions().setToken(data.token)
-						navigate("/protected", { replace: true });
+						setStore({ loggedIn: true })
+
+						// const navigate = useNavigate();
+						// navigate("/protected", { replace: true });
 					}
 					return data;
 				} catch (error) {
@@ -90,8 +98,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 						})
 					const data = await resp.json()
-					const navigate = useNavigate();
-					data.msg === "Ok" ? setStore({ loggedIn: True }) : setStore({ loggedIn: False })
+
+					data.msg === "ok" ? setStore({ loggedIn: true }) : setStore({ loggedIn: false })
 					// don't forget to return something, that is how the async resolves
 					return data;
 				} catch (error) {
@@ -103,9 +111,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/hello")
-				
+
 					const data = await resp.json()
-					
+
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
 					return data;

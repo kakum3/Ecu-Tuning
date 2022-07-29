@@ -51,7 +51,7 @@ def login():
     }
     my_token = create_access_token(identity=usr.id)
 
-    return jsonify({ "token": my_token, "user_id": email.id, "msg":"ok" }), 200
+    return jsonify({ "token": my_token, "user_id": usr.id, "msg":"ok" }), 200
 
 @api.route("/protected", methods=["GET"])
 @jwt_required()

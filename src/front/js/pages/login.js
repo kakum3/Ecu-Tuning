@@ -1,11 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
+import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
-  const [values, setValues] = useState({ email: '', password: "" })
+  const [values, setValues] = useState({ email: '', password: "" });
+  const navigate = useNavigate();
+  const redir = () => navigate("/protected", { replace: true });
+  useEffect(
+
+    () => { if (store.loggedIn === true) redir() }, [store.loggedIn]
+  )
   const handleInputChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
 
