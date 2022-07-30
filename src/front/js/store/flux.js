@@ -1,7 +1,3 @@
-import React from "react";
-import { useNavigate, Navigate } from "react-router-dom";
-
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -28,7 +24,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setToken: (token) => {
 				localStorage.setItem('access_token_jwt', token);
-
 			},
 
 			getToken: () => {
@@ -37,31 +32,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			removeToken: () => {
 				localStorage.setItem('access_token_jwt', '');
-				const navigate = useNavigate();
-				navigate("/login", { replace: true });
 			},
-			getSignup: async (data_front) => {
 
+			getSignup: async (data_front) => {
 				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/signup", {
-						method: "POST",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify(data_front)
-
-
-					})
-					console.log(resp)
+					const resp = await fetch(process.env.BACKEND_URL + "/signup",
+						{
+							method: 'POST', headers: {
+								'Content-Type': 'application/json'
+							}, body: JSON.stringify(data_front)
+						})
 					const data = await resp.json()
 					if (data.msg === 'ok') {
-						const navigate = useNavigate();
-						navigate("/login", { replace: true });
-					}
-					// don't forget to return something, that is how the async resolves
+					// se ha registrado pero no logeado, que hago? navigate?
 					return data;
+					}
+				
 				} catch (error) {
 					console.log("Error loading message from backend", error)
+					
 				}
+				setStore({ loggedIn: false })
+				return null;
 			},
 
 			getLogin: async (data_front) => {
@@ -77,14 +70,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (data.msg === "ok") {
 						getActions().setToken(data.token)
 						setStore({ loggedIn: true })
-
-						// const navigate = useNavigate();
-						// navigate("/protected", { replace: true });
+						return data;
 					}
-					return data;
+					
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
+				setStore({ loggedIn: false })
+				return null;
 			},
 
 			getProtected: async (token) => {
@@ -99,12 +92,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 					const data = await resp.json()
 
-					data.msg === "ok" ? setStore({ loggedIn: true }) : setStore({ loggedIn: false })
-					// don't forget to return something, that is how the async resolves
-					return data;
+					if(data.msg === "ok"){
+						getActions().setToken(data.token)
+						setStore({ loggedIn: true });
+						return data;
+					}
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
+
+				setStore({ loggedIn: false })
+				return null;
 			},
 
 			getMessage: async () => {

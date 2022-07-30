@@ -6,7 +6,9 @@ import "../../styles/home.css";
 export const Protected = () => {
   const { store, actions } = useContext(Context);
   useEffect(() => {
-    actions.getProtected(actions.getToken());
+    actions.getProtected(actions.getToken()).then((e) => {
+      console.log(e);
+    });
   }, []);
   return (
     <div className="text-center mt-5">
@@ -15,4 +17,3 @@ export const Protected = () => {
     </div>
   );
 };
-
