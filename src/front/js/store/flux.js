@@ -93,7 +93,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json()
 
 					if(data.msg === "ok"){
-						getActions().setToken(data.token)
 						setStore({ loggedIn: true });
 						return data;
 					}
