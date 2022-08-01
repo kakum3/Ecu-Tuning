@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			alert: null,
 			loggedIn: false,
 			demo: [
 				{
@@ -46,6 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json()
 					if (data.msg === 'ok') {
 					// se ha registrado pero no logeado, que hago? navigate?
+					setStore({ alert: "registered"})
 					return data;
 					}
 				
@@ -53,6 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 					
 				}
+				setStore({ alert: "error"})
 				setStore({ loggedIn: false })
 				return null;
 			},
@@ -76,6 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
+				setStore({ alert: "error"})
 				setStore({ loggedIn: false })
 				return null;
 			},
@@ -94,12 +98,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					if(data.msg === "ok"){
 						setStore({ loggedIn: true });
+						setStore({ alert: "loged in"})
 						return data;
 					}
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
-
+				setStore({ alert: "error"})
 				setStore({ loggedIn: false })
 				return null;
 			},
