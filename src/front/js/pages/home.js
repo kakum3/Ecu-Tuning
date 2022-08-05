@@ -8,19 +8,30 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
+			<h1>Comprueba tu coche</h1>
+			<p className="position-absolute">
+				{/* <img src={rigoImageUrl} /> */}
 			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
+			<div class="">
+				<select class="form-select fs-3" id="inputGroupSelect02">
+					<option selected="">Marca...</option>
+					<option value="1">Audi</option>
+					<option value="2">BMW</option>
+					<option value="3">Citroen</option>
+				</select>
+				<select class="form-select" id="inputGroupSelect02">
+					<option selected="">Modelo...</option>
+					<option value="1">A1</option>
+					<option value="2">A2</option>
+					<option value="3">A3</option>
+				</select>
+				<select class="form-select" id="inputGroupSelect02">
+					<option selected="">Modelo...</option>
+					<option value="1">A1</option>
+					<option value="2">A2</option>
+					<option value="3">A3</option>
+				</select>
 			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://github.com/4GeeksAcademy/react-flask-hello/tree/95e0540bd1422249c3004f149825285118594325/docs">
-					Read documentation
-				</a>
-			</p>
 		</div>
 	);
 };
