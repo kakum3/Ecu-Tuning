@@ -1,9 +1,15 @@
-const Servicelist = ({}) => {
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../store/appContext";
 
-    return(<><h1>Berlingo</h1>
-        <ul>
-         <li>Reprog</li>
-         <li>Lunas</li>
-        </ul></>)
-}
+
+export const Servicelist = () => {
+  const { store, actions } = useContext(Context);
+
+  return (
+    <div className="text-center mt-5">
+      !Lista de servicios
+
+    </div>
+  );
+};
 export default Servicelist;
