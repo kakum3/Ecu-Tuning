@@ -1,8 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTools } from '@fortawesome/free-solid-svg-icons'
-
 
 export const Navbar = () => {
 	return (
@@ -18,7 +15,7 @@ export const Navbar = () => {
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 						<li className="nav-item">
 							<Link to="/map">
-								<a className="nav-link active" aria-current="page" href="#"><FontAwesomeIcon icon="fas fa fa-tools" />Mapa</a>
+								<a className="nav-link active" aria-current="page" href="#"><i icon="fas fa fa-tools" />Mapa</a>
 							</Link>
 						</li>
 						<li className="nav-item">
