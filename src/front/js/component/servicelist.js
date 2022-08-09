@@ -5,7 +5,7 @@ export const Servicelist = () => {
   const { store, actions } = useContext(Context);
   return (
     <><h1 className="text-success">Berlingo Turbo</h1>
-    <sub>Filtro de mejoras:</sub>
+    <sub>Mejoras:</sub>
     <ul class="list-group mb-5">
   <li class="list-group-item">
     <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"/>

@@ -13,10 +13,10 @@ export const Protected = () => {
 		return(<Navigate to="/" replace={true} />)
 	}
 	return (
-		<div className="text-center mt-5">
+		<>
 			<h1>Protected: {store.loggedIn ? 'Acceso Permitido' : 'Acceso Denegado'}</h1>
 			<Link to="/" className="btn btn-primary" onClick={removeSession}>Cerrar Sesion</Link>
-		</div>
+		</>
 	);
 };
 
