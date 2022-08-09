@@ -3,13 +3,18 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
   width: 'auto',
-  height: '80vw'
+  height: '60vh'
 };
 
 const center = {
   lat: 39,
   lng: -3
 };
+
+const fakeLoc = {
+  lat: 39,
+  lng: -3
+}
 
 function MyComponent() {
   return (
@@ -21,6 +26,7 @@ function MyComponent() {
         center={center}
         zoom={10}
       >
+        <Marker label="Taller Paco" position={fakeLoc}/>
         { /* Child components, such as markers, info windows, etc. */ }
         <></>
       </GoogleMap>

@@ -7,7 +7,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="text-center mt-5">
+		<>
 			<h1>Comprueba tu coche</h1>
 			<p className="position-absolute">
 				{/* <img src={rigoImageUrl} /> */}
@@ -41,7 +41,7 @@ export const Home = () => {
 			<div class="d-grid gap-2 col-6 mx-auto">
 				<button class="btn btn-primary" type="button">Comprobar</button>
 			</div>
-		</div>
+		</>
 
 	);
 };
