@@ -11,7 +11,7 @@ export const Details = () => {
     
     <div className="row">
       <div className="col-sm-12 col-lg-5 bg-dark">
-      <h2 className="logo"><span>Taller</span> <span>Paco</span></h2>
+      <h2 className="logo">Taller <span>Paco</span></h2>
         <Servicelist />
         
         <Servicelist />
