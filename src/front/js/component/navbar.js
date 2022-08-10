@@ -15,9 +15,12 @@ export const Navbar = () => {
 						<Link to="/map">
 							<li><a href="#" className="nav-link px-2 text-white">Talleres(Dev:Map)</a></li>
 						</Link>
-						<li><a href="#" className="nav-link px-2 text-white">Contacto</a></li>
-						<li><a href="#" className="nav-link px-2 text-white">Salir</a></li>
-
+						<Link to="/contact">
+							<li><a href="#" className="nav-link px-2 text-white">Contacto</a></li>
+						</Link>
+						<Link to="/">
+							<li><a href="#" className="nav-link px-2 text-white">Salir</a></li>
+						</Link>
 					</ul>
 					<ul className="nav col-md-4 container-fluid list-unstyled d-flex">
 						<li className="ms-3"><a className="text-muted" href="#"><i class="fa-brands fa-facebook"></i></a></li>
