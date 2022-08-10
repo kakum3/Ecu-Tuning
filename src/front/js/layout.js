@@ -31,8 +31,6 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Alert />
-
-                    <div className="container m-auto mt-5">
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Login />} path="/login" />
@@ -46,7 +44,6 @@ const Layout = () => {
 
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    </div>
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
