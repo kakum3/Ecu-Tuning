@@ -6,7 +6,7 @@ export const Footer = () => (
 	//      <a href="http://www.4geeksacademy.com">Luis, Jesús y Antonio</a>
 	//  </p>
 	// </footer>
-	<div className="container-fluid text-bg-dark">
+	<div className="container-fluid text-bg-dark mt-auto">
 		<footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
 			<div className="col-md-4 d-flex align-items-center">
 				<a href="/" className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
