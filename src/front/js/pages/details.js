@@ -7,11 +7,11 @@ export const Details = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container-fuid">
+    <div className="contain-fluid">
     
     <div className="row">
       <div className="col-sm-12 col-lg-5 bg-dark">
-      <h2 className="logo">TALLER <span>Paco</span></h2>
+      <h2 className="logo"><span>Taller</span> <span>Paco</span></h2>
         <Servicelist />
         
         <Servicelist />

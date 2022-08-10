@@ -10,7 +10,7 @@
     
    
 }
-.container {
+.contain-fluid {
     background: #181818;
     color: #fff;
     line-height: 1.6;
@@ -104,7 +104,7 @@ ul {
 
 /* LARGE SIZE */
 @media(min-width: 700px) {
-    body {
+    .contain-fluid {
         padding: 0 4em;
     }
     .contact-wrapper {
