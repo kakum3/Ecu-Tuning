@@ -8,7 +8,7 @@ export const Map = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container card my-5">
+    <div className="container card m-auto">
       <div className="row py-3">
         <div className="col-sm-12 col-lg-5">
           <Servicelist />

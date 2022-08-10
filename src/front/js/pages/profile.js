@@ -7,11 +7,21 @@ export const Profile = () => {
 
   return (
    
-      <div className="row">
+    <div className="container m-auto">
+		<div className="row py-3">
       <h1>Perfil Usuario/Taller</h1>
 
+      <p>*Bootstrap
+      Input: Nombre
+      
+      Es taller?
+      - Dirrección taller (C/ avenida etc)</p>
 
-      </div>
+      Es taller?
+      -Servicelist
+
+
+      </div></div>
 
       
   );
