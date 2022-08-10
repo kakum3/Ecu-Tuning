@@ -17,6 +17,12 @@ export const Navbar = () => {
 						</Link>
 						<li><a href="#" className="nav-link px-2 text-white">Contacto</a></li>
 						<li><a href="#" className="nav-link px-2 text-white">Salir</a></li>
+
+					</ul>
+					<ul className="nav col-md-4 container-fluid list-unstyled d-flex">
+						<li className="ms-3"><a className="text-muted" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+						<li className="ms-3"><a className="text-muted" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+						<li className="ms-3"><a className="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
 					</ul>
 					<div className="text-end">
 						<Link to="/login">
@@ -27,7 +33,7 @@ export const Navbar = () => {
 						</Link>
 					</div>
 					<div className="text-end">
-					
+
 						<Link to="/profile" href="#" class="ms-2 d-block link-dark text-decoration-none dropdown-toggle">
 							<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"></img>
 						</Link>
