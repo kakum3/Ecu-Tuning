@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, Autocomplete } from '@react-google-maps/api';
 
 const containerStyle = {
   width: 'auto',
@@ -15,6 +15,9 @@ const fakeLoc = {
   lat: 39,
   lng: -3
 }
+
+const onLoad = () => {}
+const onPlaceChanged = () => {}
 
 function MyComponent() {
   return (

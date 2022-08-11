@@ -6,54 +6,59 @@ import "../../styles/home.css";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
-  const [values, setValues] = useState({ email: '', password: "" });
+  const [values, setValues] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const redir = () => navigate("/protected", { replace: true });
-  useEffect(
-
-    () => { if (store.loggedIn === true) redir() }, [store.loggedIn]
-  )
+  useEffect(() => {
+    if (store.loggedIn === true) redir();
+  }, [store.loggedIn]);
   const handleInputChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
   const formSubmit = (e) => {
-    e.preventDefault()
-    actions.getLogin(values)
-  }
+    e.preventDefault();
+    actions.getLogin(values);
+  };
   return (
-    <div className="container card w-90 m-auto">
-      {/* //   <h1>Login Rigo!!</h1>
-    //   <form onSubmit={formSubmit}>
-    //     <input value={values.email} name="email" onChange={handleInputChange} onLoad={handleInputChange} />
-    //     <input value={values.password} name="password" onChange={handleInputChange} onLoad={handleInputChange} />
-    //     <button type="submit" className="btn btn-primary">Enviar</button>
-    //   </form> */}
-
-
-      <main class="form-signin m-auto">
+    <div className="container m-auto">
+      <main class="m-auto col-12 col-md-7 col-lg-5 card p-3">
         <form>
-          <img className="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
-          <h1 className="h3 mb-3 fw-normal">Iniciar Sesión</h1>
+          <a href="/" class="fs-1 fa fa-heart text-danger mb-5"></a>
+          <h1 className="h3 mb-3 fw-normal">Entra</h1>
 
-          <div className="form-floating">
-            <input value={values.email} name="email" onChange={handleInputChange} onLoad={handleInputChange} type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
+          <div className="form-floating mb-3">
+            <input
+              value={values.email}
+              name="email"
+              onChange={handleInputChange}
+              onLoad={handleInputChange}
+              type="email"
+              className="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+            />
             <label for="floatingInput">Email</label>
           </div>
-          <div className="form-floating">
-            <input value={values.password} name="password" onChange={handleInputChange} onLoad={handleInputChange} type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+          <div className="form-floating mb-3">
+            <input
+              value={values.password}
+              name="password"
+              onChange={handleInputChange}
+              onLoad={handleInputChange}
+              type="password"
+              className="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+            />
             <label for="floatingPassword">Contraseña</label>
           </div>
 
-          <div className="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me" /> Recuerdame
-            </label>
-          </div>
-          <button className="w-100 btn btn-lg btn-primary" type="submit">Iniciar</button>
+          <button className="w-100 btn btn-primary" type="submit">
+            Entra
+          </button>
           <p className="mt-5 mb-3 text-muted">© Fast&Furious</p>
         </form>
       </main>
-    </div >
+    </div>
   );
 };

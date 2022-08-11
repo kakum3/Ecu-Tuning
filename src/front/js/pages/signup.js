@@ -20,7 +20,7 @@ export const Signup = () => {
     actions.getSignup(values);
   };
   return (
-    <div className="container card w-90 m-auto">
+    <div className="container m-auto">
       {/* //   <h1>Login Rigo!!</h1>
     //   <form onSubmit={formSubmit}>
     //     <input value={values.email} name="email" onChange={handleInputChange} onLoad={handleInputChange} />
@@ -28,30 +28,71 @@ export const Signup = () => {
     //     <button type="submit" className="btn btn-primary">Enviar</button>
     //   </form> */}
 
-
-      <main class="form-signin m-auto">
+      <main class="m-auto col-12 col-md-7 col-lg-5 card p-3">
         <form>
-          <img className="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
-          <h1 className="h3 mb-3 fw-normal">Registrate</h1>
+          <a href="/" class="fs-1 fa fa-heart text-danger mb-5"></a>
+          <h1 className="h3 mb-3 fw-normal">Regístrate</h1>
 
-          <div className="form-floating">
-            <input value={values.email} name="email" onChange={handleInputChange} onLoad={handleInputChange} type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
+          <div className="form-floating mb-3">
+            <input
+              value={values.email}
+              name="email"
+              onChange={handleInputChange}
+              onLoad={handleInputChange}
+              type="email"
+              className="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+            />
             <label for="floatingInput">Email</label>
           </div>
-          <div className="form-floating">
-            <input value={values.password} name="password" onChange={handleInputChange} onLoad={handleInputChange} type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+          <div className="form-floating mb-3">
+            <input
+              value={values.password}
+              name="password"
+              onChange={handleInputChange}
+              onLoad={handleInputChange}
+              type="password"
+              className="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+            />
             <label for="floatingPassword">Contraseña</label>
           </div>
 
-          <div className="checkbox mb-3">
-            <label>
-              {/* <input type="checkbox" value="remember-me" /> Recuerdame */}
-            </label>
+          <div className="mb-3 text-center">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="inlineRadio1"
+                value="option1"
+                checked
+              />
+              <label class="form-check-label" for="inlineRadio1">
+                Soy un Cliente
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="inlineRadio2"
+                value="option2"
+              />
+              <label class="form-check-label" for="inlineRadio2">
+                Soy un Taller
+              </label>
+            </div>
           </div>
-          <button className="w-100 btn btn-lg btn-primary" type="submit">Registrar</button>
+          <button className="w-100 btn btn-primary" type="submit">
+          Regístrate
+          </button>
           <p className="mt-5 mb-3 text-muted">© Fast&Furious</p>
         </form>
       </main>
-    </div >
+    </div>
   );
 };

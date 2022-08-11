@@ -2,47 +2,46 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-
+import { Link } from "react-router-dom";
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	return (
-		<div className="container m-auto">
-		<div className="row py-3">
-			<h1>Comprueba tu coche</h1>
-			<p className="position-absolute">
-				{/* <img src={rigoImageUrl} /> */}
-			</p>
-			<div class="">
-				<select class="form-select fs-5" id="inputGroupSelect02">
-					<option selected="">Marca...</option>
-					<option value="1">Audi</option>
-					<option value="2">BMW</option>
-					<option value="3">Citroen</option>
-				</select>
-				<select class="form-select fs-5" id="inputGroupSelect02">
-					<option selected="">Modelo...</option>
-					<option value="1">A1</option>
-					<option value="2">A2</option>
-					<option value="3">A3</option>
-				</select>
-				<select class="form-select fs-5" id="inputGroupSelect02">
-					<option selected="">Año...</option>
-					<option value="1">2000-2003</option>
-					<option value="2">2003-2009</option>
-					<option value="3">2009-2012</option>
-				</select>
-				<select class="form-select fs-5" id="inputGroupSelect02">
-					<option selected="">Motor...</option>
-					<option value="1">1.6 Tdi 105cv</option>
-					<option value="2">1.9 Tdi 110cv</option>
-					<option value="3">2.0 Tdi 140cv</option>
-				</select>
-			</div>
-			<div class="d-grid gap-2 col-6 mx-auto">
-				<button class="btn btn-primary" type="button">Comprobar</button>
-			</div>
-		</div></div>
+  return (
+    <div className="container m-auto">
+      <div className="row py-3 text-center">
+        <h1 className="mb-5 text-white">Comprueba tu coche</h1>
+        <p className="position-absolute">{/* <img src={rigoImageUrl} /> */}</p>
 
-	);
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+        >
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+        >
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+
+        <div class="col-md-6 mx-auto btn-group">
+          <Link to="/map" class="btn btn-primary" type="button">
+          <i class="fa-solid fa-gauge-high me-3"></i>
+          Comprobar
+          </Link>
+          <Link to="/map" class="btn btn-secondary" type="button">
+          <i class="fa-solid fa-car-on me-3"></i>
+          Ver Talleres
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
