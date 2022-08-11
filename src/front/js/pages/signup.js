@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../../styles/home.css";
 
 export const Signup = () => {
@@ -30,9 +30,11 @@ export const Signup = () => {
 
       <main class="m-auto col-12 col-md-7 col-lg-5 card p-3">
         <form>
-          <a href="/" class="fs-1 fa fa-heart text-danger mb-5"></a>
-          <h1 className="h3 mb-3 fw-normal">Regístrate</h1>
-
+          <img
+            src="https://i.ibb.co/0F6ht3r/logofandf.png"
+            className="rounded mx-auto d-block mb-3"
+            width="100px"
+          />
           <div className="form-floating mb-3">
             <input
               value={values.email}
@@ -87,10 +89,11 @@ export const Signup = () => {
               </label>
             </div>
           </div>
-          <button className="w-100 btn btn-primary" type="submit">
-          Regístrate
+          <button className="w-100 btn btn-primary mb-2" type="submit">
+            Regístrate
           </button>
-          <p className="mt-5 mb-3 text-muted">© Fast&Furious</p>
+          <sub className="col">¿Ya tienes una cuenta? <Link to="/login" className="btn btn-link btn-sm">Entrar</Link></sub>
+        
         </form>
       </main>
     </div>

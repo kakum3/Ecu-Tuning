@@ -6,11 +6,17 @@ export const Navbar = () => {
       <div className="container">
         <div className="d-flex">
           <ul className="nav">
-            <a href="/" className="fs-1 fa fa-heart text-danger"></a>
-            <Link to="/map">
+            <Link to="/">
+              <img
+                src="https://i.ibb.co/0F6ht3r/logofandf.png"
+                className="rounded d-block m-0"
+                width="44px"
+              />
+            </Link>
+            <Link to="/map" className="m-auto">
               <li>
-                <a className="nav-link text-white">
-                  <i class="fa-solid fa-car-on me-3">Talleres</i>
+                <a className="text-white">
+                  <i class="fa-solid fa-car-on mx-3">Talleres</i>
                 </a>
               </li>
             </Link>
