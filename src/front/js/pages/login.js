@@ -25,7 +25,7 @@ export const Login = () => {
         <form>
         <img
             src="https://i.ibb.co/0F6ht3r/logofandf.png"
-            className="rounded mx-auto d-block mb-3"
+            className="rounded mx-auto d-block mb-5"
             width="100px"
           />
           <div className="form-floating mb-3">
