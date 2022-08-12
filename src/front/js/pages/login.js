@@ -21,7 +21,7 @@ export const Login = () => {
   };
   return (
     <div className="container m-auto">
-      <main class="m-auto col-12 col-md-7 col-lg-5 card p-3">
+      <main class="m-auto col-12 col-md-7 col-lg-5 card p-5 rounded shadow">
         <form>
         <img
             src="https://i.ibb.co/0F6ht3r/logofandf.png"

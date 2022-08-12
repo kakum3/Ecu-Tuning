@@ -13,7 +13,7 @@ export const Home = () => {
         <p className="position-absolute">{/* <img src={rigoImageUrl} /> */}</p>
 
         <select
-          class="form-select form-select-lg mb-3"
+          class="form-select form-select mb-3"
           aria-label=".form-select-lg example"
         >
           <option selected>Open this select menu</option>
@@ -22,7 +22,7 @@ export const Home = () => {
           <option value="3">Three</option>
         </select>
         <select
-          class="form-select form-select-lg mb-3"
+          class="form-select form-select mb-3"
           aria-label=".form-select-lg example"
         >
           <option selected>Open this select menu</option>

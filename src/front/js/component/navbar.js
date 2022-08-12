@@ -31,7 +31,7 @@ export const Navbar = () => {
             </a>
           </ul>
 
-          <div className="dropdown-menu-end dropdown text-light ms-auto">
+          <div className="dropdown-menu-end dropdown text-light ms-auto my-auto">
             <a
               href="#"
               className="d-block link-light text-decoration-none dropdown-toggle"

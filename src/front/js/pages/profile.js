@@ -9,7 +9,7 @@ export const Profile = () => {
 
   return (
     <div className="container m-auto">
-      <main class="m-auto mt-3 card">
+      <main class="m-auto mt-3 card rounded shadow">
         <div className="row">
         <div className="p-5 col-sm-12 col-lg-7">
          <h1>Perfil</h1>
