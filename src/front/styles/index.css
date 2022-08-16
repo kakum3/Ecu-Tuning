@@ -6862,15 +6862,22 @@ textarea.form-control-lg {
 }
 
 .shadow {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.65) !important;
 }
 
+.t-shadow {
+  text-shadow: 0.2rem 0.2rem 0.3rem rgb(75 191 115) !important;
+  font-size: 3.5rem !important;
+}
+.t-shadow-black {
+  text-shadow: 0.2rem 0.2rem 0.3rem rgb(0 0 0) !important;
+}
 .shadow-sm {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
 .shadow-lg {
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  box-shadow: 0 0rem 3rem rgba(0, 0, 0, 0.75) !important;
 }
 
 .shadow-none {

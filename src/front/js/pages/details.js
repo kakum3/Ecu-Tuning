@@ -11,14 +11,18 @@ export const Details = () => {
       <div className="row py-3 ">
         <div className="col-sm-12 col-lg-5 ">
           <h1 className="logo text-white mt-4  ">
-            <span className="tittle taller text-white p-2 mb-3  rounded ">Search</span>
+            <span className="tittle taller text-white p-2 mb-3  rounded ">
+              Search
+            </span>
             <span className=" tittle nombreTaller text-success shadow-sm p-3 mb-4 bg-white rounded">
               Tunning
             </span>
           </h1>
           <p className="text m-auto ">
             <h4 className="tittle mt-4">Talleres Paco</h4>
-           <small><i className="fas fa-map-marker-alt "></i> calle Baena 2</small> 
+            <small>
+              <i className="fas fa-map-marker-alt "></i> calle Baena 2
+            </small>
           </p>
 
           <button
@@ -64,13 +68,13 @@ export const Details = () => {
                         placeholder=""
                       ></input>
                     </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">
+                    <div className="mb-3">
+                      <label for="recipient-name" className="col-form-label">
                         Asunto
                       </label>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         id="recipient-name"
                       />
                     </div>

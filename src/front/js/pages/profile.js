@@ -9,51 +9,61 @@ export const Profile = () => {
 
   return (
     <div className="container m-auto">
-      <main class="m-auto mt-3 card rounded shadow">
+      <main className="m-auto col-12 col-md-8 col-lg-6 card p-5 rounded shadow">
         <div className="row">
-        <div className="p-5 col-sm-12 col-lg-7">
-         <h1>Perfil</h1>
-        <hr/>
-        <div class="input-group mb-3">
-  <span class="input-group-text">Nombre</span>
-  <input type="text" aria-label="First name" class="form-control"/>
-  </div>
-  <div class="input-group mb-3">
-  <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Subir"/>
-</div>
+          <h1>Perfil</h1>
+          <hr />
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">
+              @
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
 
-         <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio1"
-                value="option1"
-                checked
-              />
-              <label class="form-check-label" for="inlineRadio1">
-                Soy un Cliente
-              </label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio2"
-                value="option2"
-              />
-              <label class="form-check-label" for="inlineRadio2">
-                Soy un Taller
-              </label>
-            </div>
-          <Link className="btn btn-success" to="/details">
-            Detalles mapa (Dev)
-          </Link>
-        </div>
-        <div className="col-sm-12 col-lg-5">
-          <Servicelist />
-        </div>
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Recipient's username"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+            />
+            <span className="input-group-text" id="basic-addon2">
+              @example.com
+            </span>
+          </div>
+
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio1"
+              value="option1"
+              checked
+            />
+            <label className="form-check-label" for="inlineRadio1">
+              Soy un Cliente
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio2"
+              value="option2"
+            />
+            <label className="form-check-label" for="inlineRadio2">
+              Soy un Taller
+            </label>
+          </div>
         </div>
       </main>
     </div>

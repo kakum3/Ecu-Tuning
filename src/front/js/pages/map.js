@@ -9,7 +9,7 @@ export const Map = () => {
 
   return (
     <div className="container m-auto">
-      <main class="m-auto mt-3 card rounded shadow">
+      <main className="m-auto mt-3 card rounded shadow">
         <div className="row">
         <div className="p-5 col-sm-12 col-lg-5">
           <Servicelist />
@@ -18,7 +18,7 @@ export const Map = () => {
           </Link>
         </div>
         <div className="col-sm-12 col-lg-7">
-          <Mapcomp />
+          <Mapcomp/>
         </div>
         </div>
       </main>

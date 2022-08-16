@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
   return (
-    <nav className="p-3 text-bg-dark">
+    <nav className="text-bg-dark shadow">
       <div className="container">
         <div className="d-flex">
           <ul className="nav">
@@ -10,16 +12,44 @@ export const Navbar = () => {
               <img
                 src="https://i.ibb.co/0F6ht3r/logofandf.png"
                 className="rounded d-block m-0"
-                width="44px"
+                width="66px"
               />
             </Link>
-            <Link to="/map" className="m-auto">
-              <li>
-                <a className="text-white">
-                  <i class="fa-solid fa-car-on mx-3">Talleres</i>
-                </a>
-              </li>
+            <Link className="text-white m-auto" to="/map">
+                <i className="fa-solid fa-car-on mx-3">Talleres</i>
             </Link>
+            <div className="form-check form-switch">
+              <input
+                onChange={actions.toggleLogin}
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckDefault"
+              >
+                DEV: Login
+              </label>
+            </div>
+            <div className="form-check form-switch">
+              <input
+                onChange={actions.toggleCarApi}
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckDefault"
+              >
+                DEV: Apisearch
+              </label>
+            </div>
+          </ul>
+          <span className="ms-auto d-flex me-3">
             <a className="ms-3 text-muted d-flex" href="#">
               <i className="fa-brands fa-facebook m-auto"></i>
             </a>
@@ -29,9 +59,8 @@ export const Navbar = () => {
             <a className="ms-3 text-muted d-flex" href="#">
               <i className="fa-brands fa-twitter m-auto"></i>
             </a>
-          </ul>
-
-          <div className="dropdown-menu-end dropdown text-light ms-auto my-auto">
+          </span>
+          <div className="dropdown-menu-end dropdown text-light my-auto">
             <a
               href="#"
               className="d-block link-light text-decoration-none dropdown-toggle"
@@ -46,43 +75,33 @@ export const Navbar = () => {
                 className="rounded-circle"
               />
             </a>
-            <ul className="dropdown-menu text-small">
+            <ul className="shadow dropdown-menu text-small">
               <li>
-                <Link to="/login">
-                  <a className="dropdown-item" href="#">
-                    Entrar
-                  </a>
+                <Link className="dropdown-item" to="/login">
+                  Entrar
                 </Link>
               </li>
               <li>
-                <Link to="/signup">
-                  <a className="dropdown-item" href="#">
-                    Registrarse
-                  </a>
+                <Link className="dropdown-item" to="/signup">
+                  Registrarse
                 </Link>
               </li>
               <li>
-                <Link to="/profile">
-                  <a className="dropdown-item" href="#">
-                    Perfil
-                  </a>
+                <Link className="dropdown-item" to="/profile">
+                  Perfil
                 </Link>
               </li>
               <li>
                 <hr className="dropdown-divider" />
               </li>
               <li>
-                <Link to="/">
-                  <a className="dropdown-item" href="#">
-                    Salir
-                  </a>
+                <Link className="dropdown-item" to="/">
+                  Salir
                 </Link>
               </li>
               <li>
-                <Link to="/contact">
-                  <a className="dropdown-item" href="#">
-                    Contáctanos
-                  </a>
+                <Link className="dropdown-item" to="/contact">
+                  Contáctanos
                 </Link>
               </li>
             </ul>

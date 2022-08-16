@@ -28,7 +28,7 @@ export const Signup = () => {
     //     <button type="submit" className="btn btn-primary">Enviar</button>
     //   </form> */}
 
-      <main class="m-auto col-12 col-md-7 col-lg-5 card p-5 rounded shadow">
+      <main className="m-auto col-12 col-md-7 col-lg-5 card p-5 rounded shadow">
         <form>
           <img
             src="https://i.ibb.co/0F6ht3r/logofandf.png"
@@ -63,28 +63,28 @@ export const Signup = () => {
           </div>
 
           <div className="mb-3 text-center">
-            <div class="form-check form-check-inline">
+            <div className="form-check form-check-inline">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="radio"
                 name="inlineRadioOptions"
                 id="inlineRadio1"
                 value="option1"
                 checked
               />
-              <label class="form-check-label" for="inlineRadio1">
+              <label className="form-check-label" for="inlineRadio1">
                 Soy un Cliente
               </label>
             </div>
-            <div class="form-check form-check-inline">
+            <div className="form-check form-check-inline">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="radio"
                 name="inlineRadioOptions"
                 id="inlineRadio2"
                 value="option2"
               />
-              <label class="form-check-label" for="inlineRadio2">
+              <label className="form-check-label" for="inlineRadio2">
                 Soy un Taller
               </label>
             </div>
@@ -92,8 +92,12 @@ export const Signup = () => {
           <button className="w-100 btn btn-primary mb-2" type="submit">
             Regístrate
           </button>
-          <sub className="col">¿Ya tienes una cuenta? <Link to="/login" className="btn btn-link btn-sm">Entrar</Link></sub>
-        
+          <sub className="col">
+            ¿Ya tienes una cuenta?{" "}
+            <Link to="/login" className="btn btn-link btn-sm">
+              Entrar
+            </Link>
+          </sub>
         </form>
       </main>
     </div>

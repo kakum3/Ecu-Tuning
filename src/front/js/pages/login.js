@@ -21,9 +21,9 @@ export const Login = () => {
   };
   return (
     <div className="container m-auto">
-      <main class="m-auto col-12 col-md-7 col-lg-5 card p-5 rounded shadow">
+      <main className="m-auto col-12 col-md-7 col-lg-5 card p-5 rounded shadow">
         <form>
-        <img
+          <img
             src="https://i.ibb.co/0F6ht3r/logofandf.png"
             className="rounded mx-auto d-block mb-5"
             width="100px"
@@ -58,7 +58,12 @@ export const Login = () => {
           <button className="w-100 btn btn-primary mb-2" type="submit">
             Entra
           </button>
-          <sub className="col">¿No tienes una cuenta? <Link to="/signup" className="btn btn-link btn-sm">Regístrate</Link></sub>
+          <sub className="col">
+            ¿No tienes una cuenta?{" "}
+            <Link to="/signup" className="btn btn-link btn-sm">
+              Regístrate
+            </Link>
+          </sub>
         </form>
       </main>
     </div>

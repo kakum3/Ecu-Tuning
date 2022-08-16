@@ -5,25 +5,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			alert: null,
 			loggedIn: false,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			carSearch: null
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			toggleLogin: () => {
+				setStore({loggedIn: !getStore().loggedIn})
+				console.log(getStore().loggedIn)
 			},
-
+			toggleCarApi: () => {
+				setStore({carSearch: getStore().carSearch===null 
+					? {model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10"} : null})
+				console.log(getStore().carSearch)
+			},
 			setToken: (token) => {
 				localStorage.setItem('access_token_jwt', token);
 			},
