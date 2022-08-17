@@ -46,7 +46,6 @@ export const Servicelist = () => {
   }, []);
 
   const handleCheckChange = (e) => {
-    e.preventDefault();
     const target = e.target;
     const name = target.name;
     setServices(
@@ -58,7 +57,6 @@ export const Servicelist = () => {
   };
   return (
     <>
-      <h1 className="">Servicios</h1>
       <div className="list-group w-auto">
         <label className="list-group-item d-flex gap-3">
           <input

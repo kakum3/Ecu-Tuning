@@ -6,22 +6,26 @@ import Servicelist from "../component/servicelist";
 
 export const Profile = () => {
   const { store, actions } = useContext(Context);
+  const [taller, setTaller] = useState(true);
 
+  useEffect( ()=>{
+    //fetch user content {}
+  },[])
+  const handleRadioChange = (e) => {
+    setTaller(!taller);
+  };
   return (
-    <div className="container m-auto">
-      <main className="m-auto col-12 col-md-8 col-lg-6 card p-5 rounded shadow">
-        <div className="row">
+    <div className="container m-auto mt-5">
+      <main className="m-auto col-12 col-md-10 col-lg-8 card p-5 rounded shadow">
+        <section className="row">
           <h1>Perfil</h1>
           <hr />
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">
-              @
-            </span>
             <input
               type="text"
               className="form-control"
-              placeholder="Username"
-              aria-label="Username"
+              placeholder="Nombre"
+              aria-label="Nombre"
               aria-describedby="basic-addon1"
             />
           </div>
@@ -30,41 +34,76 @@ export const Profile = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Recipient's username"
-              aria-label="Recipient's username"
+              placeholder="Email"
+              aria-label="Email"
               aria-describedby="basic-addon2"
             />
-            <span className="input-group-text" id="basic-addon2">
-              @example.com
-            </span>
           </div>
 
-          <div className="form-check form-check-inline">
+          <div className="input-group mb-3">
             <input
-              className="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value="option1"
-              checked
+              type="text"
+              className="form-control"
+              placeholder="Contraseña"
+              aria-label="Contraseña"
+              aria-describedby="basic-addon3"
             />
-            <label className="form-check-label" for="inlineRadio1">
-              Soy un Cliente
-            </label>
           </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              value="option2"
-            />
-            <label className="form-check-label" for="inlineRadio2">
-              Soy un Taller
-            </label>
+
+          <div className="input-group m-auto">
+            <div className="form-check form-check-inline mx-auto" onClick={handleRadioChange}>
+              <input
+                className="form-check-input"
+                type="radio"
+                checked={!taller}
+                name="es_cliente"
+                onChange={handleRadioChange}
+              />
+              <label className="form-check-label" htmlFor="inlineRadio1">
+                Soy un Cliente
+              </label>
+            </div>
+            <div className="form-check form-check-inline mx-auto" onClick={handleRadioChange}>
+              <input
+                className="form-check-input"
+                type="radio"
+                checked={taller}
+                name="es_taller"
+                onChange={handleRadioChange}
+              />
+              <label className="form-check-label" htmlFor="inlineRadio2">
+                Soy un Taller
+              </label>
+            </div>
           </div>
-        </div>
+        </section>
+        {!taller ? null : (
+          <section>
+            <h1 className="mt-5">Dirección</h1>
+            <hr />
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Calle, Avenida ..."
+                aria-label="Dirección"
+                aria-describedby="basic-addon2"
+              />
+            </div><h1 className="mt-5">Nombre del Taller</h1>
+            <hr /><div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Talleres ..."
+                aria-label="Nombre del Taller"
+                aria-describedby="basic-addon2"
+              />
+            </div>
+            <h1 className="mt-5">Servicios</h1>
+            <hr />
+            <Servicelist />
+          </section>
+        )}
       </main>
     </div>
   );

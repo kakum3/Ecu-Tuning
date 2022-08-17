@@ -11,15 +11,16 @@ export const Map = () => {
     <div className="container m-auto">
       <main className="m-auto mt-3 card rounded shadow">
         <div className="row">
-        <div className="p-5 col-sm-12 col-lg-5">
-          <Servicelist />
-          <Link className="btn btn-success" to="/details">
-            Detalles mapa (Dev)
-          </Link>
-        </div>
-        <div className="col-sm-12 col-lg-7">
-          <Mapcomp/>
-        </div>
+          <div className="p-5 col-sm-12 col-lg-5">
+            <h1 className="">Servicios</h1>
+            <Servicelist />
+            <Link className="btn btn-success" to="/details">
+              Detalles mapa (Dev)
+            </Link>
+          </div>
+          <div className="col-sm-12 col-lg-7">
+            <Mapcomp />
+          </div>
         </div>
       </main>
     </div>
