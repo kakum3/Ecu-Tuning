@@ -62,3 +62,12 @@ def protected():
     usr = User.query.filter_by(id=current_user).first()
 
     return jsonify({"msg": "ok", "id": usr.id, "email": usr.email }), 200
+
+@api.route('/map', methods=['GET'])
+def handle_map():
+
+    response_body = {
+        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    }
+
+    return jsonify(response_body), 200

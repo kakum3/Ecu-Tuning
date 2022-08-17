@@ -106,7 +106,7 @@ export const Details = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12 col-lg-7 card rounded shadow m-auto">
+        <div className="col-sm-12 col-lg-7 card rounded shadow m-auto text-dark">
           <Servicelist />
         </div>
       </div>
