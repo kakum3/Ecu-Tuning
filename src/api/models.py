@@ -22,7 +22,8 @@ class Taller(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usuario_id = db.Column(db.String(200), unique=True, nullable=False)
     datos_taller = db.Column(db.String(200), unique=True, nullable=False)
-    lista_servicios = db.Column(db.String(200) unique=True, nullable=False)
+    lista_servicios = db.Column(db.Integer, db.ForeignKey('user.id'),
+        nullable=False)
 
     def serialize(self):
         return {
