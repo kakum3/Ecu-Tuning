@@ -65,10 +65,7 @@ def protected():
 
     return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address": usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 @api.route("/contact", methods=["POST"])
 @jwt_required()
 def post_contact():
@@ -77,9 +74,9 @@ def post_contact():
     
     usr = User.query.filter_by(id=current_user).first()
 
-    return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address" usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
-<<<<<<< Updated upstream
+    return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address": usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
 
-    return jsonify(response_body), 200
-=======
->>>>>>> Stashed changes
+
+ 
+
+
