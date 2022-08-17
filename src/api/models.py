@@ -41,3 +41,39 @@ class Taller(db.Model):
             "datos_taller": self.datos_taller,
             "lista_servicios": self.lista_servicios,
         }
+        
+class Servicios(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+    desc = db.Column(db.String(80), unique=False, nullable=False)
+
+    # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'<Service {self.name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "desc": self.desc,
+            "value": value
+        }
+
+class Contacts(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    from_id = db.Column(db.Integer, db.ForeignKey('user.id'),
+        nullable=False)
+    to_id = db.Column(db.Integer, db.ForeignKey('user.id'),
+        nullable=False)
+
+    message = db.Column(db.String(250), unique=False, nullable=False)
+    # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'<Contacted {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id
+        }
