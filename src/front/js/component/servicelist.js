@@ -5,11 +5,31 @@ import { useLocation } from "react-router-dom";
 // FAKE DB DATA
 const svcesdb = [
   {
-    name: "Tintado de lunas",
-    desc: "Cambia el color de las lunas",
+    name: "DownPipe",
+    desc: "Evacuación de calor y reducción de la temperatura de escape. Extra de potencia y par motor. Ganar un sonido deportivo.",
     value: true,
   },
-  { name: "Body Kit", desc: "Ensancha tu coche", value: true },
+  {
+    name: "Modificación Colas de Escape",
+    desc: "Tu coche tendrá una apariencia y sonido mucho más deportivos",
+    value: true,
+  },
+  {
+    name: "Body Kit",
+    desc: "Ensancha tu coche",
+    value: true
+  },
+  {
+    name: "Tintado de lunas",
+    desc: "Cambia el color de las lunas de tu coche de manera oficial y homologadas",
+    value: true,
+  },
+  {
+    name: "Pantallas Multimedia",
+    desc: "Pantallas multimedia para tu coche. Sistemas android, Pantalla Táctil+Llamadas Manos Libres Bluetooth+WiFi+Navegación GPS+Cámara de Visión Trasera+USB Doble+Reproductor de Internet y mucho más...",
+    value: true
+  },
+
 ];
 
 export const Servicelist = () => {
@@ -90,10 +110,18 @@ export const Servicelist = () => {
                   <li className="list-group-item">
                     Stage 1 & Stage 2 & Stage 3
                   </li>
-                  <li className="list-group-item">Arranque en caliente</li>
-                  <li className="list-group-item">A third item</li>
-                  <li className="list-group-item">A fourth item</li>
-                  <li className="list-group-item">And a fifth one</li>
+                  <li className="list-group-item">Arranque en caliente/frío</li>
+                  <li className="list-group-item">DPF, FAP, EGR, ADBLUE, SCR, GPF, OPF</li>
+                  <li className="list-group-item">DTC Selectivo</li>
+                  <li className="list-group-item">Telecarga Software Original</li>
+                  <li className="list-group-item">Limitador de Velocidad</li>
+                  <li className="list-group-item">Catalizador, Lambda, O2</li>
+                  <li className="list-group-item">Desactivar Mariposas Admisión Variable "FLAPS"</li>
+                  <li className="list-group-item">Pop&Corn</li>
+                  <li className="list-group-item">HardCut</li>
+                  <li className="list-group-item">Pops&Bangs</li>
+
+
                 </ul>
               </div>
             </small>

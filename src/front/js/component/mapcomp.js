@@ -20,8 +20,8 @@ const locations = [
   },
 ];
 
-const onLoad = () => {};
-const onPlaceChanged = () => {};
+const onLoad = () => { };
+const onPlaceChanged = () => { };
 
 function MyComponent() {
   const { store, actions } = useContext(Context);
@@ -31,10 +31,10 @@ function MyComponent() {
       <GoogleMap
         mapContainerStyle={{
           width: "auto",
-          height: "60vh",
+          height: "100vh",
         }}
         center={center}
-        zoom={10}
+        zoom={10} w
       >
         {!store.loggedIn ? (
           <Marker label="Regístrese para ver talleres cercanos" position={locations[0]} />

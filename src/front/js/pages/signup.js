@@ -6,7 +6,7 @@ import "../../styles/home.css";
 
 export const Signup = () => {
   const { store, actions } = useContext(Context);
-  const [values, setValues] = useState({ email: "user2", password: "pass" });
+  const [values, setValues] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const redir = () => navigate("/login", { replace: true });
   useEffect(() => {
