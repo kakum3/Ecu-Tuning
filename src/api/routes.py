@@ -9,12 +9,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
-
-
 api = Blueprint('api', __name__)
-
-
-
 
 @api.route('/hello', methods=['GET'])
 def handle_hello():
@@ -53,6 +48,13 @@ def login():
 
     return jsonify({ "token": my_token, "user_id": usr.id, "msg":"ok" }), 200
 
+@api.route('/map', methods=['GET'])
+def handle_map():
+
+    response_body = {
+        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    }
+
 @api.route("/protected", methods=["GET"])
 @jwt_required()
 def protected():
@@ -61,13 +63,16 @@ def protected():
     
     usr = User.query.filter_by(id=current_user).first()
 
-    return jsonify({"msg": "ok", "id": usr.id, "email": usr.email }), 200
+    return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address" usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
 
-@api.route('/map', methods=['GET'])
-def handle_map():
+@api.route("/contact", methods=["POST"])
+@jwt_required()
+def post_contact():
+    # Accede a la identidad del usuario actual con get_jwt_identity
+    current_user = get_jwt_identity()
+    
+    usr = User.query.filter_by(id=current_user).first()
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+    return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address" usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
 
     return jsonify(response_body), 200
