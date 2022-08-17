@@ -17,3 +17,17 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+
+class Taller(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    usuario_id = db.Column(db.String(200), unique=True, nullable=False)
+    datos_taller = db.Column(db.String(200), unique=True, nullable=False)
+    lista_servicios = db.Column(db.String(200) unique=True, nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "usuario_id": self.usuario_id,
+            "datos_taller": self.datos_taller,
+            "lista_servicios": self.lista_servicios,
+        }
