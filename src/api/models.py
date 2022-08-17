@@ -5,8 +5,11 @@ db = SQLAlchemy()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_client = db.Column(db.Boolean(), unique=False, nullable=False)
+    id_taller= db.Column(db.Integer, db.ForeignKey('taller.id'),
+        nullable=False)
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -15,6 +18,12 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "taller_id":self .id,
+            "is_client":self .is_client,
+            "name":self.name
+            
+
+
             # do not serialize the password, its a security breach
         }
 
