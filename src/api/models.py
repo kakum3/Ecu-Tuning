@@ -2,20 +2,19 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-w_services = db.Table('w_services',
+w_services_table = db.Table('w_services_table',
     db.Column('taller_id', db.Integer, db.ForeignKey('taller.id'), primary_key=True),
     db.Column('services_id', db.Integer, db.ForeignKey('services.id'), primary_key=True)
 )
 
 class User(db.Model):
+    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_client = db.Column(db.Boolean(), unique=False, nullable=False)
-    id_taller= db.Column(db.Integer, db.ForeignKey('taller.id'),
-        nullable=False)
-
+    taller = db.relationship('Taller', backref='user', lazy=True)
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -30,12 +29,10 @@ class User(db.Model):
 
 class Taller(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-        nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     w_name = db.Column(db.String(200), unique=True, nullable=False)
     w_address = db.Column(db.String(200), unique=True, nullable=False)
-    w_services = db.relationship('Services', secondary=w_services, lazy='subquery',
-        backref=db.backref('w_services', lazy=True))
+    w_services = db.relationship('Services', secondary=w_services_table, lazy='subquery', backref=db.backref('w_services_list', lazy=True))
 
     def __repr__(self):
         return f'<Taller {self.id}>'
