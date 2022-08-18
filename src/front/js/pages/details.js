@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Servicelist from "../component/servicelist";
+
 import { number } from "prop-types";
 
 export const Details = () => {
@@ -11,23 +12,29 @@ export const Details = () => {
       <div className="row py-3 ">
         <div className="col-sm-12 col-lg-5 ">
           <h1 className="logo text-white mt-4  ">
-            <span className="tittle taller text-white p-2 mb-3  rounded ">
-              Search
+            <span className="tittle taller text-white py-5 mb-3 t-shadow  rounded ">
+              Ecu
             </span>
-            <span className=" tittle nombreTaller text-success shadow-sm p-3 mb-4 bg-white rounded">
+            <span className=" tittle nombreTaller text-success bg-white  p-2 t-shadow mb-4 rounded">
               Tunning
             </span>
           </h1>
-          <p className="text m-auto ">
-            <h4 className="tittle mt-4">Talleres Paco</h4>
-            <small>
-              <i className="fas fa-map-marker-alt "></i> calle Baena 2
-            </small>
-          </p>
+          
+            <h4 className="tittle mt-4 text-align-top ">Talleres Paco</h4>
+           
+            <h6 className="address text-align-top "><i className="fas fa-map-marker-alt "></i> calle Baena 2</h6>  
+           
+          
 
+          <a
+            className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5  rounded "
+            href="/map"
+          >
+            <i class="fa-solid fa-circle-left"></i> atras
+          </a>
           <button
             type="button"
-            className="btn btn-success mt-5 mx-3 mb-3 text-white shadow-sm p-3 mb-5  rounded text-decoration-underline "
+            className="btn btn-success mt-5  mb-3 text-white shadow-sm p-3 mb-5  rounded text-decoration-underline "
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             data-bs-whatever="@mdo"
@@ -106,7 +113,7 @@ export const Details = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12 col-lg-7 card rounded shadow m-auto text-dark">
+        <div className="col-sm-12 col-lg-6 card rounded shadow m-auto color-dark text-dark">
           <Servicelist />
         </div>
       </div>
