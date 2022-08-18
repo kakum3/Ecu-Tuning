@@ -2,10 +2,15 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+w_services = db.Table('w_services',
+    db.Column('taller_id', db.Integer, db.ForeignKey('taller.id'), primary_key=True),
+    db.Column('services_id', db.Integer, db.ForeignKey('services.id'), primary_key=True)
+)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
     name = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_client = db.Column(db.Boolean(), unique=False, nullable=False)
     id_taller= db.Column(db.Integer, db.ForeignKey('taller.id'),
@@ -21,34 +26,33 @@ class User(db.Model):
             "taller_id":self .id,
             "is_client":self .is_client,
             "name":self.name
-            
-
-
-            # do not serialize the password, its a security breach
         }
 
 class Taller(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'),
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
-    datos_taller = db.Column(db.String(200), unique=True, nullable=False)
-    lista_servicios = db.Column(db.Integer, db.ForeignKey('user.id'),
-        nullable=False)
+    w_name = db.Column(db.String(200), unique=True, nullable=False)
+    w_address = db.Column(db.String(200), unique=True, nullable=False)
+    w_services = db.relationship('Services', secondary=w_services, lazy='subquery',
+        backref=db.backref('w_services', lazy=True))
+
+    def __repr__(self):
+        return f'<Taller {self.id}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "usuario_id": self.usuario_id,
-            "datos_taller": self.datos_taller,
-            "lista_servicios": self.lista_servicios,
+            "user_id": self.user_id,
+            "w_name": self.w_name,
+            "w_address": self.w_address,
+            "w_services": self.w_services,
         }
-        
-class Servicios(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=True, nullable=False)
-    desc = db.Column(db.String(80), unique=False, nullable=False)
 
-    # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+class Services(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(40), unique=True, nullable=False)
+    desc = db.Column(db.String(120), unique=False, nullable=False)
 
     def __repr__(self):
         return f'<Service {self.name}>'
@@ -67,9 +71,7 @@ class Contacts(db.Model):
         nullable=False)
     to_id = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
-
     message = db.Column(db.String(250), unique=False, nullable=False)
-    # is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
         return f'<Contacted {self.id}>'
