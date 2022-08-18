@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Servicelist from "../component/servicelist";
+import { Link } from "react-router-dom";
+
 
 import { number } from "prop-types";
 
@@ -24,14 +26,11 @@ export const Details = () => {
            
             <h6 className="address text-align-top "><i className="fas fa-map-marker-alt "></i> calle Baena 2</h6>  
            
-          
-
-          <a
-            className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5  rounded "
-            href="/map"
-          >
+            <Link className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5  rounded" to="/map">
             <i class="fa-solid fa-circle-left"></i> atras
-          </a>
+            </Link>
+
+      
           <button
             type="button"
             className="btn btn-success mt-5  mb-3 text-white shadow-sm p-3 mb-5  rounded text-decoration-underline "
