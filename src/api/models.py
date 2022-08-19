@@ -65,10 +65,8 @@ class Services(db.Model):
 
 class Contacts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    from_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-        nullable=False)
-    to_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-        nullable=False)
+    from_id = db.Column(db.Integer, nullable=False)
+    to_id = db.Column(db.Integer, nullable=False)
     message = db.Column(db.String(250), unique=False, nullable=False)
 
     def __repr__(self):

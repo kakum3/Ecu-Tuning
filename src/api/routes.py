@@ -74,8 +74,14 @@ def post_contact():
     
     usr = User.query.filter_by(id=current_user).first()
 
-    return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address": usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
+    body = request.get_json()
+    taller = User.query.filter_by(id=body["taller_id"]).first()
+    contact = Contacts(from_id=usr.id, to_id=taller.id, message=body["message"])
 
+    db.session.add(contact)
+    db.session.commit()
+
+    return jsonify({"msg": "ok"}), 200
 
 @api.route("/services", methods=["GET"])
 def services():
