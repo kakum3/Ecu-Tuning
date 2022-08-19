@@ -41,11 +41,8 @@ def login():
     if usr.password != password:
         return jsonify("Contraseña incorrecta"), 401
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
     my_token = create_access_token(identity=usr.id)
-
+    print(my_token)
     return jsonify({ "token": my_token, "user_id": usr.id, "msg":"ok" }), 200
 
 @api.route('/map', methods=['GET'])
@@ -56,6 +53,15 @@ def handle_map():
 
 
     
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def get_profile():
+    # Accede a la identidad del usuario actual con get_jwt_identity
+    current_user = get_jwt_identity()
+    
+    usr = User.query.filter_by(id=current_user).first()
+
+    return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address": usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
 @api.route("/protected", methods=["GET"])
 @jwt_required()
 def protected():
@@ -64,7 +70,8 @@ def protected():
     
     usr = User.query.filter_by(id=current_user).first()
 
-    return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address": usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
+    return jsonify({"msg": "ok", "user_info": usr.serialize(),
+     "w_info":str(usr.taller[0].serialize())}), 200
 
 
 @api.route("/contact", methods=["POST"])

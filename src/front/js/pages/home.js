@@ -47,10 +47,10 @@ export const Home = () => {
   return (
     <div className="container m-auto">
       <div className="row py-3 text-center">
-        <h1 className="f-bold mb-4 text-white t-shadow">ECU Tunning</h1>
-        <h1 className="fs-5 mb-4 t-shadow-black text-white">
+        <h1 className="title-header f-bold mb-4 text-white t-shadow">ECU Tunning</h1>
+        <h2 className="fs-5 mb-4 t-shadow-black text-white">
           Encuentra talleres tunning
-        </h1>
+        </h2>
         <p className="position-absolute">{/* <img src={rigoImageUrl} /> */}</p>
 
         <div className="m-auto col-12 col-md-7 col-lg-5 p-5">
