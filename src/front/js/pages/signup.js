@@ -6,7 +6,8 @@ import "../../styles/home.css";
 
 export const Signup = () => {
   const { store, actions } = useContext(Context);
-  const [values, setValues] = useState({ email: "", password: "" });
+  const [values, setValues] = useState({ name: "", email: "", password: ""});
+  const [isClient, setIsClient] = useState(true);
   const navigate = useNavigate();
   const redir = () => navigate("/login", { replace: true });
   useEffect(() => {
@@ -15,9 +16,12 @@ export const Signup = () => {
   const handleInputChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+  const handleCheckChange = e => {
+    setIsClient(!isClient)
+  }
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.getSignup(values);
+    actions.getSignup({...values, ["is_client"]: !isClient});
   };
   return (
     <div className="container m-auto">
@@ -29,12 +33,25 @@ export const Signup = () => {
     //   </form> */}
 
       <main className="m-auto col-12 col-md-7 col-lg-5 card p-5 rounded shadow">
-        <form>
+        <form onSubmit={formSubmit}>
           <img
             src="https://i.ibb.co/0F6ht3r/logofandf.png"
             className="rounded mx-auto d-block mb-5"
             width="100px"
           />
+          <div className="form-floating mb-3">
+            <input
+              value={values.name}
+              name="name"
+              onChange={handleInputChange}
+              onLoad={handleInputChange}
+              type="name"
+              className="form-control"
+              id="floatingName"
+              placeholder="Nombre"
+            />
+            <label for="floatingInput">Name</label>
+          </div>
           <div className="form-floating mb-3">
             <input
               value={values.email}
@@ -43,7 +60,7 @@ export const Signup = () => {
               onLoad={handleInputChange}
               type="email"
               className="form-control"
-              id="floatingInput"
+              id="floatingEmail"
               placeholder="name@example.com"
             />
             <label for="floatingInput">Email</label>
@@ -67,12 +84,12 @@ export const Signup = () => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio1"
-                value="option1"
-                checked
+                name="is_client_true"
+                checked={isClient}
+                onChange={handleCheckChange}
+                value=""
               />
-              <label className="form-check-label" for="inlineRadio1">
+              <label className="form-check-label" htmlFor="inlineRadio1">
                 Soy un Cliente
               </label>
             </div>
@@ -80,11 +97,12 @@ export const Signup = () => {
               <input
                 className="form-check-input"
                 type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio2"
-                value="option2"
+                name="is_client_false"
+                checked={!isClient}
+                onChange={handleCheckChange}
+                value=""
               />
-              <label className="form-check-label" for="inlineRadio2">
+              <label className="form-check-label" htmlFor="inlineRadio2">
                 Soy un Taller
               </label>
             </div>
