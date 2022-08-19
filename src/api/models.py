@@ -60,7 +60,7 @@ class Services(db.Model):
             "id": self.id,
             "name": self.name,
             "desc": self.desc,
-            "value": value
+            "value": True,
         }
 
 class Contacts(db.Model):

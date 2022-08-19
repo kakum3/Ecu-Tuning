@@ -3,13 +3,13 @@
 !Importante Notas Luis
 <code>Workflow:
 pipenv run reset_db //Reiniciar BD y que funcione
-// abrir el 
-* ... run start* Iniciamos
-pipenv run services //Añadimos servicios
-pipenv run adduser //añadimos usuario normal
-pipenv run addtaller //editamos usuario(is_client=False por lo que se hace rol taller, añadimos taller, linkeamos y editamos
-</code>
+// abrir el
 
+- ... run start\* Iniciamos
+  pipenv run flask services //Añadimos servicios
+  pipenv run flask adduser //añadimos usuario normal
+  pipenv run flask addtaller //editamos usuario(is_client=False por lo que se hace rol taller, añadimos taller, linkeamos y editamos
+  </code>
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/LuisAguadoVicaria/react-flask-blank.git)
 
@@ -53,9 +53,9 @@ The `Provider` is already set. You can consume from any component using the useC
 ```jsx
 import { Context } from "../store/appContext";
 const MyComponentSuper = () => {
-    //here you use useContext to get store and actions
-    const { store, actions } = useContext(Context);
-    return <div>{/* you can use your actions or store inside the html */}</div>;
+  //here you use useContext to get store and actions
+  const { store, actions } = useContext(Context);
+  return <div>{/* you can use your actions or store inside the html */}</div>;
 };
 ```
 
@@ -101,7 +101,7 @@ To update with all yours tables you can edit the file app.py and go to the line 
 
 ### Front-End Manual Installation:
 
--   Make sure you are using node version 14+ and that you have already successfully installed and runned the backend.
+- Make sure you are using node version 14+ and that you have already successfully installed and runned the backend.
 
 1. Install the packages: `$ npm install`
 2. Start coding! start the webpack dev server `$ npm run start`

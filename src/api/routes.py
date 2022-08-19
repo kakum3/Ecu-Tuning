@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Services, Taller, Contacts
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -77,6 +77,11 @@ def post_contact():
     return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address": usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
 
 
- 
+@api.route("/services", methods=["GET"])
+def services():
+        
+    servicios = Services.query.all()
+
+    return jsonify([x.serialize() for x in servicios]), 200
 
 
