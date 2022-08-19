@@ -55,23 +55,18 @@ def handle_map():
     
 @api.route("/profile", methods=["GET"])
 @jwt_required()
-def get_profile():
-    # Accede a la identidad del usuario actual con get_jwt_identity
-    current_user = get_jwt_identity()
-    
-    usr = User.query.filter_by(id=current_user).first()
-
-    return jsonify({"msg": "ok", "user_id": usr.id, "email": usr.email, "is_client": usr.is_client, "w_address": usr.w_address, "w_name": usr.w_name, "w_services": usr.w_services }), 200
-@api.route("/protected", methods=["GET"])
-@jwt_required()
 def protected():
     # Accede a la identidad del usuario actual con get_jwt_identity
     current_user = get_jwt_identity()
     
     usr = User.query.filter_by(id=current_user).first()
 
+    taller = usr.taller[0].serialize()
+    print(taller)
+    taller["w_services"] = [x.serialize() for x in taller["w_services"]]
+
     return jsonify({"msg": "ok", "user_info": usr.serialize(),
-     "w_info":str(usr.taller[0].serialize())}), 200
+     "taller":(taller)}), 200
 
 
 @api.route("/contact", methods=["POST"])
