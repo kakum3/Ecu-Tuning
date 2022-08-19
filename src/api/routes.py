@@ -96,6 +96,6 @@ def services():
         
     servicios = Services.query.all()
 
-    return jsonify([x.serialize() for x in servicios]), 200
+    return jsonify({"msg": "ok", "all_services": [x.serialize() for x in servicios]}), 200
 
 

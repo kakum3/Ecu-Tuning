@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       alert: null,
       loggedIn: false,
       carSearch: null,
+      all_services: { name: "EMPTY", desc: "", value: true }
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -102,7 +103,20 @@ console.log(data)
         setStore({ loggedIn: false });
         return null;
       },
+      getServices: async () => {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/services");
 
+          const data = await resp.json();
+
+          setStore({ all_services: [{ name: "ECU", value: true }, ...data.all_services]});
+          // don't forget to return something, that is how the async resolves
+          return(getStore().all_services)
+        } catch (error) {
+          console.log("Error loading services from backend", error);
+        }
+      },
       getMessage: async () => {
         try {
           // fetching data from the backend
