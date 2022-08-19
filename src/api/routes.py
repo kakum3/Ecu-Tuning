@@ -50,11 +50,12 @@ def login():
 
 @api.route('/map', methods=['GET'])
 def handle_map():
+    
+    talleres=Taller.query.all()
+    return jsonify([x.serialize() for x in talleres]),200 
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
 
+    
 @api.route("/protected", methods=["GET"])
 @jwt_required()
 def protected():
