@@ -1,12 +1,10 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import React, { useState } from "react";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../index";
 
 export const Home = () => {
-  const { store, actions } = useContext(Context);
-
+  const { store, actions, setStore } = useAppContext();
   const [marks, setMarks] = useState(["Alfalfa Rome", "BMW"]);
   const [models, setModels] = useState(null);
   const [years, setYears] = useState(null);
@@ -14,45 +12,55 @@ export const Home = () => {
 
   const handleMarksChange = (e) => {
     if (e.value !== true) {
+      //fetch and set the data (ejemplo ["A7"..etc])
       setModels(["A7", "A2"]);
-      console.log("Fetch and show next");
     }
   };
   const handleModelsChange = (e) => {
     if (e.value !== true) {
+      //fetch and set the data (ejemplo ["A7"..etc])
       setYears(["1998", "1999"]);
-      console.log("Fetch and show next");
     }
   };
   const handleYearsChange = (e) => {
     if (e.value !== true) {
+      //fetch and set the data (ejemplo ["A7"..etc])
       setEngines(["2 TDI", "3 TDOY"]);
-      console.log("Fetch and show next");
     }
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const mark = e.target.mark.value;
-    const model = e.target.model !== undefined ? e.target.model.value : false;
-    const years = e.target.years !== undefined ? e.target.years.value : false;
+    e.preventDefault(); // Error, not pay att to selected values
+    const mark = e.target.mark !== undefined ? e.target.mark.value : true;
+    const model = e.target.model !== undefined ? e.target.model.value : true;
+    const years = e.target.years !== undefined ? e.target.years.value : true;
     const engine =
-      e.target.engine !== undefined ? e.target.engine.value : false;
+      e.target.engine !== undefined ? e.target.engine.value : true;
 
-    !model || !years || !engine
-      ? console.log("Error submit, select all first")
-      : console.log("Form pass, next to carAPI and get results to store");
+    if(!mark || !model || !years || !engine){
+      console.log("Error submit, select all first")
+    }else{
+      antonioFetch({mark:mark, model:model, years:years, engine:engine})
+    }
   };
+  const antonioFetch = (datos) => {
+      // datos que vienen = {mark:mark, model:model, years:years, engine:engine}
+
+      //fetch y guardar estos datos de la api en store =>
+      // setStore( { carSearch: { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" } } )
+      
+      console.log(datos)
+
+  }
 
   return (
     <div className="container m-auto">
       <div className="row py-3 text-center">
-        <h1 className="title-header f-bold mb-4 text-white t-shadow">ECU Tunning</h1>
+        <h1 className="title-header f-bold mb-4 text-white t-shadow">
+          ECU Tunning
+        </h1>
         <h2 className="fs-5 mb-4 t-shadow-black text-white">
           Encuentra talleres tunning
         </h2>
-        <p className="position-absolute">{/* <img src={rigoImageUrl} /> */}</p>
-
         <div className="m-auto col-12 col-md-7 col-lg-5 p-5">
           <form onSubmit={handleSubmit} id="form">
             <select

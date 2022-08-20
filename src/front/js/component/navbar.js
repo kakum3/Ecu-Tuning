@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
+import { useAppContext } from "../index";
+
 export const Navbar = () => {
-  const { store, actions } = useContext(Context);
+  const { store, actions, setStore } = useAppContext();
   return (
     <nav className="text-bg-dark shadow">
       <div className="container">
@@ -21,7 +22,7 @@ export const Navbar = () => {
 
             <div className="form-check form-switch">
               <input
-                onChange={actions.toggleCarApi}
+                onChange={()=>actions.toggleCarAPI()}
                 className="form-check-input"
                 type="checkbox"
                 role="switch"

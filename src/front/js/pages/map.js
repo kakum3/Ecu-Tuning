@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+
 import Mapcomp from "../component/mapcomp";
 import Servicelist from "../component/servicelist";
+import { useAppContext } from "../index";
 
 export const Map = () => {
-  const { store, actions } = useContext(Context);
+  const { store, actions, setState } = useAppContext();
 
   return (
     <div className="container m-auto">
@@ -17,6 +18,7 @@ export const Map = () => {
             <Link className="btn btn-success" to="/details">
               Detalles mapa (Dev)
             </Link>
+            DEV(filters): {JSON.stringify(store.sel_services)}
           </div>
           <div className="col-sm-12 col-lg-7">
             <Mapcomp />

@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
+
 import { Link } from "react-router-dom";
-import Mapcomp from "../component/mapcomp";
 import Servicelist from "../component/servicelist";
+import { useAppContext } from "../index";
 
 export const Profile = () => {
-  const { store, actions } = useContext(Context);
+  const { store, actions, setStore } = useAppContext();
   const [taller, setTaller] = useState(true);
 
-  useEffect( ()=>{
-    //fetch user content {}
-  },[])
+	useEffect( () => {
+		actions.getProfile(actions.getToken())
+	}, [])
   const handleRadioChange = (e) => {
     setTaller(!taller);
   };
@@ -19,6 +19,7 @@ export const Profile = () => {
       <main className="m-auto col-12 col-md-10 col-lg-8 card p-5 rounded shadow">
         <section className="row">
           <h1>Perfil</h1>
+          DEV: {JSON.stringify(store.user_data)}
           <hr />
           <div className="input-group mb-3">
             <input

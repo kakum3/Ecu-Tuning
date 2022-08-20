@@ -1,18 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { useNavigate, Link } from "react-router-dom";
 import "../../styles/home.css";
+import { useAppContext } from "../index";
 
 export const Signup = () => {
-  const { store, actions } = useContext(Context);
+  const { store, actions, setState } = useAppContext();
   const [values, setValues] = useState({ name: "", email: "", password: ""});
   const [isClient, setIsClient] = useState(true);
-  const navigate = useNavigate();
-  const redir = () => navigate("/login", { replace: true });
-  useEffect(() => {
-    if (store.loggedIn === true) redir();
-  }, [store.loggedIn]);
+
   const handleInputChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -50,7 +45,7 @@ export const Signup = () => {
               id="floatingName"
               placeholder="Nombre"
             />
-            <label for="floatingInput">Name</label>
+            <label htmlFor="floatingInput">Name</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -63,7 +58,7 @@ export const Signup = () => {
               id="floatingEmail"
               placeholder="name@example.com"
             />
-            <label for="floatingInput">Email</label>
+            <label htmlFor="floatingInput">Email</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -76,7 +71,7 @@ export const Signup = () => {
               id="floatingPassword"
               placeholder="Password"
             />
-            <label for="floatingPassword">Contraseña</label>
+            <label htmlFor="floatingPassword">Contraseña</label>
           </div>
 
           <div className="mb-3 text-center">

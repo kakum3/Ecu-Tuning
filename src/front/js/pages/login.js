@@ -1,17 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../styles/home.css";
+import { useAppContext } from "../index";
 
 export const Login = () => {
-  const { store, actions } = useContext(Context);
+  const { store, actions, setState } = useAppContext();
   const [values, setValues] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
-  const redir = () => navigate("/protected", { replace: true });
-  useEffect(() => {
-    if (store.loggedIn === true) redir();
-  }, [store.loggedIn]);
   const handleInputChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -39,7 +33,7 @@ export const Login = () => {
               id="floatingInput"
               placeholder="name@example.com"
             />
-            <label for="floatingInput">Email</label>
+            <label htmlFor="floatingInput">Email</label>
           </div>
           <div className="form-floating mb-3">
             <input
@@ -52,7 +46,7 @@ export const Login = () => {
               id="floatingPassword"
               placeholder="Password"
             />
-            <label for="floatingPassword">Contraseña</label>
+            <label htmlFor="floatingPassword">Contraseña</label>
           </div>
 
           <button className="w-100 btn btn-primary mb-2" type="submit">

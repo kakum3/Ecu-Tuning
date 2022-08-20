@@ -2,41 +2,35 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useLocation } from "react-router-dom";
 
+import { useAppContext } from "../index";
+
 export const Servicelist = () => {
-  const { store, actions } = useContext(Context);
+  const { store, actions, setStore } = useAppContext();
   const location = useLocation();
 
-  const [services, setServices] = useState([
-    { name: "Cargando...", desc: "...", value: false },
-  ]);
-
   useEffect(() => {
-    if(store.all_services.name === "EMPTY"){
-    actions.getServices().then((e) => setServices(e));
-    } else {
-      setServices(store.all_services)
-    }
+    actions.getServices()
   }, []);
 
   const handleCheckChange = (e) => {
     const target = e.target;
     const name = target.name;
-    const newState = services.map((e) =>
+    const newState = store.sel_services.map((e) =>
       e.name === target.name ? { ...e, value: !e.value } : e
     );
-    return setServices(newState);
+    return setStore({sel_services: newState});
   };
   return (
     <>
-    <input type="hidden" name="comp_services" value={services} />
-    <button onClick={()=>console.log(services)}>DEV: Local selection log</button>
+    <input type="hidden" value={store.sel_services}/>
+    <button onClick={()=>console.log(store.sel_services)}>DEV: Local selection log</button>
       <div className="list-group w-auto">
         <label className="list-group-item d-flex gap-3">
           <input
             className="form-check-input flex-shrink-0"
             type="checkbox"
             name="ECU"
-            checked={services[0].value}
+            checked={store.sel_services[0].value}
             onChange={handleCheckChange}
             value=""
           />
@@ -102,14 +96,14 @@ export const Servicelist = () => {
             </small>
           </span>
         </label>
-        {services.map((e, i) =>
+        {store.sel_services.map((e, i) =>
           e.name === "ECU" ? null : (
             <label key={i} className="list-group-item d-flex gap-3">
               <input
                 className="form-check-input flex-shrink-0"
                 type="checkbox"
                 name={e.name}
-                checked={e.value || false}
+                checked={e.value}
                 onChange={handleCheckChange}
                 value=""
               />

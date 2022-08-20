@@ -77,7 +77,31 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ loggedIn: false });
         return null;
       },
-
+      getProfile: async (token) => {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/protected", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          });
+		  
+          const data = await resp.json();
+console.log(data)
+          if (data.msg === "ok") {
+            setStore({ loggedIn: true });
+            setStore({ alert: "logged in" });
+            return data;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+        setStore({ alert: "error" });
+        setStore({ loggedIn: false });
+        return null;
+      },
       getProtected: async (token) => {
         try {
           // fetching data from the backend
