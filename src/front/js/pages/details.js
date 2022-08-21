@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 
-=======
->>>>>>> feature
+
+
+
 
 import { number } from "prop-types";
 
@@ -40,7 +40,7 @@ export const Details = () => {
               Tunning
             </span>
           </h1>
-<<<<<<< HEAD
+
           
             <h4 className="tittle mt-4 text-align-top ">Talleres Paco</h4>
            
@@ -51,7 +51,7 @@ export const Details = () => {
             </Link>
 
       
-=======
+
 
           <h4 className="tittle mt-4 text-align-top ">Talleres Paco</h4>
 
@@ -66,7 +66,7 @@ export const Details = () => {
             <i className="fa-solid fa-circle-left"></i> atras
           </Link>
 
->>>>>>> feature
+
           <button
             type="button"
             className="btn btn-success mt-5  mb-3 text-white shadow-sm p-3 mb-5  rounded text-decoration-underline "
