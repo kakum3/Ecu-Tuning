@@ -3,10 +3,6 @@ import { Context } from "../store/appContext";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
 
-
-
-
-
 import { number } from "prop-types";
 
 export const Details = () => {
@@ -41,18 +37,6 @@ export const Details = () => {
             </span>
           </h1>
 
-          
-            <h4 className="tittle mt-4 text-align-top ">Talleres Paco</h4>
-           
-            <h6 className="address text-align-top "><i className="fas fa-map-marker-alt "></i> calle Baena 2</h6>  
-           
-            <Link className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5  rounded" to="/map">
-            <i class="fa-solid fa-circle-left"></i> atras
-            </Link>
-
-      
-
-
           <h4 className="tittle mt-4 text-align-top ">Talleres Paco</h4>
 
           <h6 className="address text-align-top ">
@@ -63,9 +47,8 @@ export const Details = () => {
             className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5  rounded"
             to="/map"
           >
-            <i className="fa-solid fa-circle-left"></i> atras
+            <i class="fa-solid fa-circle-left"></i> atras
           </Link>
-
 
           <button
             type="button"
@@ -107,9 +90,9 @@ export const Details = () => {
                         Telefono
                       </label>
                       <input
-                       value={values.telefon}
-                       onChange={handleInputChange}
-                       onLoad={handleInputChange}
+                        value={values.telefon}
+                        onChange={handleInputChange}
+                        onLoad={handleInputChange}
                         name="telefon"
                         type="tel"
                         className="form-control"
@@ -143,9 +126,9 @@ export const Details = () => {
                         Asunto
                       </label>
                       <input
-                       value={values.asunto}
-                       onChange={handleInputChange}
-                       onLoad={handleInputChange}
+                        value={values.asunto}
+                        onChange={handleInputChange}
+                        onLoad={handleInputChange}
                         type="text"
                         className="form-control"
                         id="recipient-name"
@@ -153,7 +136,10 @@ export const Details = () => {
                       />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="message-text" className="col-form-floating">
+                      <label
+                        htmlFor="message-text"
+                        className="col-form-floating"
+                      >
                         <i className="fa-solid fa-comment-dots me-1"></i>
                         Mensaje
                       </label>
