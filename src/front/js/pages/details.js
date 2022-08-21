@@ -2,12 +2,31 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature
 
 import { number } from "prop-types";
 
 export const Details = () => {
   const { store, actions } = useContext(Context);
+  const [values, setValues] = useState({
+    email: "",
+    fName: "",
+    telefon: "",
+    asunto: "",
+  });
+  useEffect(() => {
+    if (store.loggedIn === true) redir();
+  }, [store.loggedIn]);
+  const handleInputChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+  const formSubmit = (e) => {
+    e.preventDefault();
+    actions.getDetail(values);
+  };
 
   return (
     <div className="container  m-auto text-white border-0 ">
@@ -21,6 +40,7 @@ export const Details = () => {
               Tunning
             </span>
           </h1>
+<<<<<<< HEAD
           
             <h4 className="tittle mt-4 text-align-top ">Talleres Paco</h4>
            
@@ -31,6 +51,22 @@ export const Details = () => {
             </Link>
 
       
+=======
+
+          <h4 className="tittle mt-4 text-align-top ">Talleres Paco</h4>
+
+          <h6 className="address text-align-top ">
+            <i className="fas fa-map-marker-alt "></i> calle Baena 2
+          </h6>
+
+          <Link
+            className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5  rounded"
+            to="/map"
+          >
+            <i className="fa-solid fa-circle-left"></i> atras
+          </Link>
+
+>>>>>>> feature
           <button
             type="button"
             className="btn btn-success mt-5  mb-3 text-white shadow-sm p-3 mb-5  rounded text-decoration-underline "
@@ -61,31 +97,63 @@ export const Details = () => {
                   ></button>
                 </div>
                 <div className="modal-body">
-                  <form>
+                  <form onSubmit={formSubmit}>
                     <div className="mb-3 mb-2 ">
-                      <label for="recipient-phone " className="col-form-label">
+                      <label
+                        htmlFor="recipient-phone "
+                        className="col-form-label"
+                      >
                         <i className="fa-brands fa-whatsapp me-1"></i>
                         Telefono
                       </label>
                       <input
-                        type="tel-"
+                       value={values.telefon}
+                       onChange={handleInputChange}
+                       onLoad={handleInputChange}
+                        name="telefon"
+                        type="tel"
                         className="form-control"
                         id="phone"
                         placeholder=""
                       ></input>
                     </div>
+                    <div className="mb-3 mb-2 ">
+                      <label
+                        htmlFor="recipient-phone "
+                        className="col-form-floating"
+                      >
+                        nombre
+                      </label>
+                      <input
+                        value={values.fName}
+                        onChange={handleInputChange}
+                        onLoad={handleInputChange}
+                        name="fName"
+                        type="text"
+                        className="form-control"
+                        id="fName"
+                        placeholder="nombre"
+                      ></input>
+                    </div>
                     <div className="mb-3">
-                      <label for="recipient-name" className="col-form-label">
+                      <label
+                        htmlFor="recipient-name"
+                        className=" col-form-floating"
+                      >
                         Asunto
                       </label>
                       <input
+                       value={values.asunto}
+                       onChange={handleInputChange}
+                       onLoad={handleInputChange}
                         type="text"
                         className="form-control"
                         id="recipient-name"
+                        name="asunto"
                       />
                     </div>
                     <div className="mb-3">
-                      <label for="message-text" className="col-form-label">
+                      <label htmlFor="message-text" className="col-form-floating">
                         <i className="fa-solid fa-comment-dots me-1"></i>
                         Mensaje
                       </label>
@@ -104,7 +172,7 @@ export const Details = () => {
                   >
                     Cerrar
                   </button>
-                  <button type="button" className="btn btn-success">
+                  <button type="submit" className="btn btn-success">
                     Enviar
                   </button>
                 </div>
