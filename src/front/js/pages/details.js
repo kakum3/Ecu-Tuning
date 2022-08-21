@@ -9,7 +9,7 @@ export const Details = () => {
   const { store, actions } = useContext(Context);
   const [values, setValues] = useState({
     email: "",
-    fname: "",
+    fName: "",
     telefon: "",
     asunto: "",
   });
@@ -108,13 +108,13 @@ export const Details = () => {
                         nombre
                       </label>
                       <input
-                        value={values.fname}
+                        value={values.fName}
                         onChange={handleInputChange}
                         onLoad={handleInputChange}
-                        name="fname"
-                        type="name"
+                        name="fName"
+                        type="text"
                         className="form-control"
-                        id="fname"
+                        id="fName"
                         placeholder="nombre"
                       ></input>
                     </div>
