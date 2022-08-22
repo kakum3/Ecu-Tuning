@@ -1,21 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 /** Use any React Hook of your choice */
 
 const useFlux = () => {
-  const navigate = useNavigate();
   const [store, _setStore] = useState({
     /** Global store objects. */
     alert: null,
     loggedIn: false,
-    user_data: null,
     carSearch: null,
-    all_services: [{ name: "ECU", value: true }],
-    sel_services: [{ name: "ECU", value: true }],
+    all_services: [{ name: "EMPTY", value: true }],
+    sel_services: [{ name: "EMPTY", value: true }],
+    user_data: {
+      taller: {
+        w_address: "",
+        w_name: "",
+        w_services: [{ desc: "", name: "", value: true }],
+      },
+      user_info: { email: "", is_client: false, name: "" },
+    },
   });
-
   const setStore = (obj) => _setStore({ ...store, ...obj });
+  //on render(middle) and consts
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    setStore({ alert: null });
+  }, [location]);
+
   return {
     actions: {
       /** Global functions. */
@@ -28,9 +40,14 @@ const useFlux = () => {
         //setStore({ hide: !store.hide });
         this.log(); // access functions inside functions (dont use => functions)
       },
-      toggleCarAPI: function() {
-        setStore({carSearch: store.carSearch === null ? { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" } : null})
-        console.log(store.carSearch)
+      toggleCarAPI: function () {
+        setStore({
+          carSearch:
+            store.carSearch === null
+              ? { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" }
+              : null,
+        });
+        console.log(store.carSearch);
       },
       setToken: (token) => {
         localStorage.setItem("access_token_jwt", token);
@@ -42,6 +59,23 @@ const useFlux = () => {
 
       removeToken: () => {
         localStorage.setItem("access_token_jwt", "");
+      },
+      getServices: async function () {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/services");
+
+          const data = await resp.json();
+          if (data.msg === "ok") {
+            return setStore({ all_services: data.all_services, sel_services: data.all_services });
+          }
+        } catch (error) {
+          return setStore({
+            alert: "Error cargando servicios: " + error,
+            loggedIn: false,
+          });
+        }
+        return setStore({ alert: "Error cargando servicios", loggedIn: false });
       },
       getLogin: async function (data_front) {
         try {
@@ -56,8 +90,8 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             this.setToken(data.token);
-            setStore({ alert: "Logeado correctamente", loggedIn: true });
-            return navigate("/protected", { replace: true });
+            navigate("/profile", { replace: true });
+            return setStore({ alert: "Logeado correctamente", loggedIn: true });
           }
         } catch (error) {
           return setStore({ alert: "Error login: " + error, loggedIn: false });
@@ -76,50 +110,73 @@ const useFlux = () => {
           });
           const data = await resp.json();
           if (data.msg === "ok") {
-            setStore({ alert: "Registrado correctamente" });
-            return navigate("/login", { replace: true });
+            navigate("/login", { replace: true });
+            return setStore({ alert: "Registrado correctamente" });
           }
         } catch (error) {
           return setStore({ alert: "Error Signup: " + error, loggedIn: false });
         }
         return setStore({ alert: "Error", loggedIn: false });
       },
-      getProfile: async function (token) {
+      getProfile: async function () {
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/profile", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
+              Authorization: "Bearer " + this.getToken(),
             },
           });
-		  
+
           const data = await resp.json();
-console.log(data) // N!!! Ver
+          console.log(data); // N!!! Ver
           if (data.msg === "ok") {
-            return setStore({ user_data: data, alert: "Usuario cargado", loggedIn: true });
+            return setStore({
+              user_data: data,
+              alert: "Usuario cargado",
+              loggedIn: true,
+            });
           }
         } catch (error) {
-          return setStore({ alert: "Error Usuario: " + error, loggedIn: false });
+          return setStore({
+            alert: "Error Usuario: " + error,
+            loggedIn: false,
+          });
         }
         return setStore({ alert: "Error cargando usuario", loggedIn: false });
       },
-      getServices: async function() {
+
+      postProfile: async function (data_front) {
         try {
           // fetching data from the backend
-          const resp = await fetch(process.env.BACKEND_URL + "/services");
-
+          const resp = await fetch(process.env.BACKEND_URL + "/profile", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + this.getToken(),
+            },
+            body: JSON.stringify({...data_front, ...{sel_services:store.sel_services}}),
+          });
           const data = await resp.json();
-          const svcs = [{ name: "ECU", value: true }, ...data.all_services]
-
-          return setStore({ all_services: svcs, sel_services: svcs});
+          if (data.msg === "ok") {
+            console.log(data)
+            return setStore({ alert: "Perfil Actualizado", user_data: data }); //Reset user data
+          }
         } catch (error) {
-          return console.log("Error loading services", error);
+          return setStore({
+            alert: "Error Actualizar: " + error,
+            loggedIn: false,
+          });
         }
+        return setStore({
+          alert: "Error Actualizar desconocido",
+          loggedIn: false,
+        });
       },
       /** End of global functions. */
     },
+
     store: store,
     setStore: (obj) => setStore(obj),
   };

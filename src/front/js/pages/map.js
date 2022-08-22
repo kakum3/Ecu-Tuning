@@ -14,6 +14,7 @@ export const Map = () => {
         <div className="row">
           <div className="p-5 col-sm-12 col-lg-5">
             <h1 className="">Servicios</h1>
+            
             <Servicelist />
             <Link className="btn btn-success" to="/details">
               Detalles mapa (Dev)
@@ -21,6 +22,7 @@ export const Map = () => {
             DEV(filters): {JSON.stringify(store.sel_services)}
           </div>
           <div className="col-sm-12 col-lg-7">
+            
             <Mapcomp />
           </div>
         </div>

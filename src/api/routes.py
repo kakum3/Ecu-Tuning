@@ -52,30 +52,56 @@ def handle_map():
     return jsonify([x.serialize() for x in talleres]),200 
 
 
-    
-@api.route("/protected", methods=["GET"])
-@jwt_required()
-def protected():
-    # Accede a la identidad del usuario actual con get_jwt_identity
-    current_user = get_jwt_identity()
-    usr = User.query.filter_by(id=current_user).first()
-    taller = usr.taller[len(usr.taller)-1].serialize()
-    taller["w_services"] = [x.serialize() for x in taller["w_services"]]
-
-    return jsonify({"msg": "ok", "user_info": usr.serialize(),
-     "taller":(taller)}), 200
-
 @api.route("/profile", methods=["GET"])
 @jwt_required()
 def get_profile():
     # Accede a la identidad del usuario actual con get_jwt_identity
     current_user = get_jwt_identity()
-    usr = User.query.filter_by(id=current_user).first()
-    taller = usr.taller[len(usr.taller)-1].serialize()
-    taller["w_services"] = [x.serialize() for x in taller["w_services"]]
+    user = User.query.filter_by(id=current_user).first()
+    taller = user.taller
+    return jsonify({"msg": "ok", "user_info": user.serialize(), "taller":taller.serialize()}), 200
 
-    return jsonify({"msg": "ok", "user_info": usr.serialize(),
-     "taller":(taller)}), 200
+@api.route("/profile", methods=["POST"])
+@jwt_required()
+def post_profile():
+    body = request.get_json()
+
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(id=current_user).first()
+
+    if len(body["name"]) > 6:
+        user.name = body["name"]
+
+    if len(body["email"]) > 6:
+        user.email = body["email"]
+
+    if len(body["password"]) > 6:
+        user.password = body["password"]
+
+    user.is_client = body["is_client"]
+
+    
+    if not body["is_client"]:
+
+        services = Services.query.all()
+
+        taller = user.taller
+        taller.w_services = []
+
+        for i in range(len(services)):
+            if body["sel_services"][i]["value"] == True:
+                taller.w_services.append(services[i])
+
+        if len(body["w_name"]) > 6:
+            taller.w_name = body["w_name"]
+        if len(body["w_address"]) > 6:
+            taller.w_address = body["w_address"]
+
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify({"msg": "ok", "user_info": user.serialize(),
+     "taller":taller.serialize()}), 200
 
 
 @api.route("/contact", methods=["POST"])

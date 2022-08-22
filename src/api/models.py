@@ -14,7 +14,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_client = db.Column(db.Boolean(), unique=False, nullable=False)
-    taller = db.relationship('Taller', backref='user', lazy=True)
+    taller = db.relationship('Taller', backref='user', lazy=True, uselist=False)
     
     def __repr__(self):
         return f'<User {self.email}>'
@@ -33,6 +33,7 @@ class Taller(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     w_name = db.Column(db.String(200), unique=True, nullable=False)
     w_address = db.Column(db.String(200), unique=True, nullable=False)
+    w_geo = db.Column(db.String(60), unique=True, nullable=True)
     w_services = db.relationship('Services', secondary=w_services_table, lazy='subquery', backref=db.backref('w_services_list', lazy=True))
 
     def __repr__(self):
@@ -44,7 +45,7 @@ class Taller(db.Model):
             "user_id": self.user_id,
             "w_name": self.w_name,
             "w_address": self.w_address,
-            "w_services": self.w_services,
+            "w_services": [x.serialize() for x in self.w_services],
         }
 
 class Services(db.Model):
@@ -65,8 +66,8 @@ class Services(db.Model):
 
 class Contacts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    from_id = db.Column(db.Integer, nullable=False)
-    to_id = db.Column(db.Integer, nullable=False)
+    from_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
+    to_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     message = db.Column(db.String(250), unique=False, nullable=False)
 
     def __repr__(self):

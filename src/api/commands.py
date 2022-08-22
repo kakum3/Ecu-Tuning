@@ -36,8 +36,8 @@ def setup_commands(app):
         taller.w_address = "C:\Fake No 0"
         #adding all services, but needs filtering
         taller.w_services = (Services.query.all())
-        taller.user_id = user.id
-        db.session.add(taller)
+        
+        user.taller = taller
         db.session.add(user)
         db.session.commit()
         
@@ -46,12 +46,17 @@ def setup_commands(app):
 
     @app.cli.command("services") # pipenv run flask services
     def insert_services_data():
-        print("Creating Services")
+        print("Creating Services and ECU")
+        service = Services()
+        service.name = "ECU"
+        service.desc = ""
+        db.session.add(service)
         for x in range(1, 5):
             service = Services()
             service.name = "Servicio n: " + str(x)
             service.desc = "Desc ejemplo n: "+ str(x)
             db.session.add(service)
-            db.session.commit()
+        
+        db.session.commit()
 
         print("All services created")
