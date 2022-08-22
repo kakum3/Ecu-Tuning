@@ -9,8 +9,8 @@ export const Servicelist = () => {
   const location = useLocation();
 
   useEffect(() => {
-    actions.getServices()
-  }, []);
+    if(store.all_services.length===1)actions.getServices();
+  }, [store.all_services]);
 
   const handleCheckChange = (e) => {
     const target = e.target;
@@ -18,12 +18,14 @@ export const Servicelist = () => {
     const newState = store.sel_services.map((e) =>
       e.name === target.name ? { ...e, value: !e.value } : e
     );
-    return setStore({sel_services: newState});
+    return setStore({ sel_services: newState });
   };
   return (
     <>
-    <input type="hidden" value={store.sel_services}/>
-    <button onClick={()=>console.log(store.sel_services)}>DEV: Local selection log</button>
+      <input type="hidden" value={store.sel_services || null} />
+      <button onClick={() => console.log(store.sel_services)}>
+        DEV: Local selection log
+      </button>
       <div className="list-group w-auto">
         <label className="list-group-item d-flex gap-3">
           <input
@@ -96,14 +98,14 @@ export const Servicelist = () => {
             </small>
           </span>
         </label>
-        {store.sel_services.map((e, i) =>
+        {store.all_services.map((e, i) =>
           e.name === "ECU" ? null : (
             <label key={i} className="list-group-item d-flex gap-3">
               <input
                 className="form-check-input flex-shrink-0"
                 type="checkbox"
                 name={e.name}
-                checked={e.value}
+                checked={store.sel_services[i].value}
                 onChange={handleCheckChange}
                 value=""
               />

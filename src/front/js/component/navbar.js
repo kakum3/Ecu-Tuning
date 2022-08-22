@@ -19,22 +19,6 @@ export const Navbar = () => {
             <Link className="text-white m-auto" to="/map">
               <i className="fa-solid fa-car-on mx-3">Talleres</i>
             </Link>
-
-            <div className="form-check form-switch">
-              <input
-                onChange={()=>actions.toggleCarAPI()}
-                className="form-check-input"
-                type="checkbox"
-                role="switch"
-                id="flexSwitchCheckDefault"
-              />
-              <label
-                className="form-check-label"
-                htmlFor="flexSwitchCheckDefault"
-              >
-                DEV: Apisearch
-              </label>
-            </div>
           </ul>
           <span className="ms-auto d-flex me-3">
             <a className="ms-3 text-muted d-flex" href="#">

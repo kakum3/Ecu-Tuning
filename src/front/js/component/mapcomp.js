@@ -26,8 +26,15 @@ const onPlaceChanged = () => { };
 function MyComponent() {
   const { store, actions } = useContext(Context);
 
+  const onLoad = ref => window.Autocomplete = ref;
+  const onPlacesChanged = () => console.log(window.Autocomplete.gm_accessors_.place.Uj.place.geometry.location.lng());
   return (
-    <LoadScript googleMapsApiKey="AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg">
+    <LoadScript googleMapsApiKey="AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg" libraries={["places"]}>
+      <Autocomplete restrictions={ { country: "es" } }
+      fields={["formatted_address", "geometry.location", "name"]}
+      types={["establishment"]}
+      onLoad={onLoad}
+        onPlaceChanged={onPlacesChanged}><><input className="w-100"/><sub>Introduce calle y núm</sub></></Autocomplete>
       <GoogleMap
         mapContainerStyle={{
           width: "auto",
