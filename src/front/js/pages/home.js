@@ -6,25 +6,34 @@ import { useAppContext } from "../index";
 export const Home = () => {
   const { store, actions, setState } = useAppContext();
   const [marks, setMarks] = useState([]);
-  const [models, setModels] = useState(null);
+  const [models, setModels] = useState([]);
   const [years, setYears] = useState(null);
   const [engines, setEngines] = useState(null);
 
   useEffect(() => {
     const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
     fetch(url).then(r => r.json()).then(data => {
+      console.log(data)
       setMarks(data)
-
     })
-
   }, []);
 
   const handleMarksChange = (e) => {
     if (e.value !== true) {
       //fetch and set the data (ejemplo ["A7"..etc])
-      setModels(["A7", "A2"]);
+      // setModels(["A7", "A2"]);
     }
   };
+
+  useEffect(() => {
+    const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
+    fetch(url).then(r => r.json()).then(data => {
+      console.log(data)
+      setModels(data)
+
+    })
+  }, []);
+
   const handleModelsChange = (e) => {
     if (e.value !== true) {
       //fetch and set the data (ejemplo ["A7"..etc])
@@ -115,9 +124,9 @@ export const Home = () => {
                 name="model"
               >
                 <option value={true}>Modelo</option>
-                {models.map((e, i) => (
-                  <option key={i} value={e}>
-                    {e}
+                {models.map((e) => (
+                  <option key={e.id} value={e.seo_url}>
+                    {e.seo_url}
                   </option>
                 ))}
               </select>
