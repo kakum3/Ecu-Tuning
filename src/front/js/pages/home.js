@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../index";
 
 export const Home = () => {
-  const { store, actions, setStore } = useAppContext();
-  const [marks, setMarks] = useState(["Alfalfa Rome", "BMW"]);
+  const { store, actions, setState } = useAppContext();
+  const [marks, setMarks] = useState([]);
   const [models, setModels] = useState(null);
   const [years, setYears] = useState(null);
   const [engines, setEngines] = useState(null);
+
+  useEffect(() => {
+    const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
+    fetch(url).then(r => r.json()).then(data => {
+      setMarks(data)
+
+    })
+
+  }, []);
 
   const handleMarksChange = (e) => {
     if (e.value !== true) {
@@ -36,19 +45,40 @@ export const Home = () => {
     const engine =
       e.target.engine !== undefined ? e.target.engine.value : true;
 
-    if(!mark || !model || !years || !engine){
+    if (!mark || !model || !years || !engine) {
       console.log("Error submit, select all first")
-    }else{
-      antonioFetch({mark:mark, model:model, years:years, engine:engine})
+    } else {
+      antonioFetch({ mark: mark, model: model, years: years, engine: engine })
     }
   };
   const antonioFetch = (datos) => {
-      // datos que vienen = {mark:mark, model:model, years:years, engine:engine}
 
-      //fetch y guardar estos datos de la api en store =>
-      // setStore( { carSearch: { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" } } )
-      
-      console.log(datos)
+    // try {
+    //   // fetching data from the backend
+    //   const url = "https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/?key= testSA65D46ASD4AS8F4AS6F4A68"
+    //   const resp = await fetch(url + "/home", {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: "Bearer " + token,
+    //     },
+    //   });
+    //   const data = await resp.json();
+    //   console.log(data)
+
+    //   setStore({ message: data.message });
+    // don't forget to return something, that is how the async resolves
+    return data;
+    //   } catch (error) {
+    //     console.log("Error loading message from backend", error);
+    //   }
+    // },
+    // datos que vienen = {mark:mark, model:model, years:years, engine:engine}
+
+    //fetch y guardar estos datos de la api en store =>
+    // setStore( { carSearch: { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" } } )
+
+    console.log(datos)
 
   }
 
@@ -70,9 +100,9 @@ export const Home = () => {
               name="mark"
             >
               <option value={true}>Marca</option>
-              {marks.map((e, i) => (
-                <option key={i} value={e}>
-                  {e}
+              {marks.map((e) => (
+                <option key={e.id} value={e.var_title}>
+                  {e.var_title}
                 </option>
               ))}
             </select>
