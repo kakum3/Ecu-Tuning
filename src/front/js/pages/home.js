@@ -7,8 +7,8 @@ export const Home = () => {
   const { store, actions, setState } = useAppContext();
   const [marks, setMarks] = useState([]);
   const [models, setModels] = useState([]);
-  const [years, setYears] = useState(null);
-  const [engines, setEngines] = useState(null);
+  const [years, setYears] = useState([]);
+  const [engines, setEngines] = useState([]);
 
   useEffect(() => {
     const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
@@ -26,7 +26,7 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
+    const url = "https://api.carecusoft.com/de/v1/tuning/stages/20?key=testSA65D46ASD4AS8F4AS6F4A68"
     fetch(url).then(r => r.json()).then(data => {
       console.log(data)
       setModels(data)
@@ -37,15 +37,35 @@ export const Home = () => {
   const handleModelsChange = (e) => {
     if (e.value !== true) {
       //fetch and set the data (ejemplo ["A7"..etc])
-      setYears(["1998", "1999"]);
+      // setYears(["1998", "1999"]);
     }
   };
   const handleYearsChange = (e) => {
     if (e.value !== true) {
       //fetch and set the data (ejemplo ["A7"..etc])
-      setEngines(["2 TDI", "3 TDOY"]);
+      // setEngines(["2 TDI", "3 TDOY"]);
     }
   };
+
+  // useEffect(() => {
+  //   const url = "https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/1/1/1/1?key=testSA65D46ASD4AS8F4AS6F4A68"
+  //   fetch(url).then(r => r.json()).then(data => {
+  //     console.log(data)
+  //     setEngines(data)
+
+  //   })
+  // }, []);
+
+
+  const handleEnginersChange = (e) => {
+    if (e.value !== true) {
+      //fetch and set the data (ejemplo ["A7"..etc])
+      // setEngines(["2 TDI", "3 TDOY"]);
+    }
+  };
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault(); // Error, not pay att to selected values
     const mark = e.target.mark !== undefined ? e.target.mark.value : true;
@@ -102,21 +122,24 @@ export const Home = () => {
         </h2>
         <div className="m-auto col-12 col-md-7 col-lg-5 p-5">
           <form onSubmit={handleSubmit} id="form">
-            <select
-              className="form-select form-select mb-3 shadow"
-              aria-label=".form-select-lg example"
-              onChange={handleMarksChange}
-              name="mark"
-            >
-              <option value={true}>Marca</option>
-              {marks.map((e) => (
-                <option key={e.id} value={e.var_title}>
-                  {e.var_title}
-                </option>
-              ))}
-            </select>
 
-            {models === null ? null : (
+            {marks.length === 0 ? null : (
+              <select
+                className="form-select form-select mb-3 shadow"
+                aria-label=".form-select-lg example"
+                onChange={handleMarksChange}
+                name="mark"
+              >
+                <option value={true}>Marca</option>
+                {marks.map((e) => (
+                  <option key={e.id} value={e.var_title}>
+                    {e.var_title}
+                  </option>
+                ))}
+              </select>
+            )}
+
+            {models.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
@@ -125,14 +148,14 @@ export const Home = () => {
               >
                 <option value={true}>Modelo</option>
                 {models.map((e) => (
-                  <option key={e.id} value={e.seo_url}>
-                    {e.seo_url}
+                  <option key={e.id} value={e.seo_title}>
+                    {e.seo_title}
                   </option>
                 ))}
               </select>
             )}
 
-            {years === null ? null : (
+            {years.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
@@ -148,7 +171,7 @@ export const Home = () => {
               </select>
             )}
 
-            {engines === null ? null : (
+            {engines.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
@@ -175,7 +198,82 @@ export const Home = () => {
             </div>
           </form>
         </div>
+        <div className="px-4 py-5 my-5 text-center">
+          {/* <img className="d-block mx-auto mb-4" src="https://prochips.cl/wp-content/uploads/2022/01/CHIPVECTOR.png" alt="" width="72" height="57"> */}
+          <i className="fa-solid title-header text-white mb-5 t-shadow fa-microchip"></i>
+          {/* </img> */}
+          <h1 className="fs-4 mb-4 t-shadow-black text-white">Red lider en servicios de reprogramación y mecanica tunning</h1>
+          <hr></hr>
+          <div className="col-lg-6 mx-auto">
+            <p className="lead mb-4 t-shadow-black text-white">Porque sabemos lo importante que es su coche, disponemos de la más amplia red de talleres tunning lideres en tecnologías y profesionales mejor cualificados para tu coche.</p>
+            {/* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                  <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
+                  <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+                </div> */}
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+
+    </div >
   );
 };
