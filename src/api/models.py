@@ -33,7 +33,8 @@ class Taller(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     w_name = db.Column(db.String(200), unique=True, nullable=False)
     w_address = db.Column(db.String(200), unique=True, nullable=False)
-    w_geo = db.Column(db.String(60), unique=True, nullable=True)
+    lat = db.Column(db.Float, unique=True, nullable=False)
+    lng = db.Column(db.Float, unique=True, nullable=False)
     w_services = db.relationship('Services', secondary=w_services_table, lazy='subquery', backref=db.backref('w_services_list', lazy=True))
 
     def __repr__(self):
@@ -45,6 +46,8 @@ class Taller(db.Model):
             "user_id": self.user_id,
             "w_name": self.w_name,
             "w_address": self.w_address,
+            "lat": self.lat,
+            "lng": self.lng,
             "w_services": [x.serialize() for x in self.w_services],
         }
 

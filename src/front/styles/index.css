@@ -4,12 +4,20 @@
  
 */
 .background {
+  /*!
   background-image: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2397x1600/29f4df06463c36f39b2d496fb3c9c0d0/photo-1493238792000-8113da705763.jpg");
+  
+*/
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
 }
-
+.over {
+  z-index: 10000 !important;
+}
+.toptop {
+  z-index: 20000 !important;
+}
 a:-webkit-any-link {
   cursor: pointer;
   text-decoration: none;

@@ -34,6 +34,9 @@ def setup_commands(app):
         taller = Taller()
         taller.w_name = "Mecánicos Paco"
         taller.w_address = "C:\Fake No 0"
+        taller.lat = 39
+        taller.lng = -3
+        
         #adding all services, but needs filtering
         taller.w_services = (Services.query.all())
         

@@ -1,15 +1,9 @@
 # WebApp boilerplate with React JS and Flask API (Luis Update)
 
 !Importante Notas Luis
-<code>Workflow:
-pipenv run reset_db //Reiniciar BD y que funcione
-// abrir el
-
-- ... run start\* Iniciamos
-  pipenv run flask services //Añadimos servicios
-  pipenv run flask adduser //añadimos usuario normal
-  pipenv run flask addtaller //editamos usuario(is_client=False por lo que se hace rol taller, añadimos taller, linkeamos y editamos
-  </code>
+<h1>WORKFLOW DB</h1>
+><code>pipenv run reset_db</code>
+><code>pipenv run dbdummy</code>
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/LuisAguadoVicaria/react-flask-blank.git)
 

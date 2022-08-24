@@ -7,7 +7,7 @@ import { useAppContext } from "../index";
 export const Servicelist = () => {
   const { store, actions, setStore } = useAppContext();
   const location = useLocation();
-
+  
   useEffect(() => {
     if(store.all_services.length===1)actions.getServices();
   }, [store.all_services]);
@@ -22,12 +22,9 @@ export const Servicelist = () => {
   };
   return (
     <>
-      <input type="hidden" value={store.sel_services || null} />
-      <button onClick={() => console.log(store.sel_services)}>
-        DEV: Local selection log
-      </button>
       <div className="list-group w-auto">
-        <label className="list-group-item d-flex gap-3">
+        {store.all_services[0]===undefined ? null : store.all_services.map((e, i) =>
+          e.name === "ECU" ? (<label key={i} className="list-group-item d-flex gap-3">
           <input
             className="form-check-input flex-shrink-0"
             type="checkbox"
@@ -97,15 +94,13 @@ export const Servicelist = () => {
               </div>
             </small>
           </span>
-        </label>
-        {store.all_services.map((e, i) =>
-          e.name === "ECU" ? null : (
+        </label>) : (
             <label key={i} className="list-group-item d-flex gap-3">
               <input
                 className="form-check-input flex-shrink-0"
                 type="checkbox"
                 name={e.name}
-                checked={store.sel_services[i].value}
+                checked={store.sel_services[i]===undefined ? true : store.sel_services[i].value}
                 onChange={handleCheckChange}
                 value=""
               />

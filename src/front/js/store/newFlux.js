@@ -9,8 +9,15 @@ const useFlux = () => {
     alert: null,
     loggedIn: false,
     carSearch: null,
-    all_services: [{ name: "EMPTY", value: true }],
-    sel_services: [{ name: "EMPTY", value: true }],
+    map_markers: [
+      {
+        lat: 0,
+        lng: 0,
+        w_name: "EMPTY",
+      },
+    ],
+    all_services: [{ name: "EMPTY", id: 1, value: true }],
+    sel_services: [{ name: "EMPTY", id: 1, value: true }],
     user_data: {
       taller: {
         w_address: "",
@@ -25,8 +32,22 @@ const useFlux = () => {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }, [store.alert]);
+  useEffect(() => {
     setStore({ alert: null });
-  }, [location]);
+    if (location.pathname === "/profile")
+      setStore({
+        sel_services: store.all_services.map((e, i) =>
+          store.user_data.taller.w_services.some((a) => e.name === a.name)
+            ? { ...e, value: true }
+            : { ...e, value: false }
+        ),
+      });
+    if (location.pathname === "/map")
+      setStore({ sel_services: store.all_services });
+  }, [location.pathname, store.user_data, store.all_services]);
 
   return {
     actions: {
@@ -67,7 +88,10 @@ const useFlux = () => {
 
           const data = await resp.json();
           if (data.msg === "ok") {
-            return setStore({ all_services: data.all_services, sel_services: data.all_services });
+            return setStore({
+              all_services: data.all_services,
+              sel_services: data.all_services,
+            });
           }
         } catch (error) {
           return setStore({
@@ -118,6 +142,36 @@ const useFlux = () => {
         }
         return setStore({ alert: "Error", loggedIn: false });
       },
+
+      getMap: async function () {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/map", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + this.getToken(),
+            },
+          });
+
+          const data = await resp.json();
+          if (data.msg === "ok") {
+            console.log(data);
+            return setStore({
+              map_markers: data.talleres,
+              alert: "Mapa Cargado",
+              loggedIn: true,
+            });
+          }
+        } catch (error) {
+          return setStore({
+            alert: "Error cargando Mapa: " + error,
+            //loggedIn: false,
+          });
+        }
+        return setStore({ alert: "Error cargando mapa" }); //, loggedIn: false
+      },
+
       getProfile: async function () {
         try {
           // fetching data from the backend
@@ -156,11 +210,13 @@ const useFlux = () => {
               "Content-Type": "application/json",
               Authorization: "Bearer " + this.getToken(),
             },
-            body: JSON.stringify({...data_front, ...{sel_services:store.sel_services}}),
+            body: JSON.stringify({
+              ...data_front,
+              ...{ sel_services: store.sel_services },
+            }),
           });
           const data = await resp.json();
           if (data.msg === "ok") {
-            console.log(data)
             return setStore({ alert: "Perfil Actualizado", user_data: data }); //Reset user data
           }
         } catch (error) {

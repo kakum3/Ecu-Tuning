@@ -1,22 +1,31 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { useAppContext } from "../index";
-
+import Placecomplete from "../component/autocomplete";
 export const Signup = () => {
   const { store, actions, setState } = useAppContext();
-  const [values, setValues] = useState({ name: "", email: "", password: ""});
   const [isClient, setIsClient] = useState(true);
 
-  const handleInputChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+  const handleCheckChange = (e) => {
+    setIsClient(!isClient);
   };
-  const handleCheckChange = e => {
-    setIsClient(!isClient)
-  }
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.getSignup({...values, ["is_client"]: !isClient});
+    const values = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    const taller = isClient
+      ? {}
+      : {
+          w_name: e.target.w_name.value,
+          w_address: e.target.w_address.value,
+          lat: e.target.lat.value,
+          lng: e.target.lng.value,
+        };
+    actions.getSignup({ ...values, ...taller, is_client: isClient });
   };
   return (
     <div className="container m-auto">
@@ -36,23 +45,17 @@ export const Signup = () => {
           />
           <div className="form-floating mb-3">
             <input
-              value={values.name}
               name="name"
-              onChange={handleInputChange}
-              onLoad={handleInputChange}
               type="name"
               className="form-control"
               id="floatingName"
               placeholder="Nombre"
             />
-            <label htmlFor="floatingInput">Name</label>
+            <label htmlFor="floatingInput">Nombre</label>
           </div>
           <div className="form-floating mb-3">
             <input
-              value={values.email}
               name="email"
-              onChange={handleInputChange}
-              onLoad={handleInputChange}
               type="email"
               className="form-control"
               id="floatingEmail"
@@ -62,53 +65,77 @@ export const Signup = () => {
           </div>
           <div className="form-floating mb-3">
             <input
-              value={values.password}
               name="password"
-              onChange={handleInputChange}
-              onLoad={handleInputChange}
               type="password"
               className="form-control"
               id="floatingPassword"
-              placeholder="Password"
+              placeholder="Contraseña"
             />
             <label htmlFor="floatingPassword">Contraseña</label>
           </div>
 
-          <div className="mb-3 text-center">
-            <div className="form-check form-check-inline">
+          <div className="text-center my-5">
+            <div
+              className="form-check form-check-inline"
+              onClick={handleCheckChange}
+            >
               <input
                 className="form-check-input"
                 type="radio"
                 name="is_client_true"
                 checked={isClient}
                 onChange={handleCheckChange}
-                value=""
+                onClick={handleCheckChange}
               />
               <label className="form-check-label" htmlFor="inlineRadio1">
                 Soy un Cliente
               </label>
             </div>
-            <div className="form-check form-check-inline">
+            <div
+              className="form-check form-check-inline"
+              onClick={handleCheckChange}
+            >
               <input
                 className="form-check-input"
                 type="radio"
                 name="is_client_false"
                 checked={!isClient}
                 onChange={handleCheckChange}
-                value=""
               />
               <label className="form-check-label" htmlFor="inlineRadio2">
                 Soy un Taller
               </label>
             </div>
           </div>
+          {isClient ? null : (
+            <>
+              <div className="form-floating mb-3">
+                <input
+                  name="w_name"
+                  type="name"
+                  className="form-control"
+                  id="w_name"
+                  placeholder="Mecánicos ..."
+                />
+                <label htmlFor="floatingInput">Nombre del Taller</label>
+              </div>
+
+              <Placecomplete />
+            </>
+          )}
           <button className="w-100 btn btn-primary mb-2" type="submit">
-            Regístrate
+            Regístrate{}
           </button>
-          <sub className="col">
+          <sub className="d-block">
             ¿Ya tienes una cuenta?{" "}
             <Link to="/login" className="btn btn-link btn-sm">
               Entrar
+            </Link>
+          </sub>
+          <sub className="d-block">
+            ¿Has perdido acceso a tu cuenta?{" "}
+            <Link to="/" className="btn btn-link btn-sm">
+              Recuperar
             </Link>
           </sub>
         </form>

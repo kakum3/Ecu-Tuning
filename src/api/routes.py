@@ -23,8 +23,13 @@ def handle_hello():
 @api.route('/signup', methods=['POST'])
 def Signup():
      body = request.get_json()
-     usr = User(email=body['email'], password = body['password'], name=body['name'], is_client=body['is_client'])
-     db.session.add(usr)
+     user = User(email=body['email'], password = body['password'], name=body['name'], is_client=body['is_client'])
+     
+     if body["is_client"]==False:
+        taller = Taller(w_name=body['w_name'], w_address=body['w_address'], lat=body['lat'], lng=body["lng"])
+        user.taller = taller
+
+     db.session.add(user)
      db.session.commit()
      
      return jsonify({'msg':'ok'}), 200
@@ -46,10 +51,11 @@ def login():
     return jsonify({ "token": my_token, "user_id": usr.id, "msg":"ok" }), 200
 
 @api.route('/map', methods=['GET'])
+@jwt_required()
 def handle_map():
     
     talleres=Taller.query.all()
-    return jsonify([x.serialize() for x in talleres]),200 
+    return jsonify({"msg":"ok", "talleres":[x.serialize() for x in talleres]}),200 
 
 
 @api.route("/profile", methods=["GET"])
@@ -69,25 +75,23 @@ def post_profile():
     current_user = get_jwt_identity()
     user = User.query.filter_by(id=current_user).first()
 
+    if body["a_password"] != user.password:
+        return jsonify({"msg":"Contraseña incorrecta"}), 200
+
+    if len(body["n_password"]) > 6:
+        user.password = body["n_password"]
+
     if len(body["name"]) > 6:
         user.name = body["name"]
 
     if len(body["email"]) > 6:
         user.email = body["email"]
 
-    if len(body["password"]) > 6:
-        user.password = body["password"]
-
-    user.is_client = body["is_client"]
-
-    
-    if not body["is_client"]:
-
+    if user.is_client == False:
         services = Services.query.all()
 
         taller = user.taller
         taller.w_services = []
-
         for i in range(len(services)):
             if body["sel_services"][i]["value"] == True:
                 taller.w_services.append(services[i])
@@ -96,6 +100,8 @@ def post_profile():
             taller.w_name = body["w_name"]
         if len(body["w_address"]) > 6:
             taller.w_address = body["w_address"]
+
+
 
     db.session.add(user)
     db.session.commit()

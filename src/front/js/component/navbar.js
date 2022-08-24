@@ -31,7 +31,7 @@ export const Navbar = () => {
               <i className="fa-brands fa-twitter m-auto"></i>
             </a>
           </span>
-          <div className="dropdown-menu-end dropdown text-light my-auto">
+          <div className="toptop dropdown-menu-end dropdown text-light my-auto">
             <a
               href="#"
               className="d-block link-light text-decoration-none dropdown-toggle"
