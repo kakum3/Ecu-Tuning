@@ -128,4 +128,12 @@ def services():
 
     return jsonify({"msg": "ok", "all_services": [x.serialize() for x in servicios]}), 200
 
+@api.route("/taller/<int:id>", methods=["GET"])
+def get_taller(id):
+        
+   taller= Taller.query.filter_by(id=id).first()
+
+  
+   return jsonify({"msg":'ok',"taller":taller.serialize()}), 200
+
 

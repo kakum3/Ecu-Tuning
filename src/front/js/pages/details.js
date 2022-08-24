@@ -13,6 +13,7 @@ export const Details = () => {
     telefon: "",
     asunto: "",
   });
+  
   useEffect(() => {
     if (store.loggedIn === true) redir();
   }, [store.loggedIn]);
