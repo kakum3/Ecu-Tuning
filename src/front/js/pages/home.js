@@ -217,8 +217,8 @@ export const Home = () => {
           <div class="col d-flex align-items-start">
             <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
             <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
+              <h4 class="fs-5 mb-4 t-shadow-black text-white">Reprogramacion y Reparación de Centralitas</h4>
+              <p>Mediante una correcta optimización del software de tu vehículo podemos conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo..</p>
             </div>
           </div>
           <div class="col d-flex align-items-start">
