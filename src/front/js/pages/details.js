@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { number } from "prop-types";
 
@@ -13,10 +14,18 @@ export const Details = () => {
     telefon: "",
     asunto: "",
   });
-  
+  const location = useLocation();
+  const[taller,setTaller]=useState({});
   useEffect(() => {
-    if (store.loggedIn === true) redir();
-  }, [store.loggedIn]);
+    const url = `{https://3001-luisaguadov-fastandfuri-1e871bd460m.ws-eu62.gitpod.io/taller/${id}}`;
+    fetch(url)
+    .then(r => r.json())
+    .then(data =>setTaller(data.taller))
+      console.log(data)
+     
+	},[])
+  
+
   const handleInputChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -30,30 +39,30 @@ export const Details = () => {
       <div className="row py-3 ">
         <div className="col-sm-12 col-lg-5 ">
           <h1 className="logo text-white mt-4  ">
-            <span className="tittle taller text-white py-5 mb-3 t-shadow  rounded ">
+            <span className="tittle taller text-white py-5 mb-3 t-shadow">
               Ecu
             </span>
-            <span className=" tittle nombreTaller text-success bg-white  p-2 t-shadow mb-4 rounded">
+            <span className=" tittle nombreTaller text-success bg-white  p-2 t-shadow mb-4">
               Tunning
             </span>
           </h1>
 
-          <h4 className="tittle mt-4 text-align-top ">Talleres Paco</h4>
+          <h4 className="tittle mt-4 text-align-top "> DEV: {JSON.stringify(store.w_name_data)}</h4>
 
           <h6 className="address text-align-top ">
-            <i className="fas fa-map-marker-alt "></i> calle Baena 2
+            <i className="fas fa-map-marker-alt "></i>  DEV: {JSON.stringify(store.w_address_data)}
           </h6>
 
           <Link
-            className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5  rounded"
+            className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5"
             to="/map"
           >
-            <i class="fa-solid fa-circle-left"></i> atras
+            <i className="fa-solid fa-circle-left"></i> atras
           </Link>
 
           <button
             type="button"
-            className="btn btn-success mt-5  mb-3 text-white shadow-sm p-3 mb-5  rounded text-decoration-underline "
+            className="btn btn-success mt-5  mb-3 text-white shadow-sm p-3 mb-5   text-decoration-underline "
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             data-bs-whatever="@mdo"
@@ -63,12 +72,12 @@ export const Details = () => {
           <div
             className="modal fade text-center text-success"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
             <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content bg-white card rounded shadow">
+              <div className="modal-content bg-white card  shadow">
                 <div className="modal-header">
                   <h5 className="modal-title " id="exampleModalLabel">
                     Nuevo Mensaje
@@ -167,7 +176,7 @@ export const Details = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12 col-lg-6 card rounded shadow m-auto color-dark text-dark">
+        <div className="col-sm-12 col-lg-6 card  shadow m-auto color-dark text-dark">
           <Servicelist />
         </div>
       </div>
