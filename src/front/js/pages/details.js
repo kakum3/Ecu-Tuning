@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation,useParams } from "react-router-dom";
 
 import { number } from "prop-types";
 
@@ -14,14 +14,14 @@ export const Details = () => {
     telefon: "",
     asunto: "",
   });
-  const location = useLocation();
+  const {id} = useParams();
   const[taller,setTaller]=useState({});
   useEffect(() => {
-    const url = `{https://3001-luisaguadov-fastandfuri-1e871bd460m.ws-eu62.gitpod.io/taller/${id}}`;
-    fetch(url)
+    
+    fetch((process.env.BACKEND_URL + "/taller/"+id))
     .then(r => r.json())
     .then(data =>setTaller(data.taller))
-      console.log(data)
+       
      
 	},[])
   
@@ -36,6 +36,7 @@ export const Details = () => {
 
   return (
     <div className="container  m-auto text-white border-0 ">
+      {JSON.stringify(taller)}
       <div className="row py-3 ">
         <div className="col-sm-12 col-lg-5 ">
           <h1 className="logo text-white mt-4  ">
