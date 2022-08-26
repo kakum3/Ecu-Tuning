@@ -5,80 +5,81 @@ import { useAppContext } from "../index";
 
 export const Home = () => {
   const { store, actions, setState } = useAppContext();
-  const [marks, setMarks] = useState([]);
-  const [models, setModels] = useState([]);
-  const [years, setYears] = useState([]);
-  const [engines, setEngines] = useState([]);
+  const [loadmarks, setLoadMarks] = useState([]);
+  const [marks, setMarks] = useState();
+  const [loadmodels, setLoadModels] = useState([]);
+  const [models, setModels] = useState();
+  const [loadyears, setLoadYears] = useState([]);
+  const [years, setYears] = useState();
+  const [loadengines, setLoadEngines] = useState([]);
+  const [engines, setEngines] = useState();
 
+
+
+  useEffect(() => {
+    const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
+    fetch(url, {
+      mode: "cors"
+    }).then(r => r.json()).then(data => {
+      console.log(data)
+      setLoadMarks(data)
+    })
+  }, []);
 
 
   const handleMarksChange = (e) => {
-
-    if (e.value !== true) {
-      //fetch and set the data (ejemplo ["A7"..etc])
-      // setModels(["A7", "A2"]);
-
-    }
+    setMarks(e.target.value)
+    //console.log(marks)
   };
+
   useEffect(() => {
-    const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
-    fetch(url).then(r => r.json()).then(data => {
+    const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/tuning/models/${marks}?key=testSA65D46ASD4AS8F4AS6F4A68`
+    fetch(url, {
+      mode: "cors"
+    }).then(r => r.json()).then(data => {
       console.log(data)
-      setMarks(data)
+      setLoadModels(data)
+
     })
-  }, []);
+  }, [marks]);
 
 
   const handleModelsChange = (e) => {
-    if (e.value !== true) {
-      //fetch and set the data (ejemplo ["A7"..etc])
-      // setYears(["1998", "1999"]);
-
-    }
+    setModels(e.target.value)
   };
 
-  useEffect(() => {
-    const url = "https://api.carecusoft.com/de/v1/tuning/stages/20?key=testSA65D46ASD4AS8F4AS6F4A68"
-    fetch(url).then(r => r.json()).then(data => {
-      console.log(data)
-      setModels(data)
+  // useEffect(() => {
 
-    })
-  }, []);
+  //   const url = `https://api.carecusoft.com/es/v1/tuning/years/${models}?key=testSA65D46ASD4AS8F4AS6F4A68`
+  //   fetch(url, {
+  //     mode: "cors"
+  //   }).then(r => r.json()).then(data => {
+  //     console.log(data)
+  //     setLoadYears(data)
+
+  //   })
+  // }, [models]);
 
   const handleYearsChange = (e) => {
-    if (e.value !== true) {
-      //fetch and set the data (ejemplo ["A7"..etc])
-      // setEngines(["2 TDI", "3 TDOY"]);
-
-    }
+    setYears(e.target.value)
   };
 
-  useEffect(() => {
-    const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
-    fetch(url).then(r => r.json()).then(data => {
-      console.log(data)
-      setYears(data)
+  // useEffect(() => {
+  //   const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/tuning/engines/${years}?key=testSA65D46ASD4AS8F4AS6F4A68`
+  //   fetch(url, {
+  //     mode: "cors"
+  //   }).then(r => r.json()).then(data => {
+  //     console.log(data)
+  //     setLoadEngines(data)
 
-    })
-  }, []);
+  //   })
+  // }, [years]);
 
-  const handleEnginersChange = (e) => {
-    if (e.value !== true) {
-      //fetch and set the data (ejemplo ["A7"..etc])
-      // setEngines(["2 TDI", "3 TDOY"]);
-
-    }
+  const handleEnginesChange = (e) => {
+    setEngines(e.target.value)
   };
 
-  useEffect(() => {
-    const url = "https://api.carecusoft.com/de/v1/tuning/stages/20?key=testSA65D46ASD4AS8F4AS6F4A68"
-    fetch(url).then(r => r.json()).then(data => {
-      console.log(data)
-      setEngines(data)
 
-    })
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Error, not pay att to selected values
@@ -137,23 +138,23 @@ export const Home = () => {
         <div className="m-auto col-12 col-md-7 col-lg-5 p-5">
           <form onSubmit={handleSubmit} id="form">
 
-            {marks.length === null ? null : (
+            {loadmarks && loadmarks.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
-                onChange={handleMarksChange}
+                onChange={(e) => handleMarksChange(e)}
                 name="mark"
               >
                 <option value={true}>Marca</option>
-                {marks.map((e) => (
-                  <option key={e.id} value={e.var_title}>
+                {loadmarks && loadmarks.map((e) => (
+                  <option key={e.id} value={e.id}>
                     {e.var_title}
                   </option>
                 ))}
               </select>
             )}
 
-            {models.length === null ? null : (
+            {loadmodels && loadmodels.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
@@ -161,15 +162,15 @@ export const Home = () => {
                 name="model"
               >
                 <option value={true}>Modelo</option>
-                {models.map((e) => (
-                  <option key={e.id} value={e.seo_title}>
-                    {e.seo_title}
+                {models && models.map((e) => (
+                  <option key={e.id} value={e.id}>
+                    {e.var_alias}
                   </option>
                 ))}
               </select>
             )}
 
-            {years.length === 0 ? null : (
+            {years && years.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
@@ -177,7 +178,7 @@ export const Home = () => {
                 name="years"
               >
                 <option value={true}>Años</option>
-                {years.map((e) => (
+                {years && years.map((e) => (
                   <option key={e.id} value={e.models_count}>
                     {e.models_count}
                   </option>
@@ -185,14 +186,14 @@ export const Home = () => {
               </select>
             )}
 
-            {engines.length === 0 ? null : (
+            {engines && engines.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
                 name="engine"
               >
                 <option value={true}>Motor</option>
-                {engines.map((e) => (
+                {engines && engines.map((e) => (
                   <option key={e.id / 1} value={e.seo_title}>
                     {e.seo_title}
                   </option>
