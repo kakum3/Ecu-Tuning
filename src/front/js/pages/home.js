@@ -10,6 +10,16 @@ export const Home = () => {
   const [years, setYears] = useState([]);
   const [engines, setEngines] = useState([]);
 
+
+
+  const handleMarksChange = (e) => {
+
+    if (e.value !== true) {
+      //fetch and set the data (ejemplo ["A7"..etc])
+      // setModels(["A7", "A2"]);
+
+    }
+  };
   useEffect(() => {
     const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
     fetch(url).then(r => r.json()).then(data => {
@@ -18,10 +28,12 @@ export const Home = () => {
     })
   }, []);
 
-  const handleMarksChange = (e) => {
+
+  const handleModelsChange = (e) => {
     if (e.value !== true) {
       //fetch and set the data (ejemplo ["A7"..etc])
-      // setModels(["A7", "A2"]);
+      // setYears(["1998", "1999"]);
+
     }
   };
 
@@ -34,37 +46,39 @@ export const Home = () => {
     })
   }, []);
 
-  const handleModelsChange = (e) => {
-    if (e.value !== true) {
-      //fetch and set the data (ejemplo ["A7"..etc])
-      // setYears(["1998", "1999"]);
-    }
-  };
   const handleYearsChange = (e) => {
     if (e.value !== true) {
       //fetch and set the data (ejemplo ["A7"..etc])
       // setEngines(["2 TDI", "3 TDOY"]);
+
     }
   };
 
-  // useEffect(() => {
-  //   const url = "https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/1/1/1/1?key=testSA65D46ASD4AS8F4AS6F4A68"
-  //   fetch(url).then(r => r.json()).then(data => {
-  //     console.log(data)
-  //     setEngines(data)
+  useEffect(() => {
+    const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
+    fetch(url).then(r => r.json()).then(data => {
+      console.log(data)
+      setYears(data)
 
-  //   })
-  // }, []);
-
+    })
+  }, []);
 
   const handleEnginersChange = (e) => {
     if (e.value !== true) {
       //fetch and set the data (ejemplo ["A7"..etc])
       // setEngines(["2 TDI", "3 TDOY"]);
+
     }
   };
 
+  useEffect(() => {
+    const url = "https://api.carecusoft.com/de/v1/tuning/stages/20?key=testSA65D46ASD4AS8F4AS6F4A68"
+    fetch(url).then(r => r.json()).then(data => {
+      console.log(data)
+      setEngines(data)
 
+    })
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Error, not pay att to selected values
@@ -123,7 +137,7 @@ export const Home = () => {
         <div className="m-auto col-12 col-md-7 col-lg-5 p-5">
           <form onSubmit={handleSubmit} id="form">
 
-            {marks.length === 0 ? null : (
+            {marks.length === null ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
@@ -139,7 +153,7 @@ export const Home = () => {
               </select>
             )}
 
-            {models.length === 0 ? null : (
+            {models.length === null ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
@@ -163,9 +177,9 @@ export const Home = () => {
                 name="years"
               >
                 <option value={true}>Años</option>
-                {years.map((e, i) => (
-                  <option key={i} value={e}>
-                    {e}
+                {years.map((e) => (
+                  <option key={e.id} value={e.models_count}>
+                    {e.models_count}
                   </option>
                 ))}
               </select>
@@ -178,9 +192,9 @@ export const Home = () => {
                 name="engine"
               >
                 <option value={true}>Motor</option>
-                {engines.map((e, i) => (
-                  <option key={i} value={e}>
-                    {e}
+                {engines.map((e) => (
+                  <option key={e.id / 1} value={e.seo_title}>
+                    {e.seo_title}
                   </option>
                 ))}
               </select>
@@ -213,64 +227,126 @@ export const Home = () => {
           </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-          <div class="col d-flex align-items-start">
-            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div class="feature col">
+            <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-desktop"></i>
+            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </div> */}
+            <h2 className="fs-4 mb-4 t-shadow-black text-white">Reprogramacion y Reparación de Centralitas</h2>
+            <p className="lead fs-5 mb-4 t-shadow-black text-white">Mediante una correcta optimización del software de tu vehículo podemos conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo..</p>
+            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
+              Call to action
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </a> */}
+          </div>
+          <div class="feature col">
+            <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-car-burst"></i>
+            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </div> */}
+            <h2 className="fs-4 mb-4 t-shadow-black text-white">Tunning</h2>
+            <hr></hr>
+            <hr></hr>
+            <hr></hr>
+            <p className="lead fs-5 mb-4 t-shadow-black text-white">Todo tipo de preparación tunning como tintado de lunas, taloneras, colas de escape, equipos de sonido, ilumación led, pantallas digitales...</p>
+            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
+              Call to action
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </a> */}
+          </div>
+          <div class="feature col">
+            <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-screwdriver-wrench"></i>
+            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </div> */}
+            <h2 className="fs-4 mb-4 t-shadow-black text-white">Mecanica Tunning</h2>
+            <hr></hr>
+            <hr></hr>
+            <hr></hr>
+            <p className="lead fs-5 mb-4 t-shadow-black text-white">Modificaciones de escapes, admisión, turbos y mecanica en general para sacar el máximo rendimiento a tu vehículo</p>
+            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
+              Call to action
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </a> */}
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+        {/* <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+          <div className="col d-flex align-items-start">
+            <i className="fa-solid fs-3 title-header text-white mb-5 t-shadow fa-desktop"></i>
+            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
             <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Reprogramacion y Reparación de Centralitas</h4>
+              <h4 className="fs-5 mb-4 t-shadow-black text-white">Reprogramacion y Reparación de Centralitas</h4>
               <p>Mediante una correcta optimización del software de tu vehículo podemos conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo..</p>
             </div>
           </div>
-          <div class="col d-flex align-items-start">
-            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+
+
+
+
+
+
+          <div className="col d-flex align-items-start">
+            <i className="fa-solid fs-2 title-header text-white t-shadow fa-chart-line"></i>
+            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
             <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <h4 className="fs-5 mb-4 t-shadow-black text-white">Banco de Potencia</h4>
+              <p>Disposición de banco de potencia de ultima generación para mediciones con sistemas de tracción ultima generación. Podrá comprobar el estado de su motor y realizar simulaciones y pruebas de potencia.</p>
+            </div>
+          </div>
+          <div className="col d-flex align-items-start">
+            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+            <div>
+              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
               <p>Paragraph of text beneath the heading to explain the heading.</p>
             </div>
           </div>
-          <div class="col d-flex align-items-start">
-            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+          <div className="col d-flex align-items-start">
+            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
             <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
               <p>Paragraph of text beneath the heading to explain the heading.</p>
             </div>
           </div>
-          <div class="col d-flex align-items-start">
-            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+          <div className="col d-flex align-items-start">
+            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
             <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
               <p>Paragraph of text beneath the heading to explain the heading.</p>
             </div>
           </div>
-          <div class="col d-flex align-items-start">
-            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+          <div className="col d-flex align-items-start">
+            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
             <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
               <p>Paragraph of text beneath the heading to explain the heading.</p>
             </div>
           </div>
-          <div class="col d-flex align-items-start">
-            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+          <div className="col d-flex align-items-start">
+            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
             <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
               <p>Paragraph of text beneath the heading to explain the heading.</p>
             </div>
           </div>
-          <div class="col d-flex align-items-start">
-            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
+          <div className="col d-flex align-items-start">
+            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
             <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
+              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
               <p>Paragraph of text beneath the heading to explain the heading.</p>
             </div>
           </div>
-          <div class="col d-flex align-items-start">
-            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 class="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-        </div>
+        </div> */}
 
       </div>
 
