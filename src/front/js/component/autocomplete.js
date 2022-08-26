@@ -8,7 +8,7 @@ function Placecomplete({ is_inclusive }) {
   const { store, actions, setState } = useAppContext();
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
-
+  const [input, setInput] = useState("")
   const onLoad = (ref) => {
     return (window.Autocomplete = ref);
   };
@@ -48,7 +48,7 @@ function Placecomplete({ is_inclusive }) {
           </>
         </Autocomplete>
 
-        <em className="fs-6 mb-3 d-block">
+        <em className="fs-6 mb-3 d-block mx-3">
           Por favor, asegúrese que su Taller se encuentra registrado como
           establecimiento en Google Maps.
         </em>

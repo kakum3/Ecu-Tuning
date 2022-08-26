@@ -1,16 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 import Mapcomponent from "../component/mapcomp";
 import Servicelist from "../component/servicelist";
 import { useAppContext } from "../index";
 
 export const Map = () => {
   const { store, actions, setStore } = useAppContext();
+  const [ip, setIP] = useState("");
+
+  //creating function to load ip address from the API
+  const getData = async () => {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    setIP(res.data.IPv4);
+  };
+
   useEffect(() => {
+    getData();
     if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
   }, []);
-  const handleToggle = () => setToggle(!toggle);
   return (
     <div className="container m-auto">
       <main className="m-auto mt-3 card rounded shadow">
@@ -24,9 +32,28 @@ export const Map = () => {
               Detalles mapa (Dev)
             </Link>
           </div>
-          <div className="col-sm-12 col-lg-7">
-            <span className="position-absolute top-"></span>
-            <Mapcomponent />
+          <div className="col-sm-12 col-lg-7 position-relative">
+            <span className="position-absolute top-50 position-absolute top-50 start-50 translate-middle toptop">
+              <div className="card border-warning mb-3">
+                <div className="card-header">Lo sentimos</div>
+                <div className="card-body fs-6">
+                  Necesitas una cuenta en ECUTunning para continuar.
+                  <p className="card-text d-flex justify-content-between">
+                    <sub>
+                      <Link to="/signup" className="btn btn-link btn-sm">
+                        Regístrate
+                      </Link>
+                    </sub>
+                    <sub>
+                      <Link to="/login" className="btn btn-link btn-sm">
+                        Entra
+                      </Link>
+                    </sub>
+                  </p>
+                </div>
+              </div>
+            </span>
+            <Mapcomponent center={{ lat: ip.latitude || 39, lng: ip.longitude || 9 }} />
           </div>
         </div>
       </main>

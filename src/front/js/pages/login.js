@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { useAppContext } from "../index";
-
+import LogoWhite from "../svgs/logoWhite";
 export const Login = () => {
   const { store, actions, setState } = useAppContext();
   const [values, setValues] = useState({ email: "", password: "" });
@@ -15,13 +15,10 @@ export const Login = () => {
   };
   return (
     <div className="container m-auto">
-      <main className="m-auto col-12 col-md-7 col-lg-5 card p-5 rounded shadow">
+      <div className="text-center"> <span className="img-fluid"><LogoWhite className="logo-home"/></span>
+</div>
+      <main className="m-auto col-12 col-md-8 col-lg-6 card p-5 rounded shadow">
         <form onSubmit={formSubmit}>
-          <img
-            src="https://i.ibb.co/0F6ht3r/logofandf.png"
-            className="rounded mx-auto d-block mb-5"
-            width="100px"
-          />
           <div className="form-floating mb-3">
             <input
               value={values.email}

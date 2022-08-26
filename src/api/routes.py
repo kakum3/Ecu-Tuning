@@ -1,6 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Services, Taller, Contacts
 from api.utils import generate_sitemap, APIException
@@ -9,7 +10,13 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
+from werkzeug.utils import secure_filename
+
 api = Blueprint('api', __name__)
+
+# Create a directory in a known location to save files to.
+uploads_dir = '/images'
+
 
 @api.route('/hello', methods=['GET'])
 def handle_hello():
@@ -135,3 +142,10 @@ def services():
     return jsonify({"msg": "ok", "all_services": [x.serialize() for x in servicios]}), 200
 
 
+@api.route('/upload', methods=['POST'])
+def upload():
+    
+    print(request.files)
+
+
+    return None

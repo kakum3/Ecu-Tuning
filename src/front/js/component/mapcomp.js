@@ -15,15 +15,8 @@ const center = {
 
 const libs = ["places"];
 
-function Mapcomponent({ is_inclusive }) {
+function Mapcomponent({ center_test }) {
   const { store, actions, setState } = useAppContext();
-
-  const onLoad = (ref) => (window.Autocomplete = ref);
-  const onPlacesChanged = () =>
-    console.log(
-      window.Autocomplete.gm_accessors_.place.Uj.place.geometry.location.lng()
-    );
-
   useEffect(() => {}, [store.map_markers]);
   return (
     <LoadScript
@@ -34,7 +27,7 @@ function Mapcomponent({ is_inclusive }) {
       <GoogleMap
         mapContainerStyle={{
           width: "auto",
-          height: "100vh",
+          height: "80vh",
         }}
         center={center}
         zoom={7}

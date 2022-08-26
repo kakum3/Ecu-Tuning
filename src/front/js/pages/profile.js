@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import Servicelist from "../component/servicelist";
 import { useAppContext } from "../index";
 import Placecomplete from "../component/autocomplete";
-
+import ImageUp from "../component/imageupload.js";
 export const Profile = () => {
   const { store, actions, setStore } = useAppContext();
   const [taller, setTaller] = useState(true);
@@ -48,10 +48,11 @@ export const Profile = () => {
                   aria-describedby="basic-addon2"
                   name="w_name"
                   defaultValue={store.user_data.taller.w_name}
-                /><label htmlFor="floatingInput">Nombre del Taller</label>
+                />
+                <label htmlFor="floatingInput">Nombre del Taller</label>
               </div>
               <div className="input-group mb-3">
-              <Placecomplete/>
+                <Placecomplete />
               </div>
               <h1 className="mt-5">Servicios</h1>
               <hr />
@@ -62,6 +63,7 @@ export const Profile = () => {
           <section className="col">
             <h1>Perfil</h1>
             <hr />
+
             <div className="form-floating mb-3">
               <input
                 type="text"
@@ -71,7 +73,8 @@ export const Profile = () => {
                 aria-describedby="introduce-nombre"
                 name="name"
                 defaultValue={store.user_data.user_info.name}
-              /><label htmlFor="floatingInput">Nombre</label>
+              />
+              <label htmlFor="floatingInput">Nombre</label>
             </div>
             <div className="form-floating mb-3">
               <input
@@ -82,7 +85,8 @@ export const Profile = () => {
                 aria-describedby="introduce-email"
                 name="email"
                 defaultValue={store.user_data.user_info.email}
-              /><label htmlFor="floatingInput">Email</label>
+              />
+              <label htmlFor="floatingInput">Email</label>
             </div>
             <div className="form-floating mb-3">
               <input
@@ -93,7 +97,8 @@ export const Profile = () => {
                 aria-describedby="Contraseña actual"
                 name="a_password"
                 defaultValue="admin"
-              /><label htmlFor="floatingInput">Contraseña actual</label>
+              />
+              <label htmlFor="floatingInput">Contraseña actual</label>
             </div>
             <div className="form-floating mb-3">
               <input
@@ -104,7 +109,8 @@ export const Profile = () => {
                 aria-describedby="Contraseña nueva"
                 name="n_password"
                 defaultValue="admin"
-              /><label htmlFor="floatingInput">Contraseña nueva</label>
+              />
+              <label htmlFor="floatingInput">Contraseña nueva</label>
             </div>
           </section>
 
@@ -114,6 +120,7 @@ export const Profile = () => {
             </button>
           </div>
         </form>
+        <ImageUp />
       </main>
     </div>
   );

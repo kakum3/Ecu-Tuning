@@ -4,13 +4,25 @@
  
 */
 .background {
-  /*!
-  background-image: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2397x1600/29f4df06463c36f39b2d496fb3c9c0d0/photo-1493238792000-8113da705763.jpg");
-  
-*/
+  background-image: url("https://i.ibb.co/hBdBsY0/ecuback.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+}
+svg {
+  filter: drop-shadow(0.2rem 0.2rem 0.3rem rgb(75 191 115));
+}
+.logo-nav {
+  height: 10vh;
+  width: 10vh;
+}
+.logo-home {
+  height: 23vh;
+  width: 23vh;
+}
+.account-image {
+  height: 6vh;
+  width: 6vh;
 }
 .over {
   z-index: 10000 !important;
@@ -3721,6 +3733,7 @@ fieldset:disabled .btn {
 }
 
 .nav-link {
+  font-family: "Electrolize", sans-serif;
   display: block;
   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
   font-size: var(--bs-nav-link-font-size);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 export const Footer = () => (
-		<footer className="d-flex flex-wrap justify-content-between align-items-center p-3 my-4 text-bg-dark mb-0 shadow-lg">
+		<footer className="d-flex flex-wrap justify-content-between align-items-center p-3 my-4 bg-primary mb-0 shadow-lg">
 			<div className="col-md-4 d-flex align-items-center">
 				<a href="/" className="me-2 text-muted text-decoration-none">
 					<i className="fa-solid fa-car"></i>

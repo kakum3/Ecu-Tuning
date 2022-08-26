@@ -11,7 +11,7 @@ export const Servicelist = () => {
   useEffect(() => {
     if(store.all_services.length===1)actions.getServices();
   }, [store.all_services]);
-
+  
   const handleCheckChange = (e) => {
     const target = e.target;
     const name = target.name;

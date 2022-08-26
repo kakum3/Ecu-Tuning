@@ -32,8 +32,10 @@ const useFlux = () => {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    if (store.alert !== null) {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
   }, [store.alert]);
   useEffect(() => {
     setStore({ alert: null });
@@ -46,8 +48,18 @@ const useFlux = () => {
         ),
       });
     if (location.pathname === "/map")
-      setStore({ sel_services: store.all_services });
-  }, [location.pathname, store.user_data, store.all_services]);
+      setStore({
+        sel_services: store.all_services.map((e) => ({
+          ...e,
+          value: e.name === "ECU" ? true : false,
+        })),
+      });
+  }, [
+    location.pathname,
+    store.user_data,
+    store.all_services,
+    store.map_markers,
+  ]);
 
   return {
     actions: {

@@ -3,6 +3,7 @@ import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../index";
 
+import LogoWhite from "../svgs/logoWhite";
 export const Home = () => {
   const { store, actions, setStore } = useAppContext();
   const [marks, setMarks] = useState(["Alfalfa Rome", "BMW"]);
@@ -55,8 +56,9 @@ export const Home = () => {
   return (
     <div className="container m-auto">
       <div className="row py-3 text-center">
+        <span className="img-fluid"><LogoWhite className="logo-home"/></span>
         <h1 className="title-header f-bold mb-4 text-white t-shadow">
-          ECU Tunning
+          ECU Tunning .es
         </h1>
         <h2 className="fs-5 mb-4 t-shadow-black text-white">
           Encuentra talleres tunning
