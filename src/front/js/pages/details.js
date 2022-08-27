@@ -31,12 +31,12 @@ export const Details = () => {
   };
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.getDetail(values);
+    actions.getDetails(values);
   };
 
   return (
     <div className="container  m-auto text-white border-0 ">
-      {JSON.stringify(taller)}
+   
       <div className="row py-3 ">
         <div className="col-sm-12 col-lg-5 ">
           <h1 className="logo text-white mt-4  ">
@@ -48,10 +48,10 @@ export const Details = () => {
             </span>
           </h1>
 
-          <h4 className="tittle mt-4 text-align-top "> DEV: {JSON.stringify(store.w_name_data)}</h4>
+          <h4 className="tittle mt-4 text-align-top "> DEV:    {JSON.stringify(taller)}</h4>
 
           <h6 className="address text-align-top ">
-            <i className="fas fa-map-marker-alt "></i>  DEV: {JSON.stringify(store.w_address_data)}
+            <i className="fas fa-map-marker-alt "></i>  DEV:    {JSON.stringify(taller)}
           </h6>
 
           <Link
