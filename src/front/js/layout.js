@@ -6,7 +6,7 @@ import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 import { Map } from "./pages/map";
-import { Details } from "./pages/details";
+import { Taller } from "./pages/details";
 import { Profile } from "./pages/profile";
 import { Contact } from "./pages/contact";
 
@@ -35,7 +35,7 @@ const Layout = () => {
               <Route element={<Signup />} path="/signup" />
 
               <Route element={<Map />} path="/map" />
-              <Route element={<Details />} path="/details/:id" />
+              <Route element={<Taller />} path="/taller/:id" />
               <Route element={<Profile />} path="/profile" />
               <Route element={<Contact />} path="/contact" />
 

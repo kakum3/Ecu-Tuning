@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
-import { useLocation,useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import { number } from "prop-types";
 
-export const Details = () => {
+export const Taller = () => {
   const { store, actions } = useContext(Context);
   const [values, setValues] = useState({
     email: "",
@@ -14,29 +14,29 @@ export const Details = () => {
     telefon: "",
     asunto: "",
   });
-  const {id} = useParams();
-  const[taller,setTaller]=useState({});
+  const { id } = useParams();
+  const [taller, setTaller] = useState({});
   useEffect(() => {
-    
-    fetch((process.env.BACKEND_URL + "/taller/"+id))
-    .then(r => r.json())
-    .then(data =>setTaller(data.taller))
-       
-     
-	},[])
-  
+    fetch(process.env.BACKEND_URL + "/taller/" + id)
+      .then((r) => r.json())
+      .then((data) => setTaller(data.taller));
+   
+  }, []);
+
+  const handleTallerChange = (e) => {
+    setTaller(e.target.value);
+  };
 
   const handleInputChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.getDetails(values);
+    actions.getTaller_id(values);
   };
 
   return (
     <div className="container  m-auto text-white border-0 ">
-   
       <div className="row py-3 ">
         <div className="col-sm-12 col-lg-5 ">
           <h1 className="logo text-white mt-4  ">
@@ -48,10 +48,15 @@ export const Details = () => {
             </span>
           </h1>
 
-          <h4 className="tittle mt-4 text-align-top "> DEV:    {JSON.stringify(taller)}</h4>
+          <h4 className="tittle mt-4 text-align-top ">
+           
+            
+            {taller.w_name}
+          </h4>
 
           <h6 className="address text-align-top ">
-            <i className="fas fa-map-marker-alt "></i>  DEV:    {JSON.stringify(taller)}
+            <i className="fas fa-map-marker-alt "></i> 
+            {taller.w_address}
           </h6>
 
           <Link
