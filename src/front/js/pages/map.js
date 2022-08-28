@@ -16,7 +16,7 @@ export const Map = () => {
             <h1 className="">Servicios</h1>
             
             <Servicelist />
-            <Link className="btn btn-success" to="/details">
+            <Link className="btn btn-success" to="/taller/1">
               Detalles mapa (Dev)
             </Link>
             DEV(filters): {JSON.stringify(store.sel_services)}

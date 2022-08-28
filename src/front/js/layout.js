@@ -6,7 +6,7 @@ import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 import { Map } from "./pages/map";
-import { Taller } from "./pages/details";
+import { Taller } from "./pages/taller";
 import { Profile } from "./pages/profile";
 import { Contact } from "./pages/contact";
 
