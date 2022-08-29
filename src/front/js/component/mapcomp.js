@@ -8,6 +8,8 @@ import {
 } from "@react-google-maps/api";
 import { useAppContext } from "../index";
 
+import { useNavigate } from "react-router-dom";
+
 import Favicon from "../../../../favicon.png";
 const center = {
   lat: 39,
@@ -18,6 +20,7 @@ const libs = ["places"];
 
 function Mapcomponent({ center_test }) {
   const { store, actions, setState } = useAppContext();
+  const navigate = useNavigate()
   useEffect(() => {}, [store.map_markers]);
   return (
     <LoadScript
@@ -70,6 +73,7 @@ function Mapcomponent({ center_test }) {
                 }}
                 icon={Favicon}
                 position={e}
+                onClick={()=>navigate("/taller/"+e.id, { replace: true })}
               />
             ) : null;
           })
