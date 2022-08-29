@@ -26,7 +26,6 @@ export const Map = () => {
           <div className="services overflow-auto p-5 col-sm-12 col-lg-4">
             <h1 className="">Servicios</h1>
             <hr />
-
             <Servicelist />
           </div>
           <div className="col-sm-12 col-lg-8 position-relative">
