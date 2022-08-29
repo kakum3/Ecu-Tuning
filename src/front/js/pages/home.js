@@ -48,32 +48,32 @@ export const Home = () => {
     setModels(e.target.value)
   };
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const url = `https://api.carecusoft.com/es/v1/tuning/years/${models}?key=testSA65D46ASD4AS8F4AS6F4A68`
-  //   fetch(url, {
-  //     mode: "cors"
-  //   }).then(r => r.json()).then(data => {
-  //     console.log(data)
-  //     setLoadYears(data)
+    const url = `https://api.carecusoft.com/es/v1/tuning/years/${models}?key=testSA65D46ASD4AS8F4AS6F4A68`
+    fetch(url, {
+      mode: "cors"
+    }).then(r => r.json()).then(data => {
+      console.log(data)
+      setLoadYears(data)
 
-  //   })
-  // }, [models]);
+    })
+  }, [models]);
 
   const handleYearsChange = (e) => {
     setYears(e.target.value)
   };
 
-  // useEffect(() => {
-  //   const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/tuning/engines/${years}?key=testSA65D46ASD4AS8F4AS6F4A68`
-  //   fetch(url, {
-  //     mode: "cors"
-  //   }).then(r => r.json()).then(data => {
-  //     console.log(data)
-  //     setLoadEngines(data)
+  useEffect(() => {
+    const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/tuning/engines/${years}?key=testSA65D46ASD4AS8F4AS6F4A68`
+    fetch(url, {
+      mode: "cors"
+    }).then(r => r.json()).then(data => {
+      console.log(data)
+      setLoadEngines(data)
 
-  //   })
-  // }, [years]);
+    })
+  }, [years]);
 
   const handleEnginesChange = (e) => {
     setEngines(e.target.value)
@@ -158,11 +158,11 @@ export const Home = () => {
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
-                onChange={handleModelsChange}
+                onChange={(e) => handleModelsChange(e)}
                 name="model"
               >
                 <option value={true}>Modelo</option>
-                {models && models.map((e) => (
+                {loadmodels && loadmodels.map((e) => (
                   <option key={e.id} value={e.id}>
                     {e.var_alias}
                   </option>
@@ -170,32 +170,33 @@ export const Home = () => {
               </select>
             )}
 
-            {years && years.length === 0 ? null : (
+            {loadyears && loadyears.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
-                onChange={handleYearsChange}
+                onChange={(e) => handleYearsChange(e)}
                 name="years"
               >
                 <option value={true}>Años</option>
-                {years && years.map((e) => (
-                  <option key={e.id} value={e.models_count}>
-                    {e.models_count}
+                {loadyears && loadyears.map((e) => (
+                  <option key={e.id} value={e.id}>
+                    {e.var_title}
                   </option>
                 ))}
               </select>
             )}
 
-            {engines && engines.length === 0 ? null : (
+            {loadengines && loadengines.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
                 aria-label=".form-select-lg example"
+                onChange={(e) => handleEnginesChange(e)}
                 name="engine"
               >
                 <option value={true}>Motor</option>
-                {engines && engines.map((e) => (
-                  <option key={e.id / 1} value={e.seo_title}>
-                    {e.seo_title}
+                {loadengines && loadengines.map((e) => (
+                  <option key={e.id} value={e.id}>
+                    {e.var_alias}
                   </option>
                 ))}
               </select>
