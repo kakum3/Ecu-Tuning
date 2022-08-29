@@ -58,7 +58,7 @@ export const Home = () => {
       <div className="row py-3 text-center">
         <span className="img-fluid"><LogoWhite className="logo-home"/></span>
         <h1 className="title-header f-bold mb-4 text-white t-shadow">
-          ECU Tunning .es
+          ECU Tunning
         </h1>
         <h2 className="fs-5 mb-4 t-shadow-black text-white">
           Encuentra talleres tunning

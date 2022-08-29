@@ -5,9 +5,10 @@ export const Alert = () => {
   const { store, actions, setStore } = useAppContext();
   return store.alert === null ? null : (
     <>
-      <div className="w-100 position-fixed mt-5 px-4 over">
+      <div className="alert-wrapper w-100 position-fixed over">
+
         <div
-          className="mx-auto mt-5 toast align-items-center text-bg-warning border-0 show"
+          className={"show mx-auto toast align-items-center text-bg-"+(store.alert.includes("Error") ? "warning" : "success")}
           role="alert"
           aria-live="assertive"
           aria-atomic="true"

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, send_from_directory
 from api.models import db, User, Services, Taller, Contacts
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
@@ -13,9 +13,6 @@ from flask_jwt_extended import JWTManager
 from werkzeug.utils import secure_filename
 
 api = Blueprint('api', __name__)
-
-# Create a directory in a known location to save files to.
-uploads_dir = '/images'
 
 
 @api.route('/hello', methods=['GET'])
@@ -142,10 +139,32 @@ def services():
     return jsonify({"msg": "ok", "all_services": [x.serialize() for x in servicios]}), 200
 
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
 @api.route('/upload', methods=['POST'])
+@jwt_required()
 def upload():
-    
-    print(request.files)
+    if 'file' not in request.files:
+        print('No file part')
+        return redirect(request.url)
+    file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+    if file.filename == '':
+        print('No selected file')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        current_user = get_jwt_identity()
+        user = User.query.filter_by(id=current_user).first()
+        filename = secure_filename(file.filename)
+        file.save('./images/'+filename)
+        user.image = filename
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({"msg": "ok", "img_name": filename})
 
-
-    return None
+@api.route('/images/<path:path>')
+def send_image(path):
+    return send_from_directory('../images', path)

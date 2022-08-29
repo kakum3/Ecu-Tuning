@@ -8,6 +8,7 @@ import {
 } from "@react-google-maps/api";
 import { useAppContext } from "../index";
 
+import Favicon from "../../../../favicon.png";
 const center = {
   lat: 39,
   lng: -3,
@@ -23,23 +24,30 @@ function Mapcomponent({ center_test }) {
       googleMapsApiKey="AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
       libraries={libs}
     >
-  
       <GoogleMap
         mapContainerStyle={{
           width: "auto",
-          height: "80vh",
+          height: "86vh",
         }}
         center={center}
         zoom={7}
       >
         {!store.loggedIn ? (
           <Marker
-            label="Regístrese para ver talleres cercanos"
+            label={{
+              text: "Regístrate",
+              fontSize: "1rem",
+              fontWeight: "bold",
+              marginTop: "2rem",
+              color: "black",
+              className: "marker-label t-shadow",
+            }}
+            icon={Favicon}
             position={center}
           />
         ) : store.map_markers[0].w_name === "EMPTY" ? null : (
           store.map_markers.map((e, i) => {
-            console.log("rendering: ", e)
+            console.log("rendering: ", e);
             const coincidenceArray = e.w_services.map((e) =>
               store.sel_services[e.id - 1] === undefined
                 ? null
@@ -48,7 +56,21 @@ function Mapcomponent({ center_test }) {
                 : false
             );
 
-            return coincidenceArray.every((v) => v === true) ? (<Marker key={i} label={e.w_name} position={e} />
+            //return coincidenceArray.every((v) => v === true) ? (
+              return coincidenceArray.includes(true) ? (
+              <Marker
+                key={i}
+                label={{
+                  text: e.w_name,
+                  fontSize: "1rem",
+                  fontWeight: "bold",
+                  marginTop: "2rem",
+                  color: "black",
+                  className: "marker-label t-shadow",
+                }}
+                icon={Favicon}
+                position={e}
+              />
             ) : null;
           })
         )}

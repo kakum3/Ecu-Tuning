@@ -14,6 +14,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_client = db.Column(db.Boolean(), unique=False, nullable=False)
+    image = db.Column(db.String(80), unique=False, nullable=True)
     taller = db.relationship('Taller', backref='user', lazy=True, uselist=False)
     
     def __repr__(self):
@@ -25,7 +26,8 @@ class User(db.Model):
             "email": self.email,
             "taller_id":self .id,
             "is_client":self .is_client,
-            "name":self.name
+            "name":self.name,
+            "image":self.image
         }
 
 class Taller(db.Model):

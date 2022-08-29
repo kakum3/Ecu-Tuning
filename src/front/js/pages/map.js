@@ -20,40 +20,42 @@ export const Map = () => {
     if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
   }, []);
   return (
-    <div className="container m-auto">
-      <main className="m-auto mt-3 card rounded shadow">
+    <div className="container-fluid m-auto mt-4">
+      <main className="card rounded shadow">
         <div className="row">
-          <div className="p-5 col-sm-12 col-lg-5">
+          <div className="services overflow-auto p-5 col-sm-12 col-lg-4">
             <h1 className="">Servicios</h1>
             <hr />
 
             <Servicelist />
-            <Link className="btn btn-success" to="/details">
-              Detalles mapa (Dev)
-            </Link>
           </div>
-          <div className="col-sm-12 col-lg-7 position-relative">
-            <span className="position-absolute top-50 position-absolute top-50 start-50 translate-middle toptop">
-              <div className="card border-warning mb-3">
-                <div className="card-header">Lo sentimos</div>
-                <div className="card-body fs-6">
-                  Necesitas una cuenta en ECUTunning para continuar.
-                  <p className="card-text d-flex justify-content-between">
-                    <sub>
-                      <Link to="/signup" className="btn btn-link btn-sm">
-                        Regístrate
-                      </Link>
-                    </sub>
-                    <sub>
-                      <Link to="/login" className="btn btn-link btn-sm">
-                        Entra
-                      </Link>
-                    </sub>
-                  </p>
+          <div className="col-sm-12 col-lg-8 position-relative">
+            {store.loggedIn ? null : (
+              <span className="position-absolute top-50 position-absolute top-50 start-50 translate-middle toptop">
+                <div className="card border-warning mb-3">
+                  <div className="card-header">Lo sentimos</div>
+                  <div className="card-body fs-6">
+                    Necesitas una cuenta en ECUTunning para continuar.
+                    <p className="card-text d-flex justify-content-between">
+                      <sub>
+                        <Link to="/signup" className="btn btn-link btn-sm">
+                          Regístrate
+                        </Link>
+                      </sub>
+                      <sub>
+                        <Link to="/login" className="btn btn-link btn-sm">
+                          Entra
+                        </Link>
+                      </sub>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </span>
-            <Mapcomponent center={{ lat: ip.latitude || 39, lng: ip.longitude || 9 }} />
+              </span>
+            )}
+
+            <Mapcomponent
+              center={{ lat: ip.latitude || 39, lng: ip.longitude || 9 }}
+            />
           </div>
         </div>
       </main>

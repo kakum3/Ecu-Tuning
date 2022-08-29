@@ -1,12 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAppContext } from "../index";
 import LogoWhite from "../svgs/logoWhite";
+import { useLocation } from "react-router-dom";
 export const Navbar = () => {
   const { store, actions, setStore } = useAppContext();
+  const location = useLocation();
+  const [toggle, setToggle] = useState(false);
+  const isUser = () =>
+    location.pathname.includes("login") ||
+    location.pathname.includes("signup") ||
+    location.pathname.includes("profile");
+  const doToggle = () => setToggle(!toggle);
+  const menuClick = (e) => {
+    //const tog = document.getElementById("navbarColor01")
+    // const bsCollapse = new bootstrap.Collapse(tog)
+    // console.log(bsCollapse)
+    // bsCollapse.toggle() Cerrar en menú móvil ?¿
+  };
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary py-0 px-3 shadow">
+      <nav className="position-fixed top-0 w-100 toptop navbar navbar-expand-lg navbar-dark bg-primary py-0 px-3 shadow">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand">
             <LogoWhite className="logo-nav" />
@@ -24,13 +38,17 @@ export const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarColor01">
+          <div
+            className="collapse navbar-collapse"
+            id="navbarColor01"
+            onClick={menuClick}
+          >
             <ul className="navbar-nav w-100">
               <NavLink
                 to="/map"
                 className={({ isActive }) =>
                   isActive
-                    ? "m-3 p-3 nav-link btn btn-secondary rounded shadow-none text-black text-start"
+                    ? "m-3 p-3 nav-link btn btn-secondary shadow-none text-black text-start"
                     : " shadow-none m-3 p-3 nav-link"
                 }
               >
@@ -39,19 +57,24 @@ export const Navbar = () => {
               </NavLink>
 
               <li className="toptop dropdown-menu-end dropdown text-light my-auto">
-                <NavLink
-                  to="/profile"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "dropdown-toggle m-3 p-3 nav-link btn btn-secondary  shadow-none rounded text-black  text-start"
-                      : " shadow-none dropdown-toggle m-3 p-3 nav-link"
+                <a
+                  className={
+                    isUser() === true
+                      ? "nav-link dropdown-toggle m-3 p-3 btn btn-secondary shadow-none text-black  text-start"
+                      : "nav-link dropdown-toggle shadow-none m-3 p-3"
                   }
-                  data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  onClick={doToggle}
                 >
                   <i className="fa-solid fa-circle-user fs-4 me-3"></i>Usuario
-                </NavLink>
-                <ul className="shadow dropdown-menu text-small dropdown-menu-end">
+                </a>
+                <ul
+                  onClick={doToggle}
+                  className={
+                    "w-100 shadow dropdown-menu text-small dropdown-menu-end " +
+                    (toggle ? "show" : null)
+                  }
+                >
                   <li>
                     <Link className="dropdown-item" to="/login">
                       Entrar
@@ -71,33 +94,36 @@ export const Navbar = () => {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/">
+                    <Link
+                      onClick={() => actions.removeToken()}
+                      className="dropdown-item"
+                      to="/"
+                    >
                       Salir
                     </Link>
                   </li>
                 </ul>
               </li>
-
               <NavLink
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "m-3 p-3 nav-link btn btn-secondary rounded shadow-none text-black  text-start"
+                    ? "m-3 p-3 nav-link btn btn-secondary shadow-none text-black  text-start"
                     : " shadow-none m-3 p-3 nav-link"
                 }
               >
                 <i className="fa-solid fa-circle-question fs-4 me-3"></i>Ayuda
               </NavLink>
-
+              <button onClick={() => actions.toggleCarAPI()}>CAR API</button>
               <span className=" nav-link d-flex ms-auto me-0 my-3">
                 <a className="ms-3 text-muted d-flex" href="#">
-                  <i className="fa-brands fa-facebook m-auto"></i>
+                  <i className="fs-4 fa-brands fa-facebook m-auto"></i>
                 </a>
                 <a className="ms-3 text-muted d-flex" href="#">
-                  <i className="fa-brands fa-instagram m-auto"></i>
+                  <i className="fs-4 fa-brands fa-instagram m-auto"></i>
                 </a>
                 <a className="ms-3 text-muted d-flex" href="#">
-                  <i className="fa-brands fa-twitter m-auto"></i>
+                  <i className="fs-4 fa-brands fa-twitter m-auto"></i>
                 </a>
               </span>
             </ul>

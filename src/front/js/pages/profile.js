@@ -31,6 +31,12 @@ export const Profile = () => {
   return (
     <div className="container m-auto mt-5">
       <main className="card p-5 rounded shadow">
+        <div className="col h-auto mb-5">
+          <h3 className="">Imagen {!taller ? null : "del taller"}</h3>
+          <hr />
+          <ImageUp />
+        </div>
+
         <form
           onSubmit={handleForm}
           className="row row-cols-lg-2 row-cols-1 gy-5"
@@ -120,7 +126,6 @@ export const Profile = () => {
             </button>
           </div>
         </form>
-        <ImageUp />
       </main>
     </div>
   );

@@ -24,7 +24,7 @@ const useFlux = () => {
         w_name: "",
         w_services: [{ desc: "", name: "", value: true }],
       },
-      user_info: { email: "", is_client: false, name: "" },
+      user_info: { email: "", is_client: false, name: "", image: "" },
     },
   });
   const setStore = (obj) => _setStore({ ...store, ...obj });
@@ -92,6 +92,18 @@ const useFlux = () => {
 
       removeToken: () => {
         localStorage.setItem("access_token_jwt", "");
+        setStore({
+          loggedIn: false,
+          user_data: {
+            taller: {
+              w_address: "",
+              w_name: "",
+              w_services: [{ desc: "", name: "", value: true }],
+            },
+            user_info: { email: "", is_client: false, name: "", image: "" },
+          },
+        });
+        return navigate("/", { replace: true });
       },
       getServices: async function () {
         try {
