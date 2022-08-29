@@ -40,7 +40,7 @@ export const Taller = () => {
       <div className="row py-3 ">
         <div className="col-sm-12 col-lg-5 ">
           <h1 className="logo text-white mt-4  ">
-            <span className="tittle taller text-white py-5 mb-3 t-shadow">
+            <span className="tittle taller text-white py-5 mb-3 t-shadow ">
               Ecu
             </span>
             <span className=" tittle nombreTaller text-success bg-white  p-2 t-shadow mb-4">
@@ -63,7 +63,7 @@ export const Taller = () => {
             className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5"
             to="/map"
           >
-            <i className="fa-solid fa-circle-left"></i> atras
+           <i className="fa-solid fa-reply fs-4"></i>
           </Link>
 
           <button
@@ -76,7 +76,7 @@ export const Taller = () => {
             Mensaje Taller
           </button>
           <div
-            className="modal fade text-center text-success"
+            className="modal fade text-center text-primary rounded shadow"
             id="exampleModal"
             tabIndex="-1"
             aria-labelledby="exampleModalLabel"
@@ -85,18 +85,15 @@ export const Taller = () => {
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content bg-white card  shadow">
                 <div className="modal-header">
-                  <h5 className="modal-title " id="exampleModalLabel">
-                    Nuevo Mensaje
+          
+          
+                  <h5 className="modal-title" id="exampleModalLabel">
+                  Nuevo Mensaje 
                   </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+  
                 </div>
                 <div className="modal-body">
-                  <form onSubmit={formSubmit}>
+                <form onSubmit={formSubmit}>
                     <div className="mb-3 mb-2 ">
                       <label
                         htmlFor="recipient-phone "
@@ -116,6 +113,10 @@ export const Taller = () => {
                         placeholder=""
                       ></input>
                     </div>
+                    <input
+                    name="taller_id"
+                    value={id}
+                    type="hidden"/>
                     <div className="mb-3 mb-2 ">
                       <label
                         htmlFor="recipient-phone "
@@ -165,6 +166,7 @@ export const Taller = () => {
                       ></textarea>
                     </div>
                   </form>
+
                 </div>
                 <div className="modal-footer">
                   <button
