@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../index";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import LogoWhite from "../svgs/logoWhite";
 export const Home = () => {
-  const { store, actions, setState } = useAppContext();
+  const { store, actions, setStore } = useAppContext();
   const [loadmarks, setLoadMarks] = useState([]);
   const [marks, setMarks] = useState();
   const [loadmodels, setLoadModels] = useState([]);
@@ -14,8 +15,7 @@ export const Home = () => {
   const [years, setYears] = useState();
   const [loadengines, setLoadEngines] = useState([]);
   const [engines, setEngines] = useState();
-
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = "https://api.carecusoft.com/de/v1/tuning/brands/20?key=testSA65D46ASD4AS8F4AS6F4A68"
@@ -27,11 +27,11 @@ export const Home = () => {
     })
   }, []);
 
-
   const handleMarksChange = (e) => {
     setMarks(e.target.value)
     //console.log(marks)
   };
+
 
   useEffect(() => {
     const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/tuning/models/${marks}?key=testSA65D46ASD4AS8F4AS6F4A68`
@@ -44,10 +44,10 @@ export const Home = () => {
     })
   }, [marks]);
 
-
   const handleModelsChange = (e) => {
     setModels(e.target.value)
   };
+
 
   useEffect(() => {
 
@@ -64,6 +64,7 @@ export const Home = () => {
   const handleYearsChange = (e) => {
     setYears(e.target.value)
   };
+
 
   useEffect(() => {
     const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/tuning/engines/${years}?key=testSA65D46ASD4AS8F4AS6F4A68`
@@ -97,35 +98,49 @@ export const Home = () => {
     }
   };
   const antonioFetch = (datos) => {
-
-    // try {
-    //   // fetching data from the backend
-    //   const url = "https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/?key= testSA65D46ASD4AS8F4AS6F4A68"
-    //   const resp = await fetch(url + "/home", {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: "Bearer " + token,
-    //     },
-    //   });
-    //   const data = await resp.json();
-    //   console.log(data)
-
-    //   setStore({ message: data.message });
-    // don't forget to return something, that is how the async resolves
-    return data;
-    //   } catch (error) {
-    //     console.log("Error loading message from backend", error);
-    //   }
-    // },
-    // datos que vienen = {mark:mark, model:model, years:years, engine:engine}
-
-    //fetch y guardar estos datos de la api en store =>
-    // setStore( { carSearch: { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" } } )
-
-    console.log(datos)
-
+    const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/${marks}/${models}/${years}/${engines}?key=testSA65D46ASD4AS8F4AS6F4A68`
+    fetch(url, {
+      mode: "cors"
+    }).then(r => r.json()).then(data => {
+      console.log(data)
+      console.log(data[1].seo_title)
+      console.log(data[1].int_hp_diff)
+      console.log(data[1].int_nm_diff)
+      console.log(data[1].int_eco)
+      setStore({ carSearch: { model: (data[1].seo_title), cv: (data[1].int_hp_diff), nm: (data[1].int_nm_diff), fuel: (data[1].int_eco) } })
+      navigate("/map", { replace: true });
+    }
+    )
   }
+
+  // try {
+  //   // fetching data from the backend
+  //   const url = "https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/?key= testSA65D46ASD4AS8F4AS6F4A68"
+  //   const resp = await fetch(url + "/home", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + token,
+  //     },
+  //   });
+  //   const data = await resp.json();
+  //   console.log(data)
+
+  //   setStore({ message: data.message });
+  // don't forget to return something, that is how the async resolves
+  // return data;
+  //   } catch (error) {
+  //     console.log("Error loading message from backend", error);
+  //   }
+  // },
+  // datos que vienen = {mark:mark, model:model, years:years, engine:engine}
+
+  //fetch y guardar estos datos de la api en store =>
+  // setStore( { carSearch: { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" } } )
+
+  // console.log(datos)
+
+  // }
 
   return (
     <div className="container m-auto">
@@ -233,12 +248,26 @@ export const Home = () => {
 
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
           <div class="feature col">
+
             <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-desktop"></i>
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
               <svg class="bi" width="1em" height="1em"> use </svg>
             </div> */}
-            <h2 className="fs-4 mb-4 t-shadow-black text-white">Reprogramacion y Reparación de Centralitas</h2>
-            <p className="lead fs-5 mb-4 t-shadow-black text-white">Mediante una correcta optimización del software de tu vehículo podemos conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo..</p>
+            <h2 className="fs-4 mb-4 t-shadow-black text-white">Reprogramacion ECU</h2>
+            <p className="lead fs-5 mb-4 t-shadow-black text-white">Optimización del software de tu vehículo para conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo.</p>
+            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
+              Call to action
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </a> */}
+          </div>
+
+          <div class="feature col">
+            <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-screwdriver-wrench"></i>
+            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </div> */}
+            <h2 className="fs-4 mb-4 t-shadow-black text-white">Mecanica Tunning</h2>
+            <p className="lead fs-5 mb-4 t-shadow-black text-white">Modificaciones de tramos de escapes, admisión, turbos, filtros y mecanica en general para sacar el máximo rendimiento a tu vehículo.</p>
             {/* <a href="#" class="icon-link d-inline-flex align-items-center">
               Call to action
               <svg class="bi" width="1em" height="1em"> use </svg>
@@ -249,32 +278,54 @@ export const Home = () => {
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
               <svg class="bi" width="1em" height="1em"> use </svg>
             </div> */}
-            <h2 className="fs-4 mb-4 t-shadow-black text-white">Tunning</h2>
-            <hr></hr>
-            <hr></hr>
-            <hr></hr>
+            <h2 className="fs-4 mb-4 t-shadow-black text-white">Tunning CAR</h2>
             <p className="lead fs-5 mb-4 t-shadow-black text-white">Todo tipo de preparación tunning como tintado de lunas, taloneras, colas de escape, equipos de sonido, ilumación led, pantallas digitales...</p>
             {/* <a href="#" class="icon-link d-inline-flex align-items-center">
               Call to action
               <svg class="bi" width="1em" height="1em"> use </svg>
             </a> */}
           </div>
-          <div class="feature col">
-            <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-screwdriver-wrench"></i>
+        </div>
+
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div class="feature col card">
+            <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-desktop"></i>
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
               <svg class="bi" width="1em" height="1em"> use </svg>
             </div> */}
-            <h2 className="fs-4 mb-4 t-shadow-black text-white">Mecanica Tunning</h2>
-            <hr></hr>
-            <hr></hr>
-            <hr></hr>
-            <p className="lead fs-5 mb-4 t-shadow-black text-white">Modificaciones de escapes, admisión, turbos y mecanica en general para sacar el máximo rendimiento a tu vehículo</p>
+            <h2 className="fs-4 mb-4  text-black">Reprogramacion ECU</h2>
+            <p className="lead fs-5 mb-4  text-black">Optimización del software de tu vehículo para conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo.</p>
             {/* <a href="#" class="icon-link d-inline-flex align-items-center">
               Call to action
               <svg class="bi" width="1em" height="1em"> use </svg>
             </a> */}
           </div>
 
+          <div class="feature col card">
+            <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-screwdriver-wrench"></i>
+            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </div> */}
+            <h2 className="fs-4 mb-4 text-black">Mecanica Tunning</h2>
+            <p className="lead fs-5 mb-4  text-black">Modificaciones de tramos de escapes, admisión, turbos, filtros y mecanica en general para sacar el máximo rendimiento a tu vehículo.</p>
+            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
+              Call to action
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </a> */}
+          </div>
+
+          <div class="feature col card">
+            <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-car-burst"></i>
+            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </div> */}
+            <h2 className="fs-4 title-header text-black mb-4">Tunning CAR</h2>
+            <p className="lead fs-5 mb-4  text-black">Todo tipo de preparación tunning como tintado de lunas, taloneras, colas de escape, equipos de sonido, ilumación led, pantallas digitales...</p>
+            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
+              Call to action
+              <svg class="bi" width="1em" height="1em"> use </svg>
+            </a> */}
+          </div>
         </div>
 
 
