@@ -16,7 +16,8 @@ def setup_commands(app):
             user = User()
             user.name = "test_user_name_" + str(x)
             user.email = "test_user_" + str(x) + "@test.com"
-            user.password = "admin"
+            hashed_password = generate_password_hash("admin")
+            user.password = hashed_password
             user.is_client = True
             db.session.add(user)
             db.session.commit()
