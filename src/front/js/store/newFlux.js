@@ -16,7 +16,7 @@ const useFlux = () => {
         w_name: "EMPTY",
       },
     ],
-    all_services: [{ name: "EMPTY", id: 1, value: true }],
+    all_services: [{ name: "ECU", id: 1, value: true }],
     sel_services: [{ name: "EMPTY", id: 1, value: true }],
     user_data: {
       taller: {
@@ -39,7 +39,7 @@ const useFlux = () => {
   }, [store.alert]);
   useEffect(() => {
     setStore({ alert: null });
-    if (location.pathname === "/profile")
+    if (location.pathname === "/profile" && store.user_data.user_info.is_client===false)
       setStore({
         sel_services: store.all_services.map((e, i) =>
           store.user_data.taller.w_services.some((a) => e.name === a.name)
@@ -119,11 +119,11 @@ const useFlux = () => {
           }
         } catch (error) {
           return setStore({
-            alert: "Error cargando servicios: " + error,
+            alert: "Error del servidor cargando servicios",
             loggedIn: false,
           });
         }
-        return setStore({ alert: "Error cargando servicios", loggedIn: false });
+        return setStore({ alert: "Error del servidor cargando servicios", loggedIn: false });
       },
       getLogin: async function (data_front) {
         try {
@@ -144,7 +144,7 @@ const useFlux = () => {
         } catch (error) {
           return setStore({ alert: "Error login: " + error, loggedIn: false });
         }
-        return setStore({ alert: "Error", loggedIn: false });
+        return setStore({ alert: "Error: Usuario o contraseña incorrectos.", loggedIn: false });
       },
       getSignup: async function (data_front) {
         try {
@@ -159,7 +159,8 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             navigate("/login", { replace: true });
-            return setStore({ alert: "Registrado correctamente" });
+            setStore({ alert: "Registrado correctamente" });
+            return null
           }
         } catch (error) {
           return setStore({ alert: "Error Signup: " + error, loggedIn: false });
@@ -188,12 +189,12 @@ const useFlux = () => {
             });
           }
         } catch (error) {
-          return setStore({
-            alert: "Error cargando Mapa: " + error,
+          return  null //setStore({
+            //alert: "Error cargando Mapa: " + error,
             //loggedIn: false,
-          });
+          //});
         }
-        return setStore({ alert: "Error cargando mapa" }); //, loggedIn: false
+        return null //setStore({ alert: "Error cargando mapa" }); //, loggedIn: false
       },
 
       getProfile: async function () {

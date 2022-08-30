@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import check_password_hash
 
 db = SQLAlchemy()
 
@@ -12,13 +13,16 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(250), unique=False, nullable=False)
     is_client = db.Column(db.Boolean(), unique=False, nullable=False)
     image = db.Column(db.String(80), unique=False, nullable=True)
     taller = db.relationship('Taller', backref='user', lazy=True, uselist=False)
     
     def __repr__(self):
         return f'<User {self.email}>'
+
+    def checkPassword(self, password):
+        return check_password_hash(self.password, password)
 
     def serialize(self):
         return {

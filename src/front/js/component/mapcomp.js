@@ -30,7 +30,7 @@ function Mapcomponent({ center_test }) {
       <GoogleMap
         mapContainerStyle={{
           width: "auto",
-          height: "86vh",
+          height: "89vh",
         }}
         center={center}
         zoom={7}

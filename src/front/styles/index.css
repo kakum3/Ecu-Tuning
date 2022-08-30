@@ -14,6 +14,9 @@
   max-width: 100%;
   max-height: 40vh;
 }
+.home-shadow {
+  box-shadow: 0.2rem 0.2rem 0.75rem rgb(75 191 115);
+}
 svg {
   filter: drop-shadow(0.2rem 0.2rem 0.3rem rgb(75 191 115));
 }
@@ -21,7 +24,7 @@ main {
   margin-top: 10vh;
 }
 .services {
-  height: 86vh !important;
+  height: 89vh !important;
 }
 .alert-wrapper {
   margin-top: 15vh;
@@ -31,8 +34,8 @@ main {
 }
 .logo-nav {
   transition: all 0.3s ease;
-  height: 9vh;
-  width: 9vh;
+  height: 8vh;
+  width: 8vh;
 }
 .logo-home {
   transition: all 0.3s ease;

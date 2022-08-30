@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Context } from "../store/appContext";
 import { Navigate, Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";

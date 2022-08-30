@@ -20,15 +20,15 @@ export const Map = () => {
     if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
   }, []);
   return (
-    <div className="container-fluid m-auto mt-4">
+    <div className="container-fluid m-auto mt-1">
       <main className="card rounded shadow">
         <div className="row">
-          <div className="services overflow-auto p-5 col-sm-12 col-lg-4">
+          <div className="services overflow-auto p-5 col-sm-12 col-lg-5 col-xl-4">
             <h1 className="">Servicios</h1>
             <hr />
             <Servicelist />
           </div>
-          <div className="col-sm-12 col-lg-8 position-relative">
+          <div className="col-sm-12 col-lg-7 col-xl-8 position-relative">
             {store.loggedIn ? null : (
               <span className="position-absolute top-50 position-absolute top-50 start-50 translate-middle toptop">
                 <div className="card border-warning mb-3">

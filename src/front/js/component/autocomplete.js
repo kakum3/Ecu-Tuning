@@ -6,18 +6,22 @@ const libs = ["places"];
 
 function Placecomplete({ is_inclusive }) {
   const { store, actions, setState } = useAppContext();
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [input, setInput] = useState("")
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
+  const [input, setInput] = useState("");
+  const handleChange = () => {
+    return null;
+  };
   const onLoad = (ref) => {
     return (window.Autocomplete = ref);
   };
   const onPlacesChanged = () => {
+    console.log(window.Autocomplete.gm_bindings_.fields[13].Zj.place); // TO BD
     setLat(
-      window.Autocomplete.gm_accessors_.place.Uj.place.geometry.location.lat()
+      window.Autocomplete.gm_bindings_.fields[13].Zj.place.geometry.location.lat()
     );
     setLng(
-      window.Autocomplete.gm_accessors_.place.Uj.place.geometry.location.lng()
+      window.Autocomplete.gm_bindings_.fields[13].Zj.place.geometry.location.lng()
     );
   };
   return (
@@ -37,7 +41,7 @@ function Placecomplete({ is_inclusive }) {
         >
           <>
             <input
-              defaultValue={store.user_data.taller.w_address}
+              defaultValue={""}
               name="w_address"
               type="address"
               className="w-100 form-control"
@@ -53,8 +57,8 @@ function Placecomplete({ is_inclusive }) {
           establecimiento en Google Maps.
         </em>
       </LoadScript>
-      <input type="hidden" name="lat" value={lat} />
-      <input type="hidden" name="lng" value={lng} />
+      <input type="hidden" name="lat" value={lat} onChange={handleChange} />
+      <input type="hidden" name="lng" value={lng} onChange={handleChange} />
     </>
   );
 }

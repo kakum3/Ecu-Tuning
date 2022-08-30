@@ -11,6 +11,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash
 
 api = Blueprint('api', __name__)
 
@@ -27,7 +28,9 @@ def handle_hello():
 @api.route('/signup', methods=['POST'])
 def Signup():
      body = request.get_json()
-     user = User(email=body['email'], password = body['password'], name=body['name'], is_client=body['is_client'])
+     hashed_password = generate_password_hash(body['password'])
+
+     user = User(email=body['email'], password = hashed_password, name=body['name'], is_client=body['is_client'])
      
      if body["is_client"]==False:
         taller = Taller(w_name=body['w_name'], w_address=body['w_address'], lat=body['lat'], lng=body["lng"])
@@ -42,17 +45,18 @@ def Signup():
 def login():
         
     body = request.get_json()
-    usr = User.query.filter_by(email=body["email"]).first()
-    password = body["password"]
+    user = User.query.filter_by(email=body["email"]).first()
 
-    if usr is None:
+    
+
+    if user is None:
         return jsonify("El usuario no existe"), 404
-    if usr.password != password:
+    if not user.checkPassword(body["password"]):
         return jsonify("Contraseña incorrecta"), 401
 
-    my_token = create_access_token(identity=usr.id)
+    my_token = create_access_token(identity=user.id)
     print(my_token)
-    return jsonify({ "token": my_token, "user_id": usr.id, "msg":"ok" }), 200
+    return jsonify({ "token": my_token, "user_id": user.id, "msg":"ok" }), 200
 
 @api.route('/map', methods=['GET'])
 @jwt_required()
@@ -69,7 +73,9 @@ def get_profile():
     current_user = get_jwt_identity()
     user = User.query.filter_by(id=current_user).first()
     taller = user.taller
-    return jsonify({"msg": "ok", "user_info": user.serialize(), "taller":taller.serialize()}), 200
+    if taller is not None:
+        taller = taller.serialize()
+    return jsonify({"msg": "ok", "user_info": user.serialize(), "taller":taller}), 200
 
 @api.route("/profile", methods=["POST"])
 @jwt_required()
@@ -120,11 +126,11 @@ def post_contact():
     # Accede a la identidad del usuario actual con get_jwt_identity
     current_user = get_jwt_identity()
     
-    usr = User.query.filter_by(id=current_user).first()
+    user = User.query.filter_by(id=current_user).first()
 
     body = request.get_json()
     taller = User.query.filter_by(id=body["taller_id"]).first()
-    contact = Contacts(from_id=usr.id, to_id=taller.id, message=body["message"])
+    contact = Contacts(from_id=user.id, to_id=taller.id, message=body["message"])
 
     db.session.add(contact)
     db.session.commit()

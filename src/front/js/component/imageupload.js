@@ -5,7 +5,6 @@ import { useAppContext } from "../index";
 export const ImageUp = () => {
   const { store, actions, setStore } = useAppContext();
   const [file, setFile] = useState(null);
-  console.log(store.user_data.user_info.image);
   const handleChange = (e) => {
     setFile(e.target.files[0]);
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -65,7 +64,7 @@ export const ImageUp = () => {
             src={
               file
                 ? file
-                : store.user_data.user_info.image === ""
+                : store.user_data.user_info.image === "" || store.user_data.user_info.image === null
                 ? "https://i.ibb.co/KNZ0Yx1/ecubk.png"
                 : process.env.BACKEND_URL +
                   "/images/" +

@@ -53,7 +53,7 @@ export const Profile = () => {
                   aria-label="Nombre del Taller"
                   aria-describedby="basic-addon2"
                   name="w_name"
-                  defaultValue={store.user_data.taller.w_name}
+                  defaultValue={{...store.user_data.taller}.w_name}
                 />
                 <label htmlFor="floatingInput">Nombre del Taller</label>
               </div>
@@ -120,7 +120,7 @@ export const Profile = () => {
             </div>
           </section>
 
-          <div className="mx-auto text-center">
+          <div className="w-100 text-center">
             <button type="submit" className="btn btn-primary">
               Guardar
             </button>

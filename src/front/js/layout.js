@@ -12,7 +12,6 @@ import { Contact } from "./pages/contact";
 
 import { Protected } from "./pages/protected";
 
-import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -51,4 +50,4 @@ const Layout = () => {
     </>
   );
 };
-export default injectContext(Layout);
+export default Layout;

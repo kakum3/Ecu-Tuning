@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
 import { useLocation } from "react-router-dom";
 
 import { useAppContext } from "../index";
@@ -120,7 +119,7 @@ export const Servicelist = () => {
                       aria-expanded="false"
                       aria-controls={"collapse" + i}
                     >
-                      <i class="ms-auto me-2 fa-solid fa-question"></i>
+                      <i className="ms-auto me-2 fa-solid fa-question"></i>
                     </button>
                   </label>
                   <div
