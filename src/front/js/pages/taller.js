@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
+import { useAppContext } from "../index";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
 import { useLocation, useParams } from "react-router-dom";
@@ -7,13 +7,8 @@ import { useLocation, useParams } from "react-router-dom";
 import { number } from "prop-types";
 
 export const Taller = () => {
-  const { store, actions } = useContext(Context);
-  const [values, setValues] = useState({
-    email: "",
-    fName: "",
-    telefon: "",
-    asunto: "",
-  });
+  const { store, actions, setStore } = useAppContext();
+
   const { id } = useParams();
   const [taller, setTaller] = useState({});
   useEffect(() => {
@@ -22,16 +17,14 @@ export const Taller = () => {
       .then((data) => setTaller(data.taller));
   }, []);
 
-  const handleTallerChange = (e) => {
-    setTaller(e.target.value);
-  };
-
-  const handleInputChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.getTaller_id(values);
+    actions.getTaller_id({
+      asunto: e.target.asunto.value,
+      telefon: e.target.telefon.value,
+      fname: e.target.fname.value,
+      taller_id: e.target.taller_id.value,
+    });
   };
 
   return (
@@ -55,6 +48,18 @@ export const Taller = () => {
             <i className="fas fa-map-marker-alt "></i>
             {taller.w_address}
           </h6>
+          <div className="text-center">
+        {
+          <img
+            className="rounded shadow figure"
+            src={
+              "https://i.ibb.co/KNZ0Yx1/ecubk.png"
+            }
+            alt="Profile"
+          />
+        }
+      </div>
+
 
           <Link
             className="btn btn-transparent t-shadow text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5"
@@ -96,9 +101,7 @@ export const Taller = () => {
                         Telefono
                       </label>
                       <input
-                        value={values.telefon}
-                        onChange={handleInputChange}
-                        onLoad={handleInputChange}
+                        defaultValue={""}
                         name="telefon"
                         type="tel"
                         className="form-control"
@@ -106,7 +109,9 @@ export const Taller = () => {
                         placeholder=""
                       ></input>
                     </div>
-                    <input name="taller_id" value={id} type="hidden" />
+                    <input name="taller_id" 
+                     value={id} 
+                     type="hidden" />
                     <div className="mb-3 mb-2 ">
                       <label
                         htmlFor="recipient-phone "
@@ -115,9 +120,7 @@ export const Taller = () => {
                         nombre
                       </label>
                       <input
-                        value={values.fName}
-                        onChange={handleInputChange}
-                        onLoad={handleInputChange}
+                        defaultValue={""}
                         name="fName"
                         type="text"
                         className="form-control"
@@ -133,9 +136,7 @@ export const Taller = () => {
                         Asunto
                       </label>
                       <input
-                        value={values.asunto}
-                        onChange={handleInputChange}
-                        onLoad={handleInputChange}
+                        defaultValue={""}
                         type="text"
                         className="form-control"
                         id="recipient-name"

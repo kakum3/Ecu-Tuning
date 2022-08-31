@@ -254,6 +254,37 @@ const useFlux = () => {
           loggedIn: false,
         });
       },
+      
+      getMensaje: async function (data_front) {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/contact", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + this.getToken(),
+            },
+            body: JSON.stringify(data_front)
+          });
+
+          const data = await resp.json();
+          console.log(data); // N!!! Ver
+          if (data.msg === "ok") {
+            return setStore({
+              
+              alert: "Mensaje Enviado",
+              
+            });
+          }
+        } catch (error) {
+          return setStore({
+            alert: "Error enviando mensaje " + error,
+            
+          });
+        }
+        return setStore({ alert: "Error enviando"});
+      },
+
       /** End of global functions. */
     },
 
