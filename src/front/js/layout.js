@@ -9,8 +9,8 @@ import { Map } from "./pages/map";
 import { Taller } from "./pages/taller";
 import { Profile } from "./pages/profile";
 import { Contact } from "./pages/contact";
-
-import { Protected } from "./pages/protected";
+import { Restore } from "./pages/restore";
+import { NewPassword } from "./pages/newPassword";
 
 
 import { Navbar } from "./component/navbar";
@@ -32,15 +32,13 @@ const Layout = () => {
               <Route element={<Home />} path="/" />
               <Route element={<Login />} path="/login" />
               <Route element={<Signup />} path="/signup" />
-
               <Route element={<Map />} path="/map" />
               <Route element={<Taller />} path="/taller/:id" />
               <Route element={<Profile />} path="/profile" />
               <Route element={<Contact />} path="/contact" />
-
-              <Route element={<Protected />} path="/protected" />
-
-              <Route element={<h1>Not found!</h1>} />
+              <Route element={<Restore />} path="/restore" />
+              <Route element={<NewPassword />} path="/new/password/:token" />
+              <Route element={<Home />} />
             </Routes>
             <Footer />
           </ScrollToTop>

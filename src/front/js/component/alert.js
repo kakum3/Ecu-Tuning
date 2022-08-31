@@ -8,7 +8,7 @@ export const Alert = () => {
       <div className="alert-wrapper w-100 position-fixed over">
 
         <div
-          className={"show mx-auto toast align-items-center text-bg-"+(store.alert.includes("Error") ? "warning" : "success")}
+          className={"show mx-auto toast align-items-center text-bg-"+(JSON.stringify(store.alert).includes("Error") ? "warning" : "success")}
           role="alert"
           aria-live="assertive"
           aria-atomic="true"

@@ -58,6 +58,30 @@ def login():
     print(my_token)
     return jsonify({ "token": my_token, "user_id": user.id, "msg":"ok" }), 200
 
+@api.route('/restore', methods=['POST'])
+def post_restore():
+    body = request.get_json()
+    user = User.query.filter_by(email=body["email"]).first()
+    my_token = create_access_token(identity=user.id)
+    return jsonify({ "token": my_token, "msg":"ok" }), 200
+
+@api.route('/new/password', methods=['POST'])
+def new_password():
+    body = request.get_json()
+
+    if not body["password"] == body["confirm"]:
+        return jsonify({"msg": "error"})
+
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(id=current_user).first()
+    hashed_password = generate_password_hash(body['password'])
+    user.password = hashed_password
+
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify({ "msg":"ok" }), 200
+
 @api.route('/map', methods=['GET'])
 @jwt_required()
 def handle_map():

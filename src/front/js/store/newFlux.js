@@ -37,8 +37,8 @@ const useFlux = () => {
       document.documentElement.scrollTop = 0;
     }
   }, [store.alert]);
+ 
   useEffect(() => {
-    setStore({ alert: null });
     if (location.pathname === "/profile" && store.user_data.user_info.is_client===false)
       setStore({
         sel_services: store.all_services.map((e, i) =>
@@ -124,6 +124,56 @@ const useFlux = () => {
           });
         }
         return setStore({ alert: "Error del servidor cargando servicios", loggedIn: false });
+      },
+      getRestore: async function (data_front) {
+      
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/restore", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data_front),
+          });
+          const data = await resp.json();
+          if (data.msg === "ok") {
+            
+            return navigate("/new/password/"+data.token, { replace: true });
+            return setStore({ alert: 'Email enviado, link: /new/password/'+data.token});
+          }
+        } catch (error) {
+          return setStore({ alert: "Error Email restore: " + error });
+        }
+        return setStore({ alert: "Error: Email no encontrado." });
+      },
+      setNewpassword: async function (data_front) {
+        console.log(data_front)
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/new/password", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + this.getToken(),
+            },
+            body: JSON.stringify(data_front),
+          });
+
+          const data = await resp.json();
+          console.log(data); // N!!! Ver
+          if (data.msg === "ok") {
+            return setStore({
+              user_data: data,
+              alert: "Contraseña cambiada"
+            });
+          }
+        } catch (error) {
+          return setStore({
+            alert: "Error, las contraseñas no son válidas"
+          });
+        }
+        return setStore({ alert: "Error, prueba otra vez" });
       },
       getLogin: async function (data_front) {
         try {
