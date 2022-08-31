@@ -246,8 +246,8 @@ export const Home = () => {
           </div>
         </div>
 
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-          <div class="feature col">
+        <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div className="feature col">
 
             <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-desktop"></i>
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
@@ -261,7 +261,7 @@ export const Home = () => {
             </a> */}
           </div>
 
-          <div class="feature col">
+          <div className="feature col">
             <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-screwdriver-wrench"></i>
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
               <svg class="bi" width="1em" height="1em"> use </svg>
@@ -273,7 +273,7 @@ export const Home = () => {
               <svg class="bi" width="1em" height="1em"> use </svg>
             </a> */}
           </div>
-          <div class="feature col">
+          <div className="feature col">
             <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-car-burst"></i>
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
               <svg class="bi" width="1em" height="1em"> use </svg>
@@ -287,8 +287,8 @@ export const Home = () => {
           </div>
         </div>
 
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-          <div class="feature col card">
+        <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div className="feature col card">
             <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-desktop"></i>
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
               <svg class="bi" width="1em" height="1em"> use </svg>
@@ -301,7 +301,7 @@ export const Home = () => {
             </a> */}
           </div>
 
-          <div class="feature col card">
+          <div className="feature col card">
             <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-screwdriver-wrench"></i>
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
               <svg class="bi" width="1em" height="1em"> use </svg>
@@ -314,7 +314,7 @@ export const Home = () => {
             </a> */}
           </div>
 
-          <div class="feature col card">
+          <div className="feature col card">
             <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-car-burst"></i>
             {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
               <svg class="bi" width="1em" height="1em"> use </svg>

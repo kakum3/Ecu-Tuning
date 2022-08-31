@@ -55,12 +55,7 @@ export const Login = () => {
           <button className="w-100 btn btn-primary mb-2" type="submit">
             Entra
           </button>
-          <sub className="col">
-            ¿No tienes una cuenta?{" "}
-            <Link to="/signup" className="btn btn-link btn-sm">
-              Regístrate
-            </Link>
-          </sub>
+        
         </form>
       </main>
     </div>

@@ -20,7 +20,6 @@ export const Taller = () => {
     fetch(process.env.BACKEND_URL + "/taller/" + id)
       .then((r) => r.json())
       .then((data) => setTaller(data.taller));
-   
   }, []);
 
   const handleTallerChange = (e) => {
@@ -43,35 +42,32 @@ export const Taller = () => {
             <span className="tittle taller text-white py-5 mb-3 t-shadow ">
               Ecu
             </span>
-            <span className=" tittle nombreTaller text-success bg-white  p-2 t-shadow mb-4">
+            <span className=" tittle nombreTaller text-success  p-2 t-shadow mb-4">
               Tunning
             </span>
           </h1>
 
-          <h4 className="tittle mt-4 text-align-top ">
-           
-            
+          <h4 className="tittle mt-4 text-align-top text-white t-shadow">
             {taller.w_name}
           </h4>
 
-          <h6 className="address text-align-top ">
-            <i className="fas fa-map-marker-alt "></i> 
+          <h6 className="address text-align-top  text-white t-shadow ">
+            <i className="fas fa-map-marker-alt "></i>
             {taller.w_address}
           </h6>
 
           <Link
-            className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5"
+            className="btn btn-transparent t-shadow text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5"
             to="/map"
           >
-           <i className="fa-solid fa-reply fs-4"></i>
+            <i className="fa-solid fa-reply fs-4"></i>
           </Link>
 
           <button
             type="button"
-            className="btn btn-success mt-5  mb-3 text-white shadow-sm p-3 mb-5   text-decoration-underline "
+            className="btn t-shadow mt-5  mb-3 text-white shadow-sm  mb-5   text-decoration-underline "
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            data-bs-whatever="@mdo"
           >
             Mensaje Taller
           </button>
@@ -85,15 +81,12 @@ export const Taller = () => {
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content bg-white card  shadow">
                 <div className="modal-header">
-          
-          
                   <h5 className="modal-title" id="exampleModalLabel">
-                  Nuevo Mensaje 
+                    Nuevo Mensaje
                   </h5>
-  
                 </div>
                 <div className="modal-body">
-                <form onSubmit={formSubmit}>
+                  <form onSubmit={formSubmit}>
                     <div className="mb-3 mb-2 ">
                       <label
                         htmlFor="recipient-phone "
@@ -113,10 +106,7 @@ export const Taller = () => {
                         placeholder=""
                       ></input>
                     </div>
-                    <input
-                    name="taller_id"
-                    value={id}
-                    type="hidden"/>
+                    <input name="taller_id" value={id} type="hidden" />
                     <div className="mb-3 mb-2 ">
                       <label
                         htmlFor="recipient-phone "
@@ -166,7 +156,6 @@ export const Taller = () => {
                       ></textarea>
                     </div>
                   </form>
-
                 </div>
                 <div className="modal-footer">
                   <button
