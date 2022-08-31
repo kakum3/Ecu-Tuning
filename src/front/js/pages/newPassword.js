@@ -8,7 +8,7 @@ export const NewPassword = () => {
   const { token } = useParams();
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.setNewpassword({password:e.target.password.value, confirm: e.target.confirm.value});
+    actions.setNewpassword({password:e.target.password.value, confirm: e.target.confirm.value}, token);
   };
   return (
     <div className="container m-auto mt-5">

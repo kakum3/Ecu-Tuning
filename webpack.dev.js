@@ -14,7 +14,11 @@ if(process.env.GITPOD_WORKSPACE_URL){
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'cheap-module-source-map',
+    output: {
+      publicPath: '/'
+    },
     devServer: {
+      
         port,
         hot: true,
         allowedHosts: "all",

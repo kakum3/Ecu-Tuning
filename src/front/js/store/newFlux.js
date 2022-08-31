@@ -139,7 +139,7 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             
-            return navigate("/new/password/"+data.token, { replace: true });
+            return navigate("/new/password/"+btoa(data.token), { replace: true });
             return setStore({ alert: 'Email enviado, link: /new/password/'+data.token});
           }
         } catch (error) {
@@ -147,15 +147,15 @@ const useFlux = () => {
         }
         return setStore({ alert: "Error: Email no encontrado." });
       },
-      setNewpassword: async function (data_front) {
-        console.log(data_front)
+      setNewpassword: async function (data_front, token) {
+
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/new/password", {
-            method: "GET",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + this.getToken(),
+              Authorization: "Bearer " + atob(token),
             },
             body: JSON.stringify(data_front),
           });
@@ -163,9 +163,10 @@ const useFlux = () => {
           const data = await resp.json();
           console.log(data); // N!!! Ver
           if (data.msg === "ok") {
+            navigate("/login", { replace: true });
             return setStore({
               user_data: data,
-              alert: "Contraseña cambiada"
+              alert: "Contraseña cambiada, accede ahora a tu cuenta"
             });
           }
         } catch (error) {

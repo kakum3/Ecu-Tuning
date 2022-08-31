@@ -66,9 +66,10 @@ def post_restore():
     return jsonify({ "token": my_token, "msg":"ok" }), 200
 
 @api.route('/new/password', methods=['POST'])
+@jwt_required()
 def new_password():
     body = request.get_json()
-
+    
     if not body["password"] == body["confirm"]:
         return jsonify({"msg": "error"})
 
