@@ -139,8 +139,8 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             
-            return navigate("/new/password/"+btoa(data.token), { replace: true });
-            return setStore({ alert: 'Email enviado, link: /new/password/'+data.token});
+            
+            return setStore({ alert: (<Link to={"/new/password/"+btoa(data.token)}>EMAIL LINK</Link>)     });
           }
         } catch (error) {
           return setStore({ alert: "Error Email restore: " + error });
@@ -189,7 +189,11 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             this.setToken(data.token);
+            if(data.is_client){
+              navigate("/map", { replace: true });
+            }else{
             navigate("/profile", { replace: true });
+            }
             return setStore({ alert: "Logeado correctamente", loggedIn: true });
           }
         } catch (error) {

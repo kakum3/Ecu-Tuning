@@ -55,8 +55,8 @@ def login():
         return jsonify("Contraseña incorrecta"), 401
 
     my_token = create_access_token(identity=user.id)
-    print(my_token)
-    return jsonify({ "token": my_token, "user_id": user.id, "msg":"ok" }), 200
+
+    return jsonify({ "token": my_token, "is_client": user.is_client, "msg":"ok" }), 200
 
 @api.route('/restore', methods=['POST'])
 def post_restore():

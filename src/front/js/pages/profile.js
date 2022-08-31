@@ -13,7 +13,7 @@ export const Profile = () => {
   }, []);
   useEffect(() => {
     if (store.user_data.user_info.is_client === true) setTaller(false);
-  }, [store.user_data.user_info.name]);
+  }, [store.user_data.user_info]);
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ export const Profile = () => {
                 aria-label="Nombre"
                 aria-describedby="introduce-nombre"
                 name="name"
-                defaultValue={store.user_data.user_info.name}
+                defaultValue={{...store.user_data.user_info}.name}
               />
               <label htmlFor="floatingInput">Nombre</label>
             </div>
@@ -90,7 +90,7 @@ export const Profile = () => {
                 aria-label="Email"
                 aria-describedby="introduce-email"
                 name="email"
-                defaultValue={store.user_data.user_info.email}
+                defaultValue={{...store.user_data.user_info}.email}
               />
               <label htmlFor="floatingInput">Email</label>
             </div>

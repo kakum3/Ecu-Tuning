@@ -64,7 +64,7 @@ export const ImageUp = () => {
             src={
               file
                 ? file
-                : store.user_data.user_info.image === "" || store.user_data.user_info.image === null
+                : {...store.user_data.user_info}.image === "" || {...store.user_data.user_info}.image === null
                 ? "https://i.ibb.co/KNZ0Yx1/ecubk.png"
                 : process.env.BACKEND_URL +
                   "/images/" +
