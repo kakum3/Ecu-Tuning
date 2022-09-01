@@ -64,8 +64,10 @@ export const PoliticaPrivacidad = () => {
                         <h5>Comunicaciones comerciales</h5>
                         <p>En aplicación de la LSSI. Ecu Tunning no enviará comunicaciones publicitarias o promocionales por correo electrónico u otro medio de comunicación electrónica equivalente que previamente no hubieran sido solicitadas o expresamente autorizadas por los destinatarios de las mismas.</p>
                         <p>En el caso de usuarios con los que exista una relación contractual previa, Ecu Tunning sí está autorizado al envío de comunicaciones comerciales referentes a productos o servicios de Ecu Tunning que sean similares a los que inicialmente fueron objeto de contratación con el cliente.</p>
+
                         <p>En todo caso, el usuario, tras acreditar su identidad, podrá solicitar que no se le haga llegar más información comercial a través de los canales de Atención al Cliente.</p>
                 </p></div>
+
             </div>
         </div>
     );
