@@ -29,20 +29,15 @@ export const Signup = () => {
     actions.getSignup({ ...values, ...taller, is_client: isClient });
   };
   return (
-    <div className="container m-auto mt-5">
-      {/* //   <h1>Login Rigo!!</h1>
-    //   <form onSubmit={formSubmit}>
-    //     <input value={values.email} name="email" onChange={handleInputChange} onLoad={handleInputChange} />
-    //     <input value={values.password} name="password" onChange={handleInputChange} onLoad={handleInputChange} />
-    //     <button type="submit" className="btn btn-primary">Enviar</button>
-    //   </form> */}
-      <div className="text-center mt-5">
+    <main className="container">
+
+      <div className="text-center">
         {" "}
         <span className="img-fluid">
           <LogoWhite className="logo-home" />
         </span>
       </div>{" "}
-      <main className="m-auto col-12 col-md-8 col-lg-6 card p-5 rounded shadow">
+      <div className="m-auto col-12 col-md-8 col-lg-6 card p-5 rounded shadow">
         <h3>Registrarse</h3>
         <hr />
         <form onSubmit={formSubmit}>
@@ -142,7 +137,7 @@ export const Signup = () => {
             </Link>
           </sub>
         </form>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 };

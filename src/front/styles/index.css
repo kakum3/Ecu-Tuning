@@ -21,7 +21,8 @@ svg {
   filter: drop-shadow(0.2rem 0.2rem 0.3rem rgb(75 191 115));
 }
 main {
-  margin-top: 10vh;
+  padding-top: 10vh;
+  margin-bottom: auto;
 }
 .services {
   height: 89vh !important;
@@ -11029,6 +11030,7 @@ fieldset:disabled .btn {
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
+  height: 8.5vh!important;
 }
 .navbar-nav .nav-link {
   padding-top: 0.715rem;

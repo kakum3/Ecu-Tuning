@@ -20,8 +20,8 @@ export const Map = () => {
     if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
   }, []);
   return (
-    <div className="container-fluid m-auto mt-1">
-      <main className="card rounded shadow">
+    <main className="container-fluid">
+      <div className="card rounded shadow">
         <div className="row">
           <div className="services overflow-auto p-5 col-sm-12 col-lg-5 col-xl-4">
             <h1 className="">Servicios</h1>
@@ -57,7 +57,7 @@ export const Map = () => {
             />
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 };

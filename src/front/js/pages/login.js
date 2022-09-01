@@ -14,14 +14,14 @@ export const Login = () => {
     actions.getLogin(values);
   };
   return (
-    <div className="container m-auto mt-5">
-      <div className="text-center mt-5">
+    <main className="container">
+      <div className="text-center">
         {" "}
         <span className="img-fluid">
           <LogoWhite className="logo-home" />
         </span>
       </div>
-      <main className="m-auto col-12 col-md-8 col-lg-6 card p-5 rounded shadow">
+      <div className="m-auto col-12 col-md-8 col-lg-6 card p-5 rounded shadow">
         <h3>Entrar</h3>
         <hr />
         <form onSubmit={formSubmit}>
@@ -68,7 +68,7 @@ export const Login = () => {
             </Link>
           </sub>
         </form>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 };
