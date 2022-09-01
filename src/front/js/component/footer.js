@@ -15,19 +15,18 @@ export const Footer = () => (
 	// 	</ul>
 	// </footer>
 
-	<footer class="py-1 my-1">
-		<ul class="nav justify-content-center border-bottom pb-3 mb-1">
-			<Link to="/polprivacy">
-				<li class="nav-item"><a href="#" class="nav-link px-1 text-muted">Politica de Privacidad</a></li>
-			</Link>
-			<Link to="/avilegal">
-				<li class="nav-item"><a href="#" class="nav-link px-1 text-muted">Aviso Legal</a></li>
-			</Link>
-			<Link to="/polcookies">
-				<li class="nav-item"><a href="#" class="nav-link px-1 text-muted">Politica de Cookies</a></li>
-			</Link>
+	<footer  className="py-1 my-1">
+		<ul  className="nav justify-content-center border-bottom pb-3 mb-1">
+			
+				<li  className="nav-item"><Link to="/polprivacy"   className="nav-link px-1 text-muted">Politica de Privacidad
+			</Link></li>
+			<li  className="nav-item"><Link to="/avilegal" className="nav-link px-1 text-muted">Aviso Legal
+			</Link></li>
+			<li  className="nav-item"><Link to="/polcookies" className="nav-link px-1 text-muted">
+				Politica de Cookies
+			</Link></li>
 		</ul>
-		<p class="text-center text-muted">© 2022 Ecu Tunning</p>
+		<p  className="text-center text-muted mt-3">© 2022 ECU Tunning</p>
 		<p className="text-center fs-6 mb-1 t-shadow-black text-white"><strong>Diseño Web para empresas</strong> TeamTrio</p>
 	</footer>
 );

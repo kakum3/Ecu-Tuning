@@ -4,11 +4,11 @@ import { useLocation, useParams } from "react-router-dom";
 
 export const PoliticaCookies = () => {
     return (
-        <div className="container-fluid m-auto">
-            <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
-                <div class="col-md-12 p-lg-5 mx-auto my-5">
-                    <h2 className="featurette-heading fw-normal lh-1 text-danger">POLITICA DE COOKIES<span class="text-muted"> Ecu Tunning</span></h2>
-                    <p class="lead">Esta política de cookies ha sido creada y actualizada por ....
+        <main className="container-fluid">
+            <div  className="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
+                <div  className="col-md-12 p-lg-5 mx-auto">
+                    <h2 className="featurette-heading fw-normal lh-1 text-danger">POLITICA DE COOKIES<span  className="text-muted"> Ecu Tunning</span></h2>
+                    <p  className="lead">Esta política de cookies ha sido creada y actualizada por ....
                         <hr></hr>
                         <h4>¿Qué son las cookies?</h4>
 
@@ -36,6 +36,6 @@ export const PoliticaCookies = () => {
                         Usted puede optar por no utilizar todas las cookies, excepto las necesarias. En la configuración del navegador, puede cambiar la configuración para asegurarse de que se bloqueen las cookies. La mayoría de los navegadores le ofrecen una explicación sobre cómo hacerlo en la llamada'función de ayuda'. Sin embargo, si bloquea las cookies, es posible que no pueda disfrutar de todas las características técnicas que nuestro sitio web tiene para ofrecer y puede afectar negativamente a su experiencia de usuario.</p>
                 </div>
             </div>
-        </div >
+        </main >
     );
 }

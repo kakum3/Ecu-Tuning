@@ -4,13 +4,13 @@ import { useLocation, useParams } from "react-router-dom";
 
 export const PoliticaPrivacidad = () => {
     return (
-        <div className="container-fluid m-auto">
-            <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
-                <div class="col-md-12 p-lg-5 mx-auto my-5">
-                    <h2 className="featurette-heading fw-normal lh-1 text-danger">POLITICA DE PRIVACIDAD<span class="text-muted"> Ecu Tunning</span></h2>
+        <main className="container-fluid">
+            <div  className="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
+                <div  className="col-md-12 p-lg-5 mx-auto">
+                    <h2 className="featurette-heading fw-normal lh-1 text-danger">POLITICA DE PRIVACIDAD<span  className="text-muted"> Ecu Tunning</span></h2>
                     <h5 className="featurette-heading fw-normal lh-1">Protección de datos de carácter personal según el RGPD</h5>
                     <hr></hr>
-                    <p class="lead">
+                    <p  className="lead">
                         <p>Ecu Tunning, en aplicación de la normativa vigente en materia de protección de datos de carácter personal, informa que los datos personales que se recogen a través de los formularios del Sitio web: https://www.ecutunning.com/, se incluyen en los ficheros automatizados específicos de usuarios de los servicios de Ecu Tunning.</p>
                         <p>La recogida y tratamiento automatizado de los datos de carácter personal tiene como finalidad el mantenimiento de la relación comercial y el desempeño de tareas de información, formación, asesoramiento y otras actividades propias de Ecu Tunning.</p>
                         <p>Estos datos únicamente serán cedidos a aquellas entidades que sean necesarias con el único objetivo de dar cumplimiento a la finalidad anteriormente expuesta.</p>
@@ -69,6 +69,6 @@ export const PoliticaPrivacidad = () => {
                 </p></div>
 
             </div>
-        </div>
+        </main>
     );
 }
