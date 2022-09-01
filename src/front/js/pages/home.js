@@ -145,7 +145,7 @@ export const Home = () => {
   return (
     <div className="container m-auto">
       <div className="row py-3 text-center">
-        <span className="img-fluid"><LogoWhite className="logo-home"/></span>
+        <span className="img-fluid"><LogoWhite className="logo-home" /></span>
         <h1 className="title-header f-bold mb-4 text-white t-shadow">
           ECU Tunning
         </h1>
@@ -232,179 +232,32 @@ export const Home = () => {
           </form>
         </div>
         <div className="px-4 py-5 my-5 text-center">
-          {/* <img className="d-block mx-auto mb-4" src="https://prochips.cl/wp-content/uploads/2022/01/CHIPVECTOR.png" alt="" width="72" height="57"> */}
           <i className="fa-solid title-header text-white mb-5 t-shadow fa-microchip"></i>
-          {/* </img> */}
           <h1 className="fs-4 mb-4 t-shadow-black text-white">Red lider en servicios de reprogramación y mecanica tunning</h1>
           <hr></hr>
           <div className="col-lg-6 mx-auto">
             <p className="lead mb-4 t-shadow-black text-white">Porque sabemos lo importante que es su coche, disponemos de la más amplia red de talleres tunning lideres en tecnologías y profesionales mejor cualificados para tu coche.</p>
-            {/* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                  <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
-                  <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
-                </div> */}
           </div>
         </div>
 
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
           <div class="feature col">
-
             <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-desktop"></i>
-            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </div> */}
             <h2 className="fs-4 mb-4 t-shadow-black text-white">Reprogramacion ECU</h2>
             <p className="lead fs-5 mb-4 t-shadow-black text-white">Optimización del software de tu vehículo para conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo.</p>
-            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
-              Call to action
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </a> */}
           </div>
-
           <div class="feature col">
             <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-screwdriver-wrench"></i>
-            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </div> */}
             <h2 className="fs-4 mb-4 t-shadow-black text-white">Mecanica Tunning</h2>
             <p className="lead fs-5 mb-4 t-shadow-black text-white">Modificaciones de tramos de escapes, admisión, turbos, filtros y mecanica en general para sacar el máximo rendimiento a tu vehículo.</p>
-            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
-              Call to action
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </a> */}
           </div>
           <div class="feature col">
             <i className="fa-solid fs-1 title-header text-white mb-5 t-shadow fa-car-burst"></i>
-            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </div> */}
             <h2 className="fs-4 mb-4 t-shadow-black text-white">Tunning CAR</h2>
             <p className="lead fs-5 mb-4 t-shadow-black text-white">Todo tipo de preparación tunning como tintado de lunas, taloneras, colas de escape, equipos de sonido, ilumación led, pantallas digitales...</p>
-            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
-              Call to action
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </a> */}
           </div>
         </div>
-
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-          <div class="feature col card">
-            <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-desktop"></i>
-            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </div> */}
-            <h2 className="fs-4 mb-4  text-black">Reprogramacion ECU</h2>
-            <p className="lead fs-5 mb-4  text-black">Optimización del software de tu vehículo para conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo.</p>
-            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
-              Call to action
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </a> */}
-          </div>
-
-          <div class="feature col card">
-            <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-screwdriver-wrench"></i>
-            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </div> */}
-            <h2 className="fs-4 mb-4 text-black">Mecanica Tunning</h2>
-            <p className="lead fs-5 mb-4  text-black">Modificaciones de tramos de escapes, admisión, turbos, filtros y mecanica en general para sacar el máximo rendimiento a tu vehículo.</p>
-            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
-              Call to action
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </a> */}
-          </div>
-
-          <div class="feature col card">
-            <i className="fa-solid fs-1 title-header text-black mb-5 t-shadow fa-car-burst"></i>
-            {/* <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </div> */}
-            <h2 className="fs-4 title-header text-black mb-4">Tunning CAR</h2>
-            <p className="lead fs-5 mb-4  text-black">Todo tipo de preparación tunning como tintado de lunas, taloneras, colas de escape, equipos de sonido, ilumación led, pantallas digitales...</p>
-            {/* <a href="#" class="icon-link d-inline-flex align-items-center">
-              Call to action
-              <svg class="bi" width="1em" height="1em"> use </svg>
-            </a> */}
-          </div>
-        </div>
-
-
-
-
-
-
-
-
-
-        {/* <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-          <div className="col d-flex align-items-start">
-            <i className="fa-solid fs-3 title-header text-white mb-5 t-shadow fa-desktop"></i>
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Reprogramacion y Reparación de Centralitas</h4>
-              <p>Mediante una correcta optimización del software de tu vehículo podemos conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo..</p>
-            </div>
-          </div>
-
-
-
-
-
-
-          <div className="col d-flex align-items-start">
-            <i className="fa-solid fs-2 title-header text-white t-shadow fa-chart-line"></i>
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Banco de Potencia</h4>
-              <p>Disposición de banco de potencia de ultima generación para mediciones con sistemas de tracción ultima generación. Podrá comprobar el estado de su motor y realizar simulaciones y pruebas de potencia.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-        </div> */}
-
       </div>
-
     </div >
   );
 };
