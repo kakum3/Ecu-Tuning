@@ -313,6 +313,7 @@ const useFlux = () => {
       },
       
       getMensaje: async function (data_front) {
+        console.log(data_front)
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/contact", {

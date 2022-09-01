@@ -20,16 +20,16 @@ export const Taller = () => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.getTaller_id({
+    actions.getMensaje({
       asunto: e.target.asunto.value,
       telefon: e.target.telefon.value,
       fname: e.target.fname.value,
+      message: e.target.message.value,
       taller_id: e.target.taller_id.value,
     });
   };
-
   return (
-    <div className="container-fluid  m-auto mt-4 text-white border-0 ">
+    <div className="container  m-auto text-white border-0 ">
       <main className="bg-transparent ">
       <div className="row  ">
         <div className="col-sm-12 col-lg-5 ">
@@ -63,7 +63,7 @@ export const Taller = () => {
             className="btn btn-transparent bg-primary t-shadow text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm  mb-5  "
             to="/map"
           >
-         <i class="fa-sharp fa-solid fa-arrow-left"/>atras
+         <i className="fa-sharp fa-solid fa-arrow-left"/>atras
           </Link>
           
           <button
@@ -71,7 +71,7 @@ export const Taller = () => {
             className="btn btn-success "
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-          ><i class="fa-sharp fa-solid fa-envelope me-2"></i>
+          ><i className="fa-sharp fa-solid fa-envelope me-2"></i>
             Mensaje Taller
           </button>
           </div>
@@ -121,7 +121,7 @@ export const Taller = () => {
                       </label>
                       <input
                         defaultValue={""}
-                        name="fName"
+                        name="fname"
                         type="text"
                         className="form-control"
                         id="fName"
@@ -154,11 +154,10 @@ export const Taller = () => {
                       <textarea
                         className="form-control "
                         id="message-text"
+                        name="message"
                       ></textarea>
                     </div>
-                  </form>
-                </div>
-                <div className="modal-footer">
+<div className="modal-footer">
                   <button
                     type="button"
                     className="btn btn-dark"
@@ -170,6 +169,11 @@ export const Taller = () => {
                     Enviar
                   </button>
                 </div>
+
+                    
+                  </form>
+                </div>
+                
               </div>
             </div>
           </div>

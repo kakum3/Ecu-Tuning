@@ -154,8 +154,10 @@ def post_contact():
     user = User.query.filter_by(id=current_user).first()
 
     body = request.get_json()
-    taller = User.query.filter_by(id=body["taller_id"]).first()
-    contact = Contacts(from_id=user.id, to_id=taller.id, message=body["message"])
+
+    taller = Taller.query.filter_by(id=body["taller_id"]).first()
+
+    contact = Contacts(from_id=user.id, to_id=taller.user_id, message=body["message"])
 
     db.session.add(contact)
     db.session.commit()
