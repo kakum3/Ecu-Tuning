@@ -35,7 +35,7 @@ main {
 }
 .logo-nav {
   transition: all 0.3s ease;
-  height: 8vh;
+  height: 7.5vh;
   width: 8vh;
 }
 .logo-home {
@@ -11030,7 +11030,6 @@ fieldset:disabled .btn {
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
-  height: 8.5vh!important;
 }
 .navbar-nav .nav-link {
   padding-top: 0.715rem;

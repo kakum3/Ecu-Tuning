@@ -47,8 +47,8 @@ export const Navbar = () => {
                 to="/map"
                 className={({ isActive }) =>
                   isActive
-                    ? "m-3 p-3 nav-link btn btn-secondary shadow-none text-black text-start"
-                    : " shadow-none m-3 p-3 nav-link"
+                    ? "  p-3 nav-link btn btn-secondary shadow-none text-black text-start"
+                    : " shadow-none   p-3 nav-link"
                 }
               >
                 <i className="fa-solid fa-map-location-dot  fs-4 me-3"></i>
@@ -60,8 +60,8 @@ export const Navbar = () => {
                 to={store.loggedIn ? "/profile" : "/login"}
                   className={
                     isUser() === true
-                      ? "nav-link m-3 p-3 btn btn-secondary shadow-none text-black  text-start"
-                      : "nav-link shadow-none m-3 p-3"
+                      ? "nav-link   p-3 btn btn-secondary shadow-none text-black  text-start"
+                      : "nav-link shadow-none   p-3"
                   }
                   aria-expanded="false"
                 >
@@ -69,27 +69,27 @@ export const Navbar = () => {
                 </Link>
                 
            
-              {store.loggedIn ? (<a className="shadow-none m-3 p-3 nav-link"
+              {store.loggedIn ? (<a className="shadow-none   p-3 nav-link"
               onClick={()=>actions.removeToken()}><i className="fa-solid fa-arrow-right-from-bracket  fs-4 me-3"></i>Salir</a>) : null}
               <NavLink
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "m-3 p-3 nav-link btn btn-secondary shadow-none text-black  text-start"
-                    : " shadow-none m-3 p-3 nav-link"
+                    ? "  p-3 nav-link btn btn-secondary shadow-none text-black  text-start"
+                    : " shadow-none   p-3 nav-link"
                 }
               >
                 <i className="fa-solid fa-circle-question fs-4 me-3"></i>Ayuda
               </NavLink>
               
-              <span className=" nav-link d-flex ms-auto me-0 my-3">
-                <a className="ms-3 text-muted d-flex" href="#">
+              <span className=" nav-link d-flex ms-auto me-0">
+                <a className="ms-3 mb-3 text-muted d-flex" href="#">
                   <i className="fs-4 fa-brands fa-facebook m-auto"></i>
                 </a>
-                <a className="ms-3 text-muted d-flex" href="#">
+                <a className="ms-3 mb-3 text-muted d-flex" href="#">
                   <i className="fs-4 fa-brands fa-instagram m-auto"></i>
                 </a>
-                <a className="ms-3 text-muted d-flex" href="#">
+                <a className="ms-3 mb-3 text-muted d-flex" href="#">
                   <i className="fs-4 fa-brands fa-twitter m-auto"></i>
                 </a>
               </span>
