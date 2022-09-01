@@ -34,7 +34,6 @@ export const Home = () => {
 
   const handleMarksChange = (e) => {
     setMarks(e.target.value);
-    //console.log(marks)
   };
 
   useEffect(() => {
@@ -124,35 +123,6 @@ export const Home = () => {
         navigate("/map", { replace: true });
       });
   };
-
-  // try {
-  //   // fetching data from the backend
-  //   const url = "https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/?key= testSA65D46ASD4AS8F4AS6F4A68"
-  //   const resp = await fetch(url + "/home", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + token,
-  //     },
-  //   });
-  //   const data = await resp.json();
-  //   console.log(data)
-
-  //   setStore({ message: data.message });
-  // don't forget to return something, that is how the async resolves
-  // return data;
-  //   } catch (error) {
-  //     console.log("Error loading message from backend", error);
-  //   }
-  // },
-  // datos que vienen = {mark:mark, model:model, years:years, engine:engine}
-
-  //fetch y guardar estos datos de la api en store =>
-  // setStore( { carSearch: { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" } } )
-
-  // console.log(datos)
-
-  // }
 
   return (
     <div className="container m-auto mt-5">
@@ -326,73 +296,6 @@ export const Home = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-          <div className="col d-flex align-items-start">
-            <i className="fa-solid fs-3 title-header text-white mb-5 t-shadow fa-desktop"></i>
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Reprogramacion y Reparación de Centralitas</h4>
-              <p>Mediante una correcta optimización del software de tu vehículo podemos conseguir aumentar la potencia y par, reducir elconsumo de combustible, optimizar sistemas EGR y deslimitaciones de todo tipo..</p>
-            </div>
-          </div>
-
-
-
-
-
-
-          <div className="col d-flex align-items-start">
-            <i className="fa-solid fs-2 title-header text-white t-shadow fa-chart-line"></i>
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Banco de Potencia</h4>
-              <p>Disposición de banco de potencia de ultima generación para mediciones con sistemas de tracción ultima generación. Podrá comprobar el estado de su motor y realizar simulaciones y pruebas de potencia.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <svg className="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"> link </svg>
-            <div>
-              <h4 className="fs-5 mb-4 t-shadow-black text-white">Featured title</h4>
-              <p>Paragraph of text beneath the heading to explain the heading.</p>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

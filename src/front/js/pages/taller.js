@@ -1,79 +1,81 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useAppContext } from "../index";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
 import { useLocation, useParams } from "react-router-dom";
+import "../../styles/taller.css";
 
 import { number } from "prop-types";
 
 export const Taller = () => {
-  const { store, actions } = useContext(Context);
-  const [values, setValues] = useState({
-    email: "",
-    fName: "",
-    telefon: "",
-    asunto: "",
-  });
+  const { store, actions, setStore } = useAppContext();
+
   const { id } = useParams();
   const [taller, setTaller] = useState({});
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/taller/" + id)
       .then((r) => r.json())
       .then((data) => setTaller(data.taller));
-   
   }, []);
 
-  const handleTallerChange = (e) => {
-    setTaller(e.target.value);
-  };
-
-  const handleInputChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.getTaller_id(values);
+    actions.getTaller_id({
+      asunto: e.target.asunto.value,
+      telefon: e.target.telefon.value,
+      fname: e.target.fname.value,
+      taller_id: e.target.taller_id.value,
+    });
   };
 
   return (
-    <div className="container  m-auto text-white border-0 ">
-      <div className="row py-3 ">
+    <div className="container-fluid  m-auto mt-4 text-white border-0 ">
+      <main className="bg-transparent ">
+      <div className="row  ">
         <div className="col-sm-12 col-lg-5 ">
-          <h1 className="logo text-white mt-4  ">
-            <span className="tittle taller text-white py-5 mb-3 t-shadow ">
-              Ecu
+          <h1 className="logo text-center text-white mt-4  ">
+            <span className="text-center text-white py-5 mb-3 t-shadow ">
+            {taller.w_name}
             </span>
-            <span className=" tittle nombreTaller text-success bg-white  p-2 t-shadow mb-4">
-              Tunning
-            </span>
+            
           </h1>
 
-          <h4 className="tittle mt-4 text-align-top ">
-           
-            
-            {taller.w_name}
-          </h4>
+          
 
-          <h6 className="address text-align-top ">
-            <i className="fas fa-map-marker-alt "></i> 
+          <h6 className="address text-align-top text-center text-white py-2 pt-2">
+            <i className="fas fa-map-marker-alt me-2"></i>
             {taller.w_address}
           </h6>
+          <div className="text-center">
+        {
+          <img
+            className="rounded shadow figure"
+            src={
+              "https://i.ibb.co/KNZ0Yx1/ecubk.png"
+            }
+            alt="Profile"
+          />
+        }
+      </div>
 
+        <div className="text-center">
           <Link
-            className="btn btn-dark text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm p-3 mb-5"
+            className="btn btn-transparent bg-primary t-shadow text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm  mb-5  "
             to="/map"
           >
-           <i className="fa-solid fa-reply fs-4"></i>
+         <i class="fa-sharp fa-solid fa-arrow-left"/>atras
           </Link>
-
+          
           <button
             type="button"
-            className="btn btn-success mt-5  mb-3 text-white shadow-sm p-3 mb-5   text-decoration-underline "
+            className="btn btn-success "
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            data-bs-whatever="@mdo"
-          >
+          ><i class="fa-sharp fa-solid fa-envelope me-2"></i>
             Mensaje Taller
           </button>
+          </div>
+          
           <div
             className="modal fade text-center text-primary rounded shadow"
             id="exampleModal"
@@ -84,38 +86,32 @@ export const Taller = () => {
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content bg-white card  shadow">
                 <div className="modal-header">
-          
-          
                   <h5 className="modal-title" id="exampleModalLabel">
-                  Nuevo Mensaje 
+                    Nuevo Mensaje
                   </h5>
-  
                 </div>
                 <div className="modal-body">
-                <form onSubmit={formSubmit}>
+                  <form onSubmit={formSubmit}>
                     <div className="mb-3 mb-2 ">
                       <label
-                        htmlFor="recipient-phone "
+                        htmlFor="floatingInput "
                         className="col-form-label"
                       >
                         <i className="fa-brands fa-whatsapp me-1"></i>
                         Telefono
                       </label>
                       <input
-                        value={values.telefon}
-                        onChange={handleInputChange}
-                        onLoad={handleInputChange}
+                        defaultValue={""}
                         name="telefon"
                         type="tel"
                         className="form-control"
-                        id="phone"
-                        placeholder=""
+                        id="floatingInput"
+                        placeholder="numero"
                       ></input>
                     </div>
-                    <input
-                    name="taller_id"
-                    value={id}
-                    type="hidden"/>
+                    <input name="taller_id" 
+                     value={id} 
+                     type="hidden" />
                     <div className="mb-3 mb-2 ">
                       <label
                         htmlFor="recipient-phone "
@@ -124,9 +120,7 @@ export const Taller = () => {
                         nombre
                       </label>
                       <input
-                        value={values.fName}
-                        onChange={handleInputChange}
-                        onLoad={handleInputChange}
+                        defaultValue={""}
                         name="fName"
                         type="text"
                         className="form-control"
@@ -142,9 +136,7 @@ export const Taller = () => {
                         Asunto
                       </label>
                       <input
-                        value={values.asunto}
-                        onChange={handleInputChange}
-                        onLoad={handleInputChange}
+                        defaultValue={""}
                         type="text"
                         className="form-control"
                         id="recipient-name"
@@ -165,7 +157,6 @@ export const Taller = () => {
                       ></textarea>
                     </div>
                   </form>
-
                 </div>
                 <div className="modal-footer">
                   <button
@@ -183,10 +174,15 @@ export const Taller = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12 col-lg-6 card  shadow m-auto color-dark text-dark">
+        <div className="col-sm-12 col-lg-6 p-5 overflow-auto  card rounded shadow m-auto color-dark text-dark">
+         
+          <h2>servicios</h2>
+          <hr/>
+
           <Servicelist />
         </div>
       </div>
+      </main>
     </div>
   );
 };
