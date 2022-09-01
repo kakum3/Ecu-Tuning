@@ -143,7 +143,7 @@ const useFlux = () => {
             return setStore({ alert: (<Link to={"/new/password/"+btoa(data.token)}>EMAIL LINK</Link>)     });
           }
         } catch (error) {
-          return setStore({ alert: "Error Email restore: " + error });
+          return setStore({ alert: "Error del servidor " });
         }
         return setStore({ alert: "Error: Email no encontrado." });
       },
@@ -197,7 +197,7 @@ const useFlux = () => {
             return setStore({ alert: "Logeado correctamente", loggedIn: true });
           }
         } catch (error) {
-          return setStore({ alert: "Error login: " + error, loggedIn: false });
+          return setStore({ alert: "Error del servidor", loggedIn: false });
         }
         return setStore({ alert: "Error: Usuario o contraseña incorrectos.", loggedIn: false });
       },
@@ -218,9 +218,9 @@ const useFlux = () => {
             return null
           }
         } catch (error) {
-          return setStore({ alert: "Error Signup: " + error, loggedIn: false });
+          return setStore({ alert: "Error del servidor", loggedIn: false });
         }
-        return setStore({ alert: "Error", loggedIn: false });
+        return setStore({ alert: "Error de credenciales", loggedIn: false });
       },
 
       getMap: async function () {
@@ -268,13 +268,12 @@ const useFlux = () => {
           if (data.msg === "ok") {
             return setStore({
               user_data: data,
-              alert: "Usuario cargado",
               loggedIn: true,
             });
           }
         } catch (error) {
           return setStore({
-            alert: "Error Usuario: " + error,
+            alert: "Error cargando usuario",
             loggedIn: false,
           });
         }
@@ -282,6 +281,7 @@ const useFlux = () => {
       },
 
       postProfile: async function (data_front) {
+        console.log(data_front)
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/profile", {
@@ -296,6 +296,7 @@ const useFlux = () => {
             }),
           });
           const data = await resp.json();
+          console.log(data)
           if (data.msg === "ok") {
             return setStore({ alert: "Perfil Actualizado", user_data: data }); //Reset user data
           }
