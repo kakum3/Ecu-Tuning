@@ -3,7 +3,7 @@ import { useAppContext } from "../index";
 import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
 import { useLocation, useParams } from "react-router-dom";
-import "../../styles/taller.css";
+
 
 import { number } from "prop-types";
 
@@ -55,11 +55,11 @@ export const Taller = () => {
 
             <div className="text-center">
               <Link
-                className="btn btn-transparent bg-primary t-shadow text-align-top btn-align-top mt-5  mb-3 me-1 text-white shadow-sm  mb-5  "
+                className="btn btn-transparent bg-primary  text-align-top btn-align-top mt-5  mb-3 me-1 text-white   mb-5  "
                 to="/map"
               >
                 <i className="fa-sharp fa-solid fa-arrow-left" />
-                atras
+               
               </Link>
 
               <button
@@ -69,7 +69,7 @@ export const Taller = () => {
                 data-bs-target="#exampleModal"
               >
                 <i className="fa-sharp fa-solid fa-envelope me-2"></i>
-                Mensaje Taller
+                Contactar 
               </button>
             </div>
 
@@ -96,11 +96,11 @@ export const Taller = () => {
                         <input
                           defaultValue={""}
                           name="telefon"
-                          type="text"
+                          type="tel"
                           className="form-control"
                           id="floatingInput"
                           placeholder="numero"
-                          pattern="[0-9]{10}"
+                          pattern="[0-9]{9}"
                         ></input>
                          <label
                           htmlFor="floatingInput "
@@ -148,7 +148,7 @@ export const Taller = () => {
                       <div className="form-floating  mb-3">
                       
                         <textarea
-                          className="form-control text-center "
+                          className="form-control  "
                           placeholder="Leave a comment here"
                           id="floatingMessage-text"
                           name="message"
