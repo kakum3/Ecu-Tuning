@@ -9,13 +9,13 @@ import { number } from "prop-types";
 
 export const Taller = () => {
   const { store, actions, setStore } = useAppContext();
-
   const { id } = useParams();
   const [taller, setTaller] = useState({});
+  const [image, setImage] = useState("")
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/taller/" + id)
       .then((r) => r.json())
-      .then((data) => setTaller(data.taller));
+      .then((data) => {setTaller(data.taller); setImage(data.img)});
   }, []);
 
   const formSubmit = (e) => {
@@ -39,7 +39,7 @@ export const Taller = () => {
               </span>
             </h1>
 
-            <h6 className="address text-align-top text-center text-white py-2 pt-2">
+            <h6 className="m-5 home-shadow address text-align-top text-center text-white py-2 pt-2">
               <i className="fas fa-map-marker-alt me-2"></i>
               {taller.w_address}
             </h6>
@@ -47,7 +47,8 @@ export const Taller = () => {
               {
                 <img
                   className="rounded shadow figure"
-                  src={"https://i.ibb.co/KNZ0Yx1/ecubk.png"}
+                  src={image === "" ? "https://www.tuningblog.eu/wp-content/uploads/2019/05/Autowerkstatt-tuning-shop-workshop.jpg" : process.env.BACKEND_URL +
+                  "/images/" + image}
                   alt="Profile"
                 />
               }
@@ -152,14 +153,14 @@ export const Taller = () => {
                           placeholder="Leave a comment here"
                           id="floatingMessage-text"
                           name="message"
-                          style={{height: "100px"}}
+                          style={{height: "25vh"}}
 
                         ></textarea>
                           <label
                           htmlFor="floatingMessage-text"
                           className="form-label"
                         >
-                          <i className="fa-solid fa-comment-dots me-1"></i>
+                      
                           Mensaje
                         </label>
                       </div>
@@ -181,7 +182,7 @@ export const Taller = () => {
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-lg-6 p-5 overflow-auto  card rounded shadow m-auto color-dark text-dark">
+          <div className="services-detail col-sm-12 col-lg-6 p-5 overflow-auto  card rounded shadow m-auto color-dark text-dark">
             <h2>servicios</h2>
             <hr />
 

@@ -185,9 +185,9 @@ def services():
 def get_taller(id):
         
    taller= Taller.query.filter_by(id=id).first()
-
+   taller_user = User.query.filter_by(id=taller.user_id).first()
   
-   return jsonify({"msg":'ok',"taller":taller.serialize()}), 200
+   return jsonify({"msg":'ok',"taller":taller.serialize(), "img": taller_user.image}), 200
 
 
 def allowed_file(filename):
