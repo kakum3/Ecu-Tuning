@@ -78,6 +78,9 @@ class Contacts(db.Model):
     from_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     to_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     message = db.Column(db.String(250), unique=False, nullable=False)
+    telefon = db.Column(db.String(250), unique=True, nullable=False)
+    asunto = db.Column(db.String(250), unique=False, nullable=False)
+    fname = db.Column(db.String(250), unique=False, nullable=False)
 
     def __repr__(self):
         return f'<Contacted {self.id}>'

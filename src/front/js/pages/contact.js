@@ -8,6 +8,7 @@ export const Contact = () => {
         fName: "",
         telefon: "",
         asunto: "",
+        message:"",
     });
     const { id } = useParams();
     const [taller, setTaller] = useState({});
