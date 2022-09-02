@@ -53,7 +53,7 @@ export const Login = () => {
           </div>
 
           <button className="w-100 btn btn-primary mb-2" type="submit">
-            Entra
+            Entrar
           </button>
           <sub className="d-block">
             ¿No tienes una cuenta?{" "}

@@ -5,10 +5,10 @@ import { useLocation, useParams } from "react-router-dom";
 export const PoliticaCookies = () => {
     return (
         <main className="container-fluid">
-            <div  className="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
-                <div  className="col-md-12 p-lg-5 mx-auto">
-                    <h2 className="featurette-heading fw-normal lh-1 text-danger">POLITICA DE COOKIES<span  className="text-muted"> Ecu Tunning</span></h2>
-                    <p  className="lead">Esta política de cookies ha sido creada y actualizada por ....
+            <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
+                <div className="col-md-12 p-lg-5 mx-auto">
+                    <h2 className="featurette-heading fw-normal lh-1 text-danger">POLITICA DE COOKIES<span className="text-muted"> Ecu Tuning</span></h2>
+                    <p className="lead">Esta política de cookies ha sido creada y actualizada por ....
                         <hr></hr>
                         <h4>¿Qué son las cookies?</h4>
 

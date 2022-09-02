@@ -38,11 +38,11 @@ export const Contact = () => {
 
         <main className="container-fluid">
 
-            <div  className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">//bg-light
-                <div  className="col-md-5 p-lg-5 mx-auto my-5">
-                    <h1  className="display-7 fs-2 mb-4 t-shadow-black text-white">¿Necesitas ayuda?</h1>
-                    <p  className="lead fs-4 mb-4 t-shadow-black text-white"> Contacta con nosotros<strong> 24/7</strong></p>
-                    <p  className="lead fs-4 mb-4 t-shadow-black text-white"> Te asesoraremos personalmente y responderemos a todas tus preguntas.</p>
+            <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">//bg-light
+                <div className="col-md-5 p-lg-5 mx-auto my-5">
+                    <h1 className="display-7 fs-2 mb-4 t-shadow-black text-white">¿Necesitas ayuda?</h1>
+                    <p className="lead fs-4 mb-4 t-shadow-black text-white"> Contacta con nosotros<strong> 24/7</strong></p>
+                    <p className="lead fs-4 mb-4 t-shadow-black text-white"> Te asesoraremos personalmente y responderemos a todas tus preguntas.</p>
 
                     <button
                         type="button"
@@ -162,20 +162,20 @@ export const Contact = () => {
                         </div>
                     </div>
                 </div>
-                <div  className="product-device shadow-sm d-none d-md-block"></div>
-                <div  className="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+                <div className="product-device shadow-sm d-none d-md-block"></div>
+                <div className="product-device product-device-2 shadow-sm d-none d-md-block"></div>
             </div>
 
             <div className="px-4 py-5 my-5 text-center">
                 <i className="fa-solid title-header text-white mb-5 t-shadow fa-people-line"></i>
                 <h1 className="w-75 m-auto fs-4 mb-4 t-shadow-black text-white">Quienes Somos</h1>
-                
+
                 <div className="col-lg-6 mx-auto">
-                    <p className="lead mb-4 t-shadow-black text-white"><hr/>Dos castellanos manchegos y un andaluz unen sus conocimientos para crear una web donde hacer posible al ciente que quiere un servicio tunning ponerlo en contacto con los talleres mas cercanos a su ubicación que ofrecen dichos servicios</p>
+                    <p className="lead mb-4 t-shadow-black text-white"><hr />Dos castellanos manchegos y un andaluz unen sus conocimientos para crear una web donde hacer posible al ciente que quiere un servicio tuning ponerlo en contacto con los talleres mas cercanos a su ubicación que ofrecen dichos servicios</p>
                 </div>
             </div>
 
-            <div  className="container-fluid marketing text-center">
+            <div className="container-fluid marketing text-center">
                 <div className="row">
                     <div className="col-lg-4">
                         {/* <svg  className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> */}
@@ -196,7 +196,7 @@ export const Contact = () => {
                         <i className="fa-brands fs-3 title-header text-white m-1 t-shadow fa-linkedin" />
                         <a className="fs-6 title-header text-white mb-5 t-shadow" href="https://www.linkedin.com">Linkedin</a>
                     </div>
-                    <div  className="col-lg-4">
+                    <div className="col-lg-4">
                         <img className="mb-4 bd-placeholder-img rounded-circle mb-3" width="140" height="140" src="https://avatars.githubusercontent.com/u/104069050?s=400&u=86d6a22ab542ce8cbaac0cff04417a1e666d67a1&v=4" />
                         <h2 className="fs-4 mb-4 t-shadow-black text-white">Antonio</h2>
                         <em className="home-shadow py-3 mb-4 text-white">"El repros"</em>

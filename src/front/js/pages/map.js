@@ -34,16 +34,16 @@ export const Map = () => {
                 <div className="card border-warning mb-3">
                   <div className="card-header">Lo sentimos</div>
                   <div className="card-body fs-6">
-                    Necesitas una cuenta en ECUTunning para continuar.
+                    Necesitas una cuenta en ECUTuning para continuar.
                     <p className="card-text d-flex justify-content-between">
                       <sub>
                         <Link to="/signup" className="btn btn-link btn-sm">
-                          Regístrate
+                          Registrarse
                         </Link>
                       </sub>
                       <sub>
                         <Link to="/login" className="btn btn-link btn-sm">
-                          Entra
+                          Entrar
                         </Link>
                       </sub>
                     </p>

@@ -46,7 +46,7 @@ function Placecomplete({ is_inclusive }) {
               type="address"
               className="w-100 form-control"
               id="w_address"
-              placeholder="Avda Tunning ..."
+              placeholder="Avda Tuning ..."
             />
             <label htmlFor="floatingInput">Dirección del Taller</label>
           </>

@@ -8,7 +8,7 @@ export const Restore = () => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    actions.getRestore({email:e.target.email.value});
+    actions.getRestore({ email: e.target.email.value });
   };
   return (
     <div className="container m-auto mt-5">
@@ -34,7 +34,7 @@ export const Restore = () => {
           </div>
 
           <button className="w-100 btn btn-primary mb-2" type="submit">
-            Recuperar
+            Recuperar Contraseña
           </button>
           <sub className="col">
             ¿No tienes una cuenta?{" "}

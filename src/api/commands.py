@@ -52,16 +52,41 @@ def setup_commands(app):
     @app.cli.command("services") # pipenv run flask services
     def insert_services_data():
         print("Creating Services and ECU")
-        service = Services()
-        service.name = "ECU"
-        service.desc = ""
-        db.session.add(service)
-        for x in range(1, 5):
-            service = Services()
-            service.name = "Servicio n: " + str(x)
-            service.desc = "Desc ejemplo n: "+ str(x)
-            db.session.add(service)
-        
+        serviceecu = Services()
+        serviceecu.name = "ECU"
+        serviceecu.desc = ""
+        db.session.add(serviceecu)
+        servicemotor = Services()
+        servicemotor.name = "Motor"
+        servicemotor.desc = "Modificaciones de tubo de escape, admisión, colectores, silenciadores, etc."
+        db.session.add(servicemotor)
+        servicesonido = Services()
+        servicesonido.name = "Sistema de sonido"
+        servicesonido.desc = "Instalación de sistemas de sonido, pantallas e iluminación led."
+        db.session.add(servicesonido)
+        servicealerones = Services()
+        servicealerones.name = "Alerones"
+        servicealerones.desc = "Colación de todo tipo de alerones no metálicos para tu vehículo."
+        db.session.add(servicealerones)
+        servicepinturas = Services()
+        servicepinturas.name = "Pinturas y vinilos"
+        servicepinturas.desc = "Pinturas vinilos tuning para todo tipo de vehículos."
+        db.session.add(servicepinturas)
+        servicellantas = Services()
+        servicellantas.name = "Llantas"
+        servicellantas.desc = "Modificación de llantas de todo tipo y medidas totalmente homologadas."
+        db.session.add(servicellantas)
+        servicecarroceria = Services()
+        servicecarroceria.name = "Carrocería"
+        servicecarroceria.desc = "Alerones, entradas de aire, disminuciones de peso, parachoques delanteros, bajada de altura, etc."
+        db.session.add(servicecarroceria)
+        servicetintado = Services()
+        servicetintado.name = "Tintado Lunas"
+        servicetintado.desc = "Tintado de lunas homologadas varias tonalidades a elegír."
+        db.session.add(servicetintado)
         db.session.commit()
+
+
+
 
         print("All services created")
