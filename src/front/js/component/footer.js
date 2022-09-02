@@ -15,7 +15,7 @@ export const Footer = () => (
 	// 	</ul>
 	// </footer>
 
-	<footer  className="py-1 my-1">
+	<footer  className="py-1 my-1 mt-5">
 		<ul  className="nav justify-content-center border-bottom pb-3 mb-1">
 			
 				<li  className="nav-item"><Link to="/polprivacy"   className="nav-link px-1 text-muted">Politica de Privacidad

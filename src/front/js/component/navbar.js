@@ -83,13 +83,13 @@ export const Navbar = () => {
               </NavLink>
               
               <span className=" nav-link d-flex ms-auto me-0">
-                <a className="ms-3 mb-3 text-muted d-flex" href="#">
+                <a className="mx-3 text-muted d-flex" href="#">
                   <i className="fs-4 fa-brands fa-facebook m-auto"></i>
                 </a>
-                <a className="ms-3 mb-3 text-muted d-flex" href="#">
+                <a className="mx-3 text-muted d-flex" href="#">
                   <i className="fs-4 fa-brands fa-instagram m-auto"></i>
                 </a>
-                <a className="ms-3 mb-3 text-muted d-flex" href="#">
+                <a className="mx-3 text-muted d-flex" href="#">
                   <i className="fs-4 fa-brands fa-twitter m-auto"></i>
                 </a>
               </span>
