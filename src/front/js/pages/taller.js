@@ -15,7 +15,18 @@ export const Taller = () => {
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/taller/" + id)
       .then((r) => r.json())
-      .then((data) => {setTaller(data.taller); setImage(data.img)});
+      .then((data) => {
+        setTaller(data.taller);
+        setImage(data.img);
+        setStore({
+          sel_services: store.all_services.map((e, i) =>
+          data.taller.w_services.some((a) => e.name === a.name)
+              ? { ...e, value: true }
+              : { ...e, value: false }
+          ),
+        });
+      });
+
   }, []);
 
   const formSubmit = (e) => {
@@ -186,7 +197,7 @@ export const Taller = () => {
             <h2>servicios</h2>
             <hr />
 
-            <Servicelist />
+            <Servicelist is_disabled={true} />
           </div>
         </div>
       </main>

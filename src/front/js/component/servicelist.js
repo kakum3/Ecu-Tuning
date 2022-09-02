@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import { useAppContext } from "../index";
 
-export const Servicelist = () => {
+export const Servicelist = ({is_disabled}) => {
   const { store, actions, setStore } = useAppContext();
   const location = useLocation();
 
@@ -54,6 +54,7 @@ export const Servicelist = () => {
                         className="form-check-input flex-shrink-0"
                         type="checkbox"
                         name={e.name}
+                        disabled={is_disabled}
                         checked={
                           store.sel_services[i] === undefined
                             ? true
@@ -97,6 +98,7 @@ export const Servicelist = () => {
                         className="form-check-input flex-shrink-0"
                         type="checkbox"
                         name={e.name}
+                        disabled={is_disabled}
                         checked={
                           store.sel_services[i] === undefined
                             ? true

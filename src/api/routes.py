@@ -110,8 +110,8 @@ def post_profile():
     current_user = get_jwt_identity()
     user = User.query.filter_by(id=current_user).first()
 
-    if body["a_password"] != user.password:
-        return jsonify({"msg":"Contraseña incorrecta"}), 200
+    if not user.checkPassword(body["a_password"]):
+        return jsonify("Contraseña incorrecta"), 401
 
     if len(body["n_password"]) > 6:
         user.password = body["n_password"]
