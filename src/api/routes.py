@@ -159,10 +159,21 @@ def post_contact():
 
     contact = Contacts(from_id=user.id, to_id=taller.user_id, message=body["message"])
 
-    db.session.add(contact)
-    db.session.commit()
+    if not len(body["message"]) > 6: 
+        return jsonify({"msg": "error"}), 200       
+    if not len(body["asunto"]) > 6:
+        return jsonify({"msg": "error"}), 200         
+    if not len(body["telefon"]) > 6:
+         return jsonify({"msg": "error"}), 200        
+    if not len(body["fname"]) > 2: 
+        return jsonify({"msg": "error"}), 200 
 
     return jsonify({"msg": "ok"}), 200
+    db.session.add(contact)
+    db.session.commit()
+    return jsonify({"msg": "ok"}), 200
+
+    
 
 @api.route("/services", methods=["GET"])
 def services():
