@@ -157,7 +157,7 @@ def post_contact():
 
     taller = Taller.query.filter_by(id=body["taller_id"]).first()
 
-    contact = Contacts(from_id=user.id, to_id=taller.user_id, message=body["message"])
+    contact = Contacts(from_id=user.id, to_id=taller.user_id, message=body["message"], telefon=body["telefon"] , asunto=body["asunto"] , fname=body["fname"])
 
     if not len(body["message"]) > 6: 
         return jsonify({"msg": "error"}), 200       
@@ -168,7 +168,6 @@ def post_contact():
     if not len(body["fname"]) > 2: 
         return jsonify({"msg": "error"}), 200 
 
-    return jsonify({"msg": "ok"}), 200
     db.session.add(contact)
     db.session.commit()
     return jsonify({"msg": "ok"}), 200

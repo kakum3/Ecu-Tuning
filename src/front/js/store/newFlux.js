@@ -239,7 +239,6 @@ const useFlux = () => {
             console.log(data);
             return setStore({
               map_markers: data.talleres,
-              alert: "Mapa Cargado",
               loggedIn: true,
             });
           }
