@@ -29,8 +29,8 @@ export const Profile = () => {
     });
   };
   return (
-    <div className="container m-auto mt-5">
-      <main className="card p-5 rounded shadow">
+    <main className="container">
+      <div className="card p-5 rounded shadow">
         <div className="col h-auto mb-5">
           <h3 className="">Imagen {!taller ? null : "del taller"}</h3>
           <hr />
@@ -39,10 +39,10 @@ export const Profile = () => {
 
         <form
           onSubmit={handleForm}
-          className="row row-cols-lg-2 row-cols-1 gy-5"
+          className="row"
         >
           {!taller ? null : (
-            <section className="col">
+            <><section className="col-12 col-lg-6">
               <h1>Datos del Taller</h1>
               <hr />
               <div className="form-floating mb-3">
@@ -60,13 +60,17 @@ export const Profile = () => {
               <div className="input-group mb-3">
                 <Placecomplete />
               </div>
-              <h1 className="mt-5">Servicios</h1>
-              <hr />
-              <Servicelist />
+              
             </section>
+            <section className="col-12 col-lg-6 services">
+            <h1 className="">Servicios</h1>
+                <hr />
+                <Servicelist />
+            </section></>
           )}
 
-          <section className="col">
+
+          <section className="col-12 col-lg-6">
             <h1>Perfil</h1>
             <hr />
 
@@ -120,13 +124,16 @@ export const Profile = () => {
             </div>
           </section>
 
+          
+
+
           <div className="w-100 text-center">
             <button type="submit" className="btn btn-primary">
               Guardar
             </button>
           </div>
         </form>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 };

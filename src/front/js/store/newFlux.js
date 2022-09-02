@@ -301,7 +301,7 @@ const useFlux = () => {
           }
         } catch (error) {
           return setStore({
-            alert: "Error Actualizar: " + error,
+            alert: "Error Actualizar: Complete todos los campos",
             loggedIn: false,
           });
         }

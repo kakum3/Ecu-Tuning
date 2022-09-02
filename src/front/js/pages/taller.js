@@ -25,6 +25,7 @@ export const Taller = () => {
               : { ...e, value: false }
           ),
         });
+        console.log(image)
       });
 
   }, []);
@@ -58,7 +59,7 @@ export const Taller = () => {
               {
                 <img
                   className="rounded shadow figure"
-                  src={image === "" ? "https://www.tuningblog.eu/wp-content/uploads/2019/05/Autowerkstatt-tuning-shop-workshop.jpg" : process.env.BACKEND_URL +
+                  src={image === "" || image===null ? "https://www.tuningblog.eu/wp-content/uploads/2019/05/Autowerkstatt-tuning-shop-workshop.jpg" : process.env.BACKEND_URL +
                   "/images/" + image}
                   alt="Profile"
                 />
