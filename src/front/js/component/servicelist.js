@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import { useAppContext } from "../index";
 
-export const Servicelist = ({is_disabled}) => {
+export const Servicelist = ({ is_disabled }) => {
   const { store, actions, setStore } = useAppContext();
   const location = useLocation();
 
@@ -24,7 +24,7 @@ export const Servicelist = ({is_disabled}) => {
       {location.pathname === "/map" && store.carSearch !== null ? (
         <small className="d-block text-muted  text-center mb-4">
           <h5>
-            ECU Stage 1:{" "}
+            Tus mejoras:<br/>
             <em className="fs-5 text-success mb-2">{store.carSearch.model}</em>
           </h5>
 
@@ -47,49 +47,57 @@ export const Servicelist = ({is_disabled}) => {
           ? null
           : store.all_services.map((e, i) =>
               e.name !== "ECU" ? (
-                <div key={i} className="accordion-item">
-                  <label className="accordion-header d-flex" id="headingOne">
-                    <label className="m-auto ms-4 w-75 list-group-item d-flex gap-3">
-                      <input
-                        className="form-check-input flex-shrink-0"
-                        type="checkbox"
-                        name={e.name}
-                        disabled={is_disabled}
-                        checked={
-                          store.sel_services[i] === undefined
-                            ? true
-                            : store.sel_services[i].value
-                        }
-                        onChange={handleCheckChange}
-                        value=""
-                      />
-                      <span className="form-checked-content">
-                        <strong>{e.name}</strong>
-                      </span>
+                store.sel_services[i] === undefined ? null : store.sel_services[
+                    i
+                  ].value === false && is_disabled ? null : (
+                  <div key={i} className="accordion-item">
+                    <label className="accordion-header d-flex" id="headingOne">
+                      <label className="m-auto ms-4 w-75 list-group-item d-flex gap-3">
+                        {is_disabled ? (
+                          <i class="fa-solid fa-info mx-1"></i>
+                        ) : (
+                          <input
+                            className="form-check-input flex-shrink-0"
+                            type="checkbox"
+                            name={e.name}
+                            disabled={is_disabled}
+                            checked={
+                              store.sel_services[i] === undefined
+                                ? true
+                                : store.sel_services[i].value
+                            }
+                            onChange={handleCheckChange}
+                            value=""
+                          />
+                        )}
+                        <span className="form-checked-content">
+                          <strong>{e.name}</strong>
+                        </span>
+                      </label>
+                      <button
+                        className="w-25 accordion-button collapsed shadow-none"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={"#collapse" + i}
+                        aria-expanded="false"
+                        aria-controls={"collapse" + i}
+                      ></button>
                     </label>
-                    <button
-                      className="w-25 accordion-button collapsed shadow-none"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target={"#collapse" + i}
-                      aria-expanded="false"
-                      aria-controls={"collapse" + i}
-                    ></button>
-                  </label>
-                  <div
-                    id={"collapse" + i}
-                    className="accordion-collapse collapse"
-                    aria-labelledby={"heading" + i}
-                    data-bs-parent="#accordionExample"
-                  >
-                    <div className="border-top">
-                      <small className="list-group list-group-flush">
-                        {" "}
-                        <li className="list-group-item">{e.desc}</li>
-                      </small>
+                    <div
+                      id={"collapse" + i}
+                      className="accordion-collapse collapse"
+                      aria-labelledby={"heading" + i}
+                      data-bs-parent="#accordionExample"
+                    >
+                      <div className="border-top">
+                        <small className="list-group list-group-flush">
+                          {" "}
+                          <li className="list-group-item">{e.desc}</li>
+                        </small>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )
               ) : (
                 <div key={i} className="accordion-item">
                   <label className="accordion-header d-flex" id="headingOne">

@@ -39,38 +39,10 @@ export const Profile = () => {
 
         <form
           onSubmit={handleForm}
-          className="row"
+          className="row gy-5"
         >
-          {!taller ? null : (
-            <><section className="col-12 col-lg-6">
-              <h1>Datos del Taller</h1>
-              <hr />
-              <div className="form-floating mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Talleres ..."
-                  aria-label="Nombre del Taller"
-                  aria-describedby="basic-addon2"
-                  name="w_name"
-                  defaultValue={{...store.user_data.taller}.w_name}
-                />
-                <label htmlFor="floatingInput">Nombre del Taller</label>
-              </div>
-              <div className="input-group mb-3">
-                <Placecomplete />
-              </div>
-              
-            </section>
-            <section className="col-12 col-lg-6 services">
-            <h1 className="">Servicios</h1>
-                <hr />
-                <Servicelist />
-            </section></>
-          )}
 
-
-          <section className="col-12 col-lg-6">
+<div className="col-12 col-lg-6" ><section className="">
             <h1>Perfil</h1>
             <hr />
 
@@ -123,6 +95,36 @@ export const Profile = () => {
               <label htmlFor="floatingInput">Contraseña nueva</label>
             </div>
           </section>
+          {!taller ? null : (
+            <><section className="mt-5">
+              <h1>Datos del Taller</h1>
+              <hr />
+              <div className="form-floating mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Talleres ..."
+                  aria-label="Nombre del Taller"
+                  aria-describedby="basic-addon2"
+                  name="w_name"
+                  defaultValue={{...store.user_data.taller}.w_name}
+                />
+                <label htmlFor="floatingInput">Nombre del Taller</label>
+              </div>
+              <div className="input-group mb-3">
+                <Placecomplete value={{...store.user_data.taller}.w_address}/>
+              </div>
+              
+            </section>
+           </>
+          )}
+
+</div>
+{!taller ? null : (<section className="col-12 col-lg-6">
+            <h1 className="">Servicios</h1>
+                <hr />
+                <div className="overflow-auto services-profile"><Servicelist /></div>
+            </section>)}
 
           
 

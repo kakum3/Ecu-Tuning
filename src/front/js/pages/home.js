@@ -26,7 +26,6 @@ export const Home = () => {
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
         setLoadMarks(data);
         setLoading(false);
       });
@@ -44,7 +43,6 @@ export const Home = () => {
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
         setLoadModels(data);
         setLoading(false);
       });
@@ -62,7 +60,6 @@ export const Home = () => {
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
         setLoadYears(data);
         setLoading(false);
       });
@@ -80,7 +77,6 @@ export const Home = () => {
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
         setLoadEngines(data);
         setLoading(false);
       });
@@ -136,11 +132,11 @@ export const Home = () => {
         <h2 className="mb-5 t-shadow-black text-white">
           Encuentra talleres tuning
         </h2>
-        <h2 className="fs-6 mb-1 t-shadow-black text-white">
-          BUSCA EL MODELO DE TU COCHE
-        </h2>
+        
         <div className="m-auto col-12 col-md-8 col-lg-6 p-5">
-          <form onSubmit={handleSubmit} id="form">
+          <h6 className="mb-3 t-shadow-black text-white">
+          BUSCA EL MODELO DE TU COCHE:
+        </h6><form onSubmit={handleSubmit} id="form">
             {loadmarks && loadmarks.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
@@ -235,7 +231,7 @@ export const Home = () => {
           <i className="logo-nav fa-solid title-header text-white my-5 t-shadow fa-car-on"></i>
 
           <h1 className="w-75 m-auto fs-3 mb-4 t-shadow-black text-white">
-            Red lider en servicios tuning
+            Red líder en servicios tuning
             <hr />
           </h1>
 

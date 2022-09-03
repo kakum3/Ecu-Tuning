@@ -4,7 +4,7 @@ import { useAppContext } from "../index";
 
 const libs = ["places"];
 
-function Placecomplete({ is_inclusive }) {
+function Placecomplete({ value }) {
   const { store, actions, setState } = useAppContext();
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
@@ -41,7 +41,7 @@ function Placecomplete({ is_inclusive }) {
         >
           <>
             <input
-              defaultValue={""}
+              defaultValue={value || input}
               name="w_address"
               type="address"
               className="w-100 form-control"

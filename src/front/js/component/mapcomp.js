@@ -59,8 +59,7 @@ function Mapcomponent({ center_test }) {
                 : false
             );
 
-            //return coincidenceArray.every((v) => v === true) ? (
-              return coincidenceArray.includes(true) ? (
+            const mark = (
               <Marker
                 key={i}
                 label={{
@@ -75,7 +74,17 @@ function Mapcomponent({ center_test }) {
                 position={e}
                 onClick={()=>navigate("/taller/"+e.id, { replace: true })}
               />
-            ) : null;
+            )
+            const selectionLength = store.sel_services.filter(e=>e.value===true).length
+            return selectionLength===1
+              ? (coincidenceArray.includes(true) ? mark : null)
+              : (coincidenceArray.filter((e) => e === true).length===selectionLength ? mark : null)
+
+
+
+
+
+
           })
         )}
       </GoogleMap>

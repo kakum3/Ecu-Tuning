@@ -51,7 +51,7 @@ export const Taller = () => {
               </span>
             </h1>
 
-            <h6 className="m-5 home-shadow address text-align-top text-center text-white py-2 pt-2">
+            <h6 className="lh-base m-5 home-shadow address text-align-top text-center text-white py-2 pt-2">
               <i className="fas fa-map-marker-alt me-2"></i>
               {taller.w_address}
             </h6>

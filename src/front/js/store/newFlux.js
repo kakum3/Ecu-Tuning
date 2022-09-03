@@ -36,7 +36,7 @@ const useFlux = () => {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
-  }, [store.alert]);
+  }, [store.alert, location.pathname]);
  
   useEffect(() => {
     if (location.pathname === "/profile" && store.user_data.user_info.is_client===false)
@@ -194,7 +194,7 @@ const useFlux = () => {
             }else{
             navigate("/profile", { replace: true });
             }
-            return setStore({ alert: "Logeado correctamente", loggedIn: true });
+            return null //setStore({ alert: "Logeado correctamente", loggedIn: true });
           }
         } catch (error) {
           return setStore({ alert: "Error del servidor", loggedIn: false });

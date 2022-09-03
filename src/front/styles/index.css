@@ -67,6 +67,9 @@ main {
 .services-detail {
   max-height: 55vh;
 }
+.services-profile {
+  max-height: 60vh;
+}
 .alert-wrapper {
   margin-top: 15vh;
 }

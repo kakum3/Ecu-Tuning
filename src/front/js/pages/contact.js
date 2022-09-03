@@ -181,25 +181,25 @@ export const Contact = () => {
                         {/* <svg  className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> */}
                         <img className="mb-4 bd-placeholder-img shadow rounded-circle mb-3" width="140" height="140" src="https://avatars.githubusercontent.com/u/70114505?v=4" />
                         <h2 className="fs-4 mb-4 t-shadow-black text-white">Luis</h2>
-                        <em className="home-shadow py-3 mb-4 d-block text-white"> "El Rápido"</em>
+                        <em className="home-shadow py-3 m-4 d-block text-white"> "El Rápido"</em>
                         <i className="fa-brands fs-3 title-header text-white mb-5 t-shadow fa-github" />
                         <a className="fs-6 title-header text-white m-1 t-shadow" href="https://github.com/LuisAguadoVicaria">Github   </a>
                         <i className="fa-brands fs-3 title-header text-white m-1 t-shadow fa-linkedin" />
                         <a className="fs-6 title-header text-white mb-5 t-shadow" href="https://www.linkedin.com/in/luisaguadovicaria/">Linkedin</a>
                     </div>
-                    <div className="col-lg-4">
-                        <img className="mb-4 bd-placeholder-img rounded-circle mb-3" width="140" height="140" src="http://avatars.githubusercontent.com/u/104210758?v=4" />
+                    <div className="col-lg-4 pb-5">
+                        <img className="shadow mb-4 bd-placeholder-img rounded-circle mb-3" width="140" height="140" src="http://avatars.githubusercontent.com/u/104210758?v=4" />
                         <h2 className="fs-4 mb-4 t-shadow-black text-white">Jesús</h2>
-                        <em className="home-shadow py-3 mb-4 d-block text-white">"El Grafitis"</em>
+                        <em className="home-shadow py-3 m-4 d-block text-white">"El Grafitis"</em>
                         <i className="fa-brands fs-3 title-header text-white  t-shadow fa-github" />
                         <a className="fs-6 title-header text-white m-1 t-shadow" href="https://github.com/kakum3">Github   </a>
                         <i className="fa-brands fs-3 title-header text-white m-1 t-shadow fa-linkedin" />
                         <a className="fs-6 title-header text-white mb-5 t-shadow" href="https://www.linkedin.com">Linkedin</a>
                     </div>
                     <div className="col-lg-4">
-                        <img className="mb-4 bd-placeholder-img rounded-circle mb-3" width="140" height="140" src="https://avatars.githubusercontent.com/u/104069050?s=400&u=86d6a22ab542ce8cbaac0cff04417a1e666d67a1&v=4" />
+                        <img className="shadow mb-4 bd-placeholder-img rounded-circle mb-3" width="140" height="140" src="https://avatars.githubusercontent.com/u/104069050?s=400&u=86d6a22ab542ce8cbaac0cff04417a1e666d67a1&v=4" />
                         <h2 className="fs-4 mb-4 t-shadow-black text-white">Antonio</h2>
-                        <em className="home-shadow py-3 mb-4 d-block text-white">"El repros"</em>
+                        <em className="home-shadow py-3 m-4 d-block text-white">"El repros"</em>
                         <i className="fa-brands fs-3 title-header text-white mb-5 t-shadow fa-github" />
                         <a className="fs-6 title-header text-white m-1 t-shadow" href="https://github.com/Brox13">Github   </a>
                         <i className="fa-brands fs-3 title-header text-white m-1 t-shadow fa-linkedin" />
