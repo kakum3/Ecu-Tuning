@@ -10,7 +10,7 @@ import { useAppContext } from "../index";
 
 import { useNavigate } from "react-router-dom";
 
-import Favicon from "../../../../favicon.png";
+import markerimage from "../../../../marker.png";
 const center = {
   lat: 39,
   lng: -3,
@@ -20,7 +20,7 @@ const libs = ["places"];
 
 function Mapcomponent({ center_test }) {
   const { store, actions, setState } = useAppContext();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {}, [store.map_markers]);
   return (
     <LoadScript
@@ -40,12 +40,11 @@ function Mapcomponent({ center_test }) {
             label={{
               text: "Regístrate",
               fontSize: "1rem",
-              fontWeight: "bold",
               marginTop: "2rem",
-              color: "black",
-              className: "marker-label t-shadow",
+              color: "red",
+              className: "marker-label t-shadow-black-marker",
             }}
-            icon={Favicon}
+            icon={markerimage}
             position={center}
           />
         ) : store.map_markers[0].w_name === "EMPTY" ? null : (
@@ -64,27 +63,27 @@ function Mapcomponent({ center_test }) {
                 key={i}
                 label={{
                   text: e.w_name,
-                  fontSize: "1rem",
-                  fontWeight: "bold",
+                  fontSize: "1.11rem",
                   marginTop: "2rem",
-                  color: "black",
-                  className: "marker-label t-shadow",
+                  color: "red",
+                  className: "marker-label t-shadow-black-marker",
                 }}
                 icon={Favicon}
                 position={e}
-                onClick={()=>navigate("/taller/"+e.id, { replace: true })}
+                onClick={() => navigate("/taller/" + e.id, { replace: true })}
               />
-            )
-            const selectionLength = store.sel_services.filter(e=>e.value===true).length
-            return selectionLength===1
-              ? (coincidenceArray.includes(true) ? mark : null)
-              : (coincidenceArray.filter((e) => e === true).length===selectionLength ? mark : null)
-
-
-
-
-
-
+            );
+            const selectionLength = store.sel_services.filter(
+              (e) => e.value === true
+            ).length;
+            return selectionLength === 1
+              ? coincidenceArray.includes(true)
+                ? mark
+                : null
+              : coincidenceArray.filter((e) => e === true).length ===
+                selectionLength
+              ? mark
+              : null;
           })
         )}
       </GoogleMap>

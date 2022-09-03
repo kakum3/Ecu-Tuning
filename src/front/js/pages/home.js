@@ -121,15 +121,15 @@ export const Home = () => {
   };
 
   return (
-    <div className="container m-auto mt-5">
-      <div className="row py-3 text-center">
-        <span className="img-fluid mt-5">
+    <main className="container">
+      <div className="row text-center">
+        <span className="img-fluid">
           <LogoWhite className="logo-home" />
         </span>
         <h1 className="title-header f-bold mb-4 text-white t-shadow">
           ECU Tuning
         </h1>
-        <h2 className="mb-5 t-shadow-black text-white">
+        <h2 className="t-shadow-black text-white">
           Encuentra talleres tuning
         </h2>
         
@@ -296,6 +296,6 @@ export const Home = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };

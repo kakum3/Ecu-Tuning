@@ -47,41 +47,46 @@ export const Navbar = () => {
                 to="/map"
                 className={({ isActive }) =>
                   isActive
-                    ? "  p-3 nav-link btn btn-secondary shadow-none text-black text-start"
-                    : " shadow-none   p-3 nav-link"
+                    ? "rounded mx-3   p-3 nav-link btn btn-secondary shadow-none text-black text-start"
+                    : "rounded mx-3  shadow-none p-3 nav-link"
                 }
               >
                 <i className="fa-solid fa-map-location-dot  fs-4 me-3"></i>
                 Talleres
               </NavLink>
 
-             
-                <Link
+              <Link
                 to={store.loggedIn ? "/profile" : "/login"}
-                  className={
-                    isUser() === true
-                      ? "nav-link   p-3 btn btn-secondary shadow-none text-black  text-start"
-                      : "nav-link shadow-none   p-3"
-                  }
-                  aria-expanded="false"
+                className={
+                  isUser() === true
+                    ? "rounded mx-3  nav-link   p-3 btn btn-secondary shadow-none text-black  text-start"
+                    : "rounded mx-3  nav-link shadow-none   p-3"
+                }
+                aria-expanded="false"
+              >
+                <i className="fa-solid fa-circle-user fs-4 me-3"></i>Usuario
+              </Link>
+
+              {store.loggedIn ? (
+                <a
+                  className="shadow-none   p-3 nav-link"
+                  onClick={() => actions.removeToken()}
                 >
-                  <i className="fa-solid fa-circle-user fs-4 me-3"></i>Usuario
-                </Link>
-                
-           
-              {store.loggedIn ? (<a className="shadow-none   p-3 nav-link"
-              onClick={()=>actions.removeToken()}><i className="fa-solid fa-arrow-right-from-bracket  fs-4 me-3"></i>Salir</a>) : null}
+                  <i className="fa-solid fa-arrow-right-from-bracket  fs-4 me-3"></i>
+                  Salir
+                </a>
+              ) : null}
               <NavLink
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "  p-3 nav-link btn btn-secondary shadow-none text-black  text-start"
-                    : " shadow-none   p-3 nav-link"
+                    ? "rounded mx-3   p-3 nav-link btn btn-secondary shadow-none text-black  text-start"
+                    : "rounded mx-3  shadow-none   p-3 nav-link"
                 }
               >
                 <i className="fa-solid fa-circle-question fs-4 me-3"></i>Ayuda
               </NavLink>
-              
+
               <span className=" nav-link d-flex ms-auto me-0">
                 <a className="mx-3 text-muted d-flex" href="#">
                   <i className="fs-4 fa-brands fa-facebook m-auto"></i>

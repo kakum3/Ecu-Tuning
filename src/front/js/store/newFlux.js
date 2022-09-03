@@ -37,9 +37,15 @@ const useFlux = () => {
       document.documentElement.scrollTop = 0;
     }
   }, [store.alert, location.pathname]);
- 
   useEffect(() => {
-    if (location.pathname === "/profile" && store.user_data.user_info.is_client===false)
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }, [location.pathname]);
+  useEffect(() => {
+    if (
+      location.pathname === "/profile" &&
+      store.user_data.user_info.is_client === false
+    )
       setStore({
         sel_services: store.all_services.map((e, i) =>
           store.user_data.taller.w_services.some((a) => e.name === a.name)
@@ -123,10 +129,12 @@ const useFlux = () => {
             loggedIn: false,
           });
         }
-        return setStore({ alert: "Error del servidor cargando servicios", loggedIn: false });
+        return setStore({
+          alert: "Error del servidor cargando servicios",
+          loggedIn: false,
+        });
       },
       getRestore: async function (data_front) {
-      
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/restore", {
@@ -138,9 +146,11 @@ const useFlux = () => {
           });
           const data = await resp.json();
           if (data.msg === "ok") {
-            
-            
-            return setStore({ alert: (<Link to={"/new/password/"+btoa(data.token)}>EMAIL LINK</Link>)     });
+            return setStore({
+              alert: (
+                <Link to={"/new/password/" + btoa(data.token)}>EMAIL LINK</Link>
+              ),
+            });
           }
         } catch (error) {
           return setStore({ alert: "Error del servidor " });
@@ -148,7 +158,6 @@ const useFlux = () => {
         return setStore({ alert: "Error: Email no encontrado." });
       },
       setNewpassword: async function (data_front, token) {
-
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/new/password", {
@@ -166,12 +175,12 @@ const useFlux = () => {
             navigate("/login", { replace: true });
             return setStore({
               user_data: data,
-              alert: "Contraseña cambiada, accede ahora a tu cuenta"
+              alert: "Contraseña cambiada, accede ahora a tu cuenta",
             });
           }
         } catch (error) {
           return setStore({
-            alert: "Error, las contraseñas no son válidas"
+            alert: "Error, las contraseñas no son válidas",
           });
         }
         return setStore({ alert: "Error, prueba otra vez" });
@@ -189,17 +198,20 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             this.setToken(data.token);
-            if(data.is_client){
+            if (data.is_client) {
               navigate("/map", { replace: true });
-            }else{
-            navigate("/profile", { replace: true });
+            } else {
+              navigate("/profile", { replace: true });
             }
-            return null //setStore({ alert: "Logeado correctamente", loggedIn: true });
+            return null; //setStore({ alert: "Logeado correctamente", loggedIn: true });
           }
         } catch (error) {
           return setStore({ alert: "Error del servidor", loggedIn: false });
         }
-        return setStore({ alert: "Error: Usuario o contraseña incorrectos.", loggedIn: false });
+        return setStore({
+          alert: "Error: Usuario o contraseña incorrectos.",
+          loggedIn: false,
+        });
       },
       getSignup: async function (data_front) {
         try {
@@ -215,7 +227,7 @@ const useFlux = () => {
           if (data.msg === "ok") {
             navigate("/login", { replace: true });
             setStore({ alert: "Registrado correctamente" });
-            return null
+            return null;
           }
         } catch (error) {
           return setStore({ alert: "Error del servidor", loggedIn: false });
@@ -243,12 +255,12 @@ const useFlux = () => {
             });
           }
         } catch (error) {
-          return  null //setStore({
-            //alert: "Error cargando Mapa: " + error,
-            //loggedIn: false,
+          return null; //setStore({
+          //alert: "Error cargando Mapa: " + error,
+          //loggedIn: false,
           //});
         }
-        return null //setStore({ alert: "Error cargando mapa" }); //, loggedIn: false
+        return null; //setStore({ alert: "Error cargando mapa" }); //, loggedIn: false
       },
 
       getProfile: async function () {
@@ -280,7 +292,7 @@ const useFlux = () => {
       },
 
       postProfile: async function (data_front) {
-        console.log(data_front)
+        console.log(data_front);
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/profile", {
@@ -295,7 +307,7 @@ const useFlux = () => {
             }),
           });
           const data = await resp.json();
-          console.log(data)
+          console.log(data);
           if (data.msg === "ok") {
             return setStore({ alert: "Perfil Actualizado", user_data: data }); //Reset user data
           }
@@ -310,9 +322,9 @@ const useFlux = () => {
           loggedIn: false,
         });
       },
-      
+
       getMensaje: async function (data_front) {
-        console.log(data_front)
+        console.log(data_front);
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/contact", {
@@ -321,25 +333,22 @@ const useFlux = () => {
               "Content-Type": "application/json",
               Authorization: "Bearer " + this.getToken(),
             },
-            body: JSON.stringify(data_front)
+            body: JSON.stringify(data_front),
           });
 
           const data = await resp.json();
           console.log(data); // N!!! Ver
           if (data.msg === "ok") {
             return setStore({
-              
               alert: "Mensaje Enviado",
-              
             });
           }
         } catch (error) {
           return setStore({
             alert: "Error enviando mensaje " + error,
-            
           });
         }
-        return setStore({ alert: "Error enviando"});
+        return setStore({ alert: "Error enviando" });
       },
 
       /** End of global functions. */
