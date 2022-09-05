@@ -87,21 +87,21 @@ export const Home = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Error, not pay att to selected values
-    const mark = e.target.mark !== undefined ? e.target.mark.value : true;
-    const model = e.target.model !== undefined ? e.target.model.value : true;
-    const years = e.target.years !== undefined ? e.target.years.value : true;
-    const engine = e.target.engine !== undefined ? e.target.engine.value : true;
+    e.preventDefault();
+    const mark = e.target.mark !== undefined ? e.target.mark.value : false;
+    const model = e.target.model !== undefined ? e.target.model.value : false;
+    const years = e.target.years !== undefined ? e.target.years.value : false;
+    const engine = e.target.engine !== undefined ? e.target.engine.value : false;
 
     if (!mark || !model || !years || !engine) {
-      console.log("Error submit, select all first");
+      setStore({alert: "Error, seleccione correctamente todos los campos"})
     } else {
-      antonioFetch({ mark: mark, model: model, years: years, engine: engine });
+      antonioFetch({ marks: mark, models: model, years: years, engines: engine });
     }
   };
   const antonioFetch = (datos) => {
     setLoading(true);
-    const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/${marks}/${models}/${years}/${engines}?key=testSA65D46ASD4AS8F4AS6F4A68`;
+    const url = `https://api.carecusoft.com/anplrjpjtdpjrh.html/v1/chiptuning/${datos.marks}/${datos.models}/${datos.years}/${datos.engines}?key=testSA65D46ASD4AS8F4AS6F4A68`;
     fetch(url, {
       mode: "cors",
     })
