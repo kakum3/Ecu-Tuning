@@ -11,14 +11,10 @@ import { useAppContext } from "../index";
 import { useNavigate } from "react-router-dom";
 
 import markerimage from "../../../../marker.png";
-const center = {
-  lat: 39,
-  lng: -3,
-};
 
 const libs = ["places"];
 
-function Mapcomponent({ center_test }) {
+function Mapcomponent({ center }) {
   const { store, actions, setState } = useAppContext();
   const navigate = useNavigate();
   useEffect(() => {}, [store.map_markers]);
@@ -68,7 +64,7 @@ function Mapcomponent({ center_test }) {
                   color: "red",
                   className: "marker-label t-shadow-black-marker",
                 }}
-                icon={Favicon}
+                icon={markerimage}
                 position={e}
                 onClick={() => navigate("/taller/" + e.id, { replace: true })}
               />

@@ -8,16 +8,19 @@ import { useAppContext } from "../index";
 export const Map = () => {
   const { store, actions, setStore } = useAppContext();
   const [ip, setIP] = useState("");
-
+  const [loading, setLoading] = useState(true);
   //creating function to load ip address from the API
   const getData = async () => {
     const res = await axios.get("https://geolocation-db.com/json/");
-    setIP(res.data.IPv4);
+    setIP(res.data);
+    setLoading(false);
+    return null;
   };
 
   useEffect(() => {
     getData();
     if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
+    getData();
   }, []);
   return (
     <main className="container-fluid">
@@ -52,9 +55,16 @@ export const Map = () => {
               </span>
             )}
 
-            <Mapcomponent
-              center={{ lat: ip.latitude || 39, lng: ip.longitude || 9 }}
-            />
+            {loading ? (
+              <>
+                <h1 className="p-5">
+                  Cargando...
+                  <hr />
+                </h1>
+              </>
+            ) : (
+              <Mapcomponent center={{ lat: ip.latitude, lng: ip.longitude }} />
+            )}
           </div>
         </div>
       </div>
