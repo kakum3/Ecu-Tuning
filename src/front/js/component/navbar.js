@@ -40,7 +40,7 @@ export const Navbar = () => {
                 to="/map"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded mx-3  my-2 px-3 nav-link btn btn-secondary shadow-none text-black text-start"
+                    ? "rounded mx-3  my-1 px-3 nav-link btn btn-secondary shadow-none text-black text-start"
                     : "rounded mx-3  shadow-none p-3 nav-link"
                 }
               >
@@ -52,7 +52,7 @@ export const Navbar = () => {
                 to={store.loggedIn ? "/profile" : "/login"}
                 className={
                   isUser() === true
-                    ? "rounded mx-3  my-2 px-3  nav-link btn btn-secondary shadow-none text-black  text-start"
+                    ? "rounded mx-3  my-1 px-3  nav-link btn btn-secondary shadow-none text-black  text-start"
                     : "rounded mx-3  nav-link shadow-none   p-3"
                 }
                 aria-expanded="false"
@@ -73,7 +73,7 @@ export const Navbar = () => {
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded mx-3  my-2 px-3 nav-link btn btn-secondary shadow-none text-black  text-start"
+                    ? "rounded mx-3  my-1 px-3 nav-link btn btn-secondary shadow-none text-black  text-start"
                     : "rounded mx-3  shadow-none   p-3 nav-link"
                 }
               >
