@@ -7,18 +7,8 @@ import { useAppContext } from "../index";
 
 export const Map = () => {
   const { store, actions, setStore } = useAppContext();
-  //creating function to load ip address from the API
-  const getData = async () => {
-    const res = await axios.get("https://geolocation-db.com/json/");
-    setIP(res.data);
-    setLoading(false);
-    return null;
-  };
-
   useEffect(() => {
-    getData();
     if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
-    //getData();
   }, []);
   return (
     <main className="container-fluid">

@@ -7270,7 +7270,7 @@ fieldset:disabled .btn {
 }
 
 .t-shadow-black-marker {
-  text-shadow: 1px 1px 2px black !important;
+  text-shadow: 1px 1px 2px red !important;
 }
 .t-shadow-black {
   text-shadow: 0.2rem 0.2rem 0.3rem rgb(0 0 0) !important;

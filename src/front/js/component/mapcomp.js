@@ -35,9 +35,10 @@ function Mapcomponent({ center }) {
           <Marker
             label={{
               text: "Regístrate",
-              fontSize: "1rem",
+              fontSize: "1.23rem",
               marginTop: "2rem",
-              color: "red",
+              fontWeight: "bold",
+              color: "black",
               className: "marker-label t-shadow-black-marker",
             }}
             icon={markerimage}
@@ -59,9 +60,10 @@ function Mapcomponent({ center }) {
                 key={i}
                 label={{
                   text: e.w_name,
-                  fontSize: "1.11rem",
+                  fontSize: "1.23rem",
                   marginTop: "2rem",
-                  color: "red",
+                  fontWeight: "bold",
+                  color: "black",
                   className: "marker-label t-shadow-black-marker",
                 }}
                 icon={markerimage}
