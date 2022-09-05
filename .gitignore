@@ -1,9 +1,6 @@
 # ignore all files starting with .
 .*
 
-#for dev conflicts
-/migrations
-
 # track this file .gitignore (i.e. do NOT ignore it)
 !.gitignore
 !.github
