@@ -10,13 +10,7 @@ export const Navbar = () => {
     location.pathname.includes("login") ||
     location.pathname.includes("signup") ||
     location.pathname.includes("profile");
-  const doToggle = () => setToggle(!toggle);
-  const menuClick = (e) => {
-    //const tog = document.getElementById("navbarColor01")
-    // const bsCollapse = new bootstrap.Collapse(tog)
-    // console.log(bsCollapse)
-    // bsCollapse.toggle() Cerrar en menú móvil ?¿
-  };
+
   return (
     <>
       <nav className="position-fixed top-0 w-100 toptop navbar navbar-expand-lg navbar-dark bg-primary py-0 px-3 shadow">
@@ -40,14 +34,13 @@ export const Navbar = () => {
           <div
             className="collapse navbar-collapse"
             id="navbarColor01"
-            onClick={menuClick}
           >
             <ul className="navbar-nav w-100">
               <NavLink
                 to="/map"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded mx-3   p-3 nav-link btn btn-secondary shadow-none text-black text-start"
+                    ? "rounded mx-3  my-1 px-3 nav-link btn btn-secondary shadow-none text-black text-start"
                     : "rounded mx-3  shadow-none p-3 nav-link"
                 }
               >
@@ -59,7 +52,7 @@ export const Navbar = () => {
                 to={store.loggedIn ? "/profile" : "/login"}
                 className={
                   isUser() === true
-                    ? "rounded mx-3  nav-link   p-3 btn btn-secondary shadow-none text-black  text-start"
+                    ? "rounded mx-3  my-1 px-3  nav-link btn btn-secondary shadow-none text-black  text-start"
                     : "rounded mx-3  nav-link shadow-none   p-3"
                 }
                 aria-expanded="false"
@@ -80,7 +73,7 @@ export const Navbar = () => {
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded mx-3   p-3 nav-link btn btn-secondary shadow-none text-black  text-start"
+                    ? "rounded mx-3  my-1 px-3 nav-link btn btn-secondary shadow-none text-black  text-start"
                     : "rounded mx-3  shadow-none   p-3 nav-link"
                 }
               >

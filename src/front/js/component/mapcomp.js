@@ -28,7 +28,7 @@ function Mapcomponent({ center }) {
           width: "auto",
           height: "89vh",
         }}
-        center={center}
+        center={{ lat: 40.420177, lng: -3.703928 }}
         zoom={7}
       >
         {!store.loggedIn ? (
@@ -41,7 +41,7 @@ function Mapcomponent({ center }) {
               className: "marker-label t-shadow-black-marker",
             }}
             icon={markerimage}
-            position={center}
+            position={{ lat: 40.420177, lng: -3.703928 }}
           />
         ) : store.map_markers[0].w_name === "EMPTY" ? null : (
           store.map_markers.map((e, i) => {
