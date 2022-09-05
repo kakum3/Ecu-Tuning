@@ -13,7 +13,7 @@ def setup_commands(app):
     @app.cli.command("adduser") # pipenv run flask adduser
     def adduser():
         print("Creating 2 test users")
-        for x in range(1, 3):
+        for x in range(1, 6):
             user = User()
             user.name = "test_user_name_" + str(x)
             user.email = "test_user_" + str(x) + "@test.com"
@@ -32,16 +32,78 @@ def setup_commands(app):
         
         user = User.query.filter_by(email="test_user_1@test.com").first()
         user.is_client = False
-
         taller = Taller()
         taller.w_name = "Mecánicos Paco"
         taller.w_address = "C:\Fake No 0"
         taller.lat = 39
         taller.lng = -3
-        
+       #adding all services, but needs filtering
+        taller.w_services = (Services.query.all())
+        user.taller = taller
+        db.session.add(user)
+        db.session.commit()
+
+        user = User.query.filter_by(email="test_user_2@test.com").first()
+        user.is_client = False
+        taller = Taller()
+        taller.w_name = "Taller Barcelona"
+        taller.w_address = "Calle de Pau claris, Barcelona"
+        taller.lat = 41
+        taller.lng = 2
         #adding all services, but needs filtering
         taller.w_services = (Services.query.all())
-        
+        user.taller = taller
+        db.session.add(user)
+        db.session.commit()
+
+        user = User.query.filter_by(email="test_user_3@test.com").first()
+        user.is_client = False
+        taller = Taller()
+        taller.w_name = "Taller Campera Motor"
+        taller.w_address = "Calle Campera, 555 Cordoba"
+        taller.lat = 37,87
+        taller.lng = -4,75
+        #adding all services, but needs filtering
+        taller.w_services = (Services.query.all())
+        user.taller = taller
+        db.session.add(user)
+        db.session.commit()
+
+        user = User.query.filter_by(email="test_user_4@test.com").first()
+        user.is_client = False
+        taller = Taller()
+        taller.w_name = "El Taller"
+        taller.w_address = "Calle Muelle, 33 Albacete"
+        taller.lat = 38.994557
+        taller.lng = -1.852506
+        #adding all services, but needs filtering
+        taller.w_services = (Services.query.all())
+        user.taller = taller
+        db.session.add(user)
+        db.session.commit()
+
+        user = User.query.filter_by(email="test_user_5@test.com").first()
+        user.is_client = False
+        taller = Taller()
+        taller.w_name = "Vigo Auto Talleres"
+        taller.w_address = "Rúa Emilio Pardo Bazán, 67 Vigo"
+        taller.lat = 42.22681259999999
+        taller.lng = -8.717297799999997
+        #adding all services, but needs filtering
+        taller.w_services = (Services.query.all())
+        user.taller = taller
+        db.session.add(user)
+        db.session.commit()
+
+        user = User.query.filter_by(email="test_user_6@test.com").first()
+        user.is_client = False
+        taller = Taller()
+        taller.w_name = "ReproRACE Tomelloso"
+        taller.w_address = "Calle campo, 67 Tomelloso"
+        taller.lat = 39.16474369999999
+        taller.lng = -3.0227126
+        #adding all services, but needs filtering
+        taller.w_services = (Services.query.all())
         user.taller = taller
         db.session.add(user)
         db.session.commit()
