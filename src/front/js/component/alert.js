@@ -3,6 +3,13 @@ import { useAppContext } from "../index";
 
 export const Alert = () => {
   const { store, actions, setStore } = useAppContext();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('This will run after 3 second!')
+      setStore({alert:null})
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [store.alert]);
   return store.alert === null ? null : (
     <>
       <div className="alert-wrapper w-100 position-fixed over">

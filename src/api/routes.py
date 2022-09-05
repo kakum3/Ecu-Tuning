@@ -144,6 +144,19 @@ def post_profile():
     return jsonify({"msg": "ok", "user_info": user.serialize(),
      "taller":taller.serialize()}), 200
 
+@api.route("/profile", methods=["DELETE"])
+@jwt_required()
+def delete_profile():
+    # Accede a la identidad del usuario actual con get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(id=current_user).first()
+    taller = user.taller
+    if taller is not None:
+        db.session.delete(taller)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({"msg": "ok"}), 200
+
 
 @api.route("/contact", methods=["POST"])
 @jwt_required()

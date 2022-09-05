@@ -322,6 +322,42 @@ const useFlux = () => {
           loggedIn: false,
         });
       },
+      deleteProfile: async function () {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/profile", {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + this.getToken(),
+            },
+          });
+
+          const data = await resp.json();
+          console.log(data); // N!!! Ver
+          if (data.msg === "ok") {
+            navigate("/", { replace: true });
+            return setStore({
+              user_data: {
+                taller: {
+                  w_address: "",
+                  w_name: "",
+                  w_services: [{ desc: "", name: "", value: true }],
+                },
+                user_info: { email: "", is_client: false, name: "", image: "" },
+              },
+              loggedIn: false,
+              alert: "Usuario eliminado correctamente"
+            });
+          }
+        } catch (error) {
+          return setStore({
+            alert: "Error eliminando usuario",
+            loggedIn: false,
+          });
+        }
+        return setStore({ alert: "Error eliminando usuario", loggedIn: false });
+      },
 
       getMensaje: async function (data_front) {
         console.log(data_front);
