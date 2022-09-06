@@ -20,7 +20,7 @@ flask-admin = "*"
 flask-jwt-extended = "*"
 
 [requires]
-python_version = "3.9.13"
+python_version = "3.8"
 
 [scripts]
 dbdummy="bash -c 'pipenv run flask services && pipenv run flask adduser && pipenv run flask addtaller'"
