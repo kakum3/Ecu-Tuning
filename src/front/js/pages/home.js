@@ -94,7 +94,7 @@ export const Home = () => {
     const engine = e.target.engine !== undefined ? e.target.engine.value : false;
 
     if (!mark || !model || !years || !engine) {
-      setStore({alert: "Error, seleccione correctamente todos los campos"})
+      setStore({ alert: "Error, seleccione correctamente todos los campos" })
     } else {
       antonioFetch({ marks: mark, models: model, years: years, engines: engine });
     }
@@ -132,11 +132,11 @@ export const Home = () => {
         <h2 className="t-shadow-black text-white">
           Encuentra talleres tuning
         </h2>
-        
+
         <div className="m-auto col-12 col-md-8 col-lg-6 p-5">
           <h6 className="mb-3 t-shadow-black text-white">
-          BUSCA EL MODELO DE TU COCHE:
-        </h6><form onSubmit={handleSubmit} id="form">
+            BUSCA EL MODELO DE TU COCHE:
+          </h6><form onSubmit={handleSubmit} id="form">
             {loadmarks && loadmarks.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
@@ -237,9 +237,9 @@ export const Home = () => {
 
           <div className="col-lg-6 mx-auto">
             <p className="lead mb-4 t-shadow-black text-white">
-              Porque sabemos lo importante que es su coche, disponemos de la más
-              amplia red de talleres tuning lideres en tecnologías y
-              profesionales mejor cualificados para tu coche.
+              Porque sabemos lo importante que es tu coche, disponemos de la más
+              amplia red de talleres tuning lideres en tecnologías con los
+              profesionales mejor cualificados.
             </p>
           </div>
         </div>
@@ -256,7 +256,7 @@ export const Home = () => {
               </h2>
               <p className=" p-5 lead fs-5 mb-4 t-shadow-black text-white">
                 Optimización del software de tu vehículo para conseguir aumentar
-                la potencia y par, reducir elconsumo de combustible, optimizar
+                la potencia y par, reducir el consumo de combustible, optimizar
                 sistemas EGR y deslimitaciones de todo tipo.
               </p>
             </div>
@@ -272,7 +272,7 @@ export const Home = () => {
                 <hr />
               </h2>
               <p className=" p-5 lead fs-5 mb-4 t-shadow-black text-white">
-                Modificaciones de tramos de escapes, admisión, turbos, filtros y
+                Modificaciones de tramos y colas de escapes, admisión, turbos, intercooler, filtros de alto rendimiento y
                 mecanica en general para sacar el máximo rendimiento a tu
                 vehículo.
               </p>
@@ -288,8 +288,8 @@ export const Home = () => {
                 <hr />
               </h2>
               <p className=" p-5 lead fs-5 mb-4 t-shadow-black text-white">
-                Todo tipo de preparación tuning como tintado de lunas,
-                taloneras, colas de escape, equipos de sonido, ilumación led,
+                Todo tipo de preparación tuning como tintado de lunas, llantas, alerones, pitura y vinilos,
+                taloneras, equipos de sonido, ilumación led,
                 pantallas digitales y mucho más.
               </p>
             </div>
