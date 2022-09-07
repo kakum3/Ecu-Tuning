@@ -36,12 +36,13 @@ const useFlux = () => {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
-  }, [store.alert, location.pathname]);
+  }, [store.alert]);
+
   useEffect(() => {
+    setStore({ alert: null });
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }, [location.pathname]);
- 
 
   return {
     actions: {
@@ -55,10 +56,10 @@ const useFlux = () => {
         //setStore({ hide: !store.hide });
         this.log(); // access functions inside functions (dont use => functions)
       },
-      goHome: function(){
+      goHome: function () {
         return navigate("/", { replace: true });
       },
-      goMap: function(){
+      goMap: function () {
         return navigate("/map", { replace: true });
       },
       setToken: (token) => {
@@ -72,14 +73,18 @@ const useFlux = () => {
       removeToken: () => {
         localStorage.setItem("access_token_jwt", "");
         navigate("/", { replace: true });
-        return setStore({alert: "Sesión cerrada", loggedIn: false, user_data: {
-          taller: {
-            w_address: "",
-            w_name: "",
-            w_services: [{ desc: "", name: "", value: true }],
+        return setStore({
+          alert: "Sesión cerrada",
+          loggedIn: false,
+          user_data: {
+            taller: {
+              w_address: "",
+              w_name: "",
+              w_services: [{ desc: "", name: "", value: true }],
+            },
+            user_info: { email: "", is_client: false, name: "", image: "" },
           },
-          user_info: { email: "", is_client: false, name: "", image: "" },
-        }})
+        });
       },
       getServices: async function () {
         try {
@@ -311,7 +316,7 @@ const useFlux = () => {
                 user_info: { email: "", is_client: false, name: "", image: "" },
               },
               loggedIn: false,
-              alert: "Usuario eliminado correctamente"
+              alert: "Usuario eliminado correctamente",
             });
           }
         } catch (error) {
@@ -338,7 +343,8 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             return setStore({
-              alert: "Mensaje enviado, en breve se pondrá en contacto contigo el taller",
+              alert:
+                "Mensaje enviado, en breve se pondrá en contacto contigo el taller",
             });
           }
         } catch (error) {

@@ -8,7 +8,7 @@ import { useAppContext } from "../index";
 export const Map = () => {
   const { store, actions, setStore } = useAppContext();
   useEffect(() => {
-    if (store.map_markers[0].w_name = "EMPTY") actions.getMap();
+    if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
     setStore({
       sel_services: store.all_services.map((e) => ({
         ...e,
@@ -57,8 +57,7 @@ export const Map = () => {
               </span>
             )}
 
-              <Mapcomponent />
-     
+            <Mapcomponent />
           </div>
         </div>
       </div>

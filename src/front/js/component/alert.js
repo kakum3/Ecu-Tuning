@@ -3,12 +3,24 @@ import { useAppContext } from "../index";
 
 export const Alert = () => {
   const { store, actions, setStore } = useAppContext();
+  function later(delay) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, 4000);
+    });
+  }
+  useEffect(() => {
+    if (store.alert !== null) later().then(() => setStore({ alert: null }));
+  }, [store.alert]);
   return store.alert === null ? null : (
     <>
       <div className="alert-wrapper w-100 position-fixed over">
-
         <div
-          className={"show mx-auto toast align-items-center text-bg-"+(JSON.stringify(store.alert).includes("Error") ? "warning" : "success")}
+          className={
+            "show mx-auto toast align-items-center text-bg-" +
+            (JSON.stringify(store.alert).includes("Error")
+              ? "warning"
+              : "success")
+          }
           role="alert"
           aria-live="assertive"
           aria-atomic="true"

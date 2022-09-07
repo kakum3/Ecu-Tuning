@@ -4,14 +4,13 @@ import Servicelist from "../component/servicelist";
 import { Link } from "react-router-dom";
 import { useLocation, useParams } from "react-router-dom";
 
-
 import { number } from "prop-types";
 
 export const Taller = () => {
   const { store, actions, setStore } = useAppContext();
   const { id } = useParams();
   const [taller, setTaller] = useState({});
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState("");
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/taller/" + id)
       .then((r) => r.json())
@@ -19,17 +18,16 @@ export const Taller = () => {
         setTaller(data.taller);
         setImage(data.img);
       });
-
   }, []);
   useEffect(() => {
-  setStore({
-    sel_services: store.all_services.map((e, i) =>
-    taller.w_services?.some((a) => e.name === a.name)
-        ? { ...e, value: true }
-        : { ...e, value: false }
-    ),
-  });
-}, [taller]);
+    setStore({
+      sel_services: store.all_services.map((e, i) =>
+        taller.w_services?.some((a) => e.name === a.name)
+          ? { ...e, value: true }
+          : { ...e, value: false }
+      ),
+    });
+  }, [taller]);
   const formSubmit = (e) => {
     e.preventDefault();
     actions.getMensaje({
@@ -59,8 +57,11 @@ export const Taller = () => {
               {
                 <img
                   className="rounded shadow figure"
-                  src={image === "" || image===null ? "https://www.tuningblog.eu/wp-content/uploads/2019/05/Autowerkstatt-tuning-shop-workshop.jpg" : process.env.BACKEND_URL +
-                  "/images/" + image}
+                  src={
+                    image === "" || image === null
+                      ? "https://www.tuningblog.eu/wp-content/uploads/2019/05/Autowerkstatt-tuning-shop-workshop.jpg"
+                      : process.env.BACKEND_URL + "/images/" + image
+                  }
                   alt="Profile"
                 />
               }
@@ -72,7 +73,6 @@ export const Taller = () => {
                 to="/map"
               >
                 <i className="fa-sharp fa-solid fa-arrow-left" />
-               
               </Link>
 
               <button
@@ -82,7 +82,7 @@ export const Taller = () => {
                 data-bs-target="#exampleModal"
               >
                 <i className="fa-sharp fa-solid fa-envelope me-2"></i>
-                Contactar 
+                Contactar
               </button>
             </div>
 
@@ -100,12 +100,10 @@ export const Taller = () => {
                       Nuevo Mensaje
                     </h5>
                   </div>
-     
+
                   <div className="modal-body modal-centered ">
                     <form onSubmit={formSubmit}>
                       <div className=" form-floating mb-3  mt-3 ">
-                       
-                       
                         <input
                           defaultValue={""}
                           name="telefon"
@@ -115,17 +113,16 @@ export const Taller = () => {
                           placeholder="numero"
                           pattern="[0-9]{9}"
                         ></input>
-                         <label
+                        <label
                           htmlFor="floatingInput "
                           className="col-form-label"
                         >
                           <i className="fa-brands fa-whatsapp me-1"></i>
                           Telefono
-                          </label>
+                        </label>
                       </div>
                       <input name="taller_id" value={id} type="hidden" />
                       <div className="form-floating mb-3  ">
-                      
                         <input
                           defaultValue={""}
                           name="fname"
@@ -134,7 +131,7 @@ export const Taller = () => {
                           id="floatingInputfName"
                           placeholder="nombre"
                         ></input>
-                          <label
+                        <label
                           htmlFor="floatingTextarea "
                           className="col-form-floating"
                         >
@@ -142,7 +139,6 @@ export const Taller = () => {
                         </label>
                       </div>
                       <div className="form-floating mb-3">
-                      
                         <input
                           defaultValue={""}
                           type="floatingText"
@@ -151,7 +147,7 @@ export const Taller = () => {
                           name="asunto"
                           placeholder="Asunto"
                         />
-                          <label
+                        <label
                           htmlFor="recipient-name"
                           className=" col-form-floating"
                         >
@@ -159,20 +155,17 @@ export const Taller = () => {
                         </label>
                       </div>
                       <div className="form-floating  mb-3">
-                      
                         <textarea
                           className="form-control  "
                           placeholder="Leave a comment here"
                           id="floatingMessage-text"
                           name="message"
-                          style={{height: "25vh"}}
-
+                          style={{ height: "25vh" }}
                         ></textarea>
-                          <label
+                        <label
                           htmlFor="floatingMessage-text"
                           className="form-label"
                         >
-                      
                           Mensaje
                         </label>
                       </div>
@@ -184,7 +177,11 @@ export const Taller = () => {
                         >
                           Cerrar
                         </button>
-                        <button data-bs-dismiss="modal" type="submit" className="btn btn-success">
+                        <button
+                          data-bs-dismiss="modal"
+                          type="submit"
+                          className="btn btn-success"
+                        >
                           Enviar
                         </button>
                       </div>

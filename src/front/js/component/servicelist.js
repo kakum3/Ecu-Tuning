@@ -24,7 +24,8 @@ export const Servicelist = ({ is_disabled }) => {
       {location.pathname === "/map" && store.carSearch !== null ? (
         <small className="d-block text-muted  text-center mb-4">
           <h5>
-            Tus mejoras:<br/>
+            Tus mejoras:
+            <br />
             <em className="fs-5 text-success mb-2">{store.carSearch.model}</em>
           </h5>
 

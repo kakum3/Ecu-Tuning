@@ -11,7 +11,7 @@ export const Profile = () => {
   useEffect(() => {
     actions.getProfile();
   }, []);
-  
+
   useEffect(() => {
     if (store.user_data.user_info.is_client === true) setTaller(false);
     setStore({

@@ -190,9 +190,8 @@ export const Contact = () => {
                 src="https://avatars.githubusercontent.com/u/70114505?v=4"
               />
               <h2 className="fs-4 mb-4 t-shadow-black text-white">Luis</h2>
-              <em className="home-shadow py-3 m-4 d-block text-white line-clamp">
-                {" "}
-                "El rápido. Independiente, decidido."
+              <em className="home-shadow py-3 m-4 d-block text-white">
+               <q>Convirtiéndome en Pull Walker. Las classes lo son todo.</q> 
               </em>
               <i className="fa-brands fs-3 title-header text-white mb-5 t-shadow fa-github" />
               <a
@@ -218,7 +217,7 @@ export const Contact = () => {
               />
               <h2 className="fs-4 mb-4 t-shadow-black text-white">Jesús</h2>
               <em className="home-shadow py-3 m-4 d-block text-white">
-                "El Grafitis"
+               <q>De 'null' a 'full stack developer' gracias 4Geeks</q> 
               </em>
               <i className="fa-brands fs-3 title-header text-white  t-shadow fa-github" />
               <a
