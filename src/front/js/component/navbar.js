@@ -40,8 +40,8 @@ export const Navbar = () => {
                 to="/map"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded mx-3  my-1 px-3 nav-link btn btn-secondary shadow-none text-black text-start"
-                    : "rounded mx-3  shadow-none p-3 nav-link"
+                  ? "rounded m-2 p-2 nav-link btn btn-secondary shadow-none text-black text-start"
+                  : "rounded m-2 p-2 shadow-none nav-link"
                 }
               >
                 <i className="fa-solid fa-map-location-dot  fs-4 me-3"></i>
@@ -52,8 +52,8 @@ export const Navbar = () => {
                 to={store.loggedIn ? "/profile" : "/login"}
                 className={
                   isUser() === true
-                    ? "rounded mx-3  my-1 px-3  nav-link btn btn-secondary shadow-none text-black  text-start"
-                    : "rounded mx-3  nav-link shadow-none   p-3"
+                  ? "rounded m-2 p-2 nav-link btn btn-secondary shadow-none text-black text-start"
+                  : "rounded m-2 p-2 shadow-none nav-link"
                 }
                 aria-expanded="false"
               >
@@ -62,10 +62,10 @@ export const Navbar = () => {
 
               {store.loggedIn ? (
                 <a
-                  className="shadow-none   p-3 nav-link"
+                  className="rounded m-2 p-2 shadow-none nav-link"
                   onClick={() => actions.removeToken()}
                 >
-                  <i className="fa-solid fa-arrow-right-from-bracket  fs-4 me-3"></i>
+                  <i className="fa-solid fa-arrow-right-from-bracket fs-4 me-3"></i>
                   Salir
                 </a>
               ) : null}
@@ -73,14 +73,14 @@ export const Navbar = () => {
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded mx-3  my-1 px-3 nav-link btn btn-secondary shadow-none text-black  text-start"
-                    : "rounded mx-3  shadow-none   p-3 nav-link"
+                    ? "rounded m-2 p-2 nav-link btn btn-secondary shadow-none text-black text-start"
+                    : "rounded m-2 p-2 shadow-none nav-link"
                 }
               >
                 <i className="fa-solid fa-circle-question fs-4 me-3"></i>Ayuda
               </NavLink>
 
-              <span className=" nav-link d-flex ms-auto me-0">
+              <span className=" nav-link d-flex ms-auto me-0 my-2">
                 <a className="mx-3 text-muted d-flex" href="#">
                   <i className="fs-4 fa-brands fa-facebook m-auto"></i>
                 </a>
