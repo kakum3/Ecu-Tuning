@@ -41,31 +41,7 @@ const useFlux = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }, [location.pathname]);
-  useEffect(() => {
-    if (
-      location.pathname === "/profile" &&
-      store.user_data.user_info.is_client === false
-    )
-      setStore({
-        sel_services: store.all_services.map((e, i) =>
-          store.user_data.taller.w_services.some((a) => e.name === a.name)
-            ? { ...e, value: true }
-            : { ...e, value: false }
-        ),
-      });
-    if (location.pathname === "/map")
-      setStore({
-        sel_services: store.all_services.map((e) => ({
-          ...e,
-          value: e.name === "ECU" ? true : false,
-        })),
-      });
-  }, [
-    location.pathname,
-    store.user_data,
-    store.all_services,
-    store.map_markers,
-  ]);
+ 
 
   return {
     actions: {
@@ -79,14 +55,11 @@ const useFlux = () => {
         //setStore({ hide: !store.hide });
         this.log(); // access functions inside functions (dont use => functions)
       },
-      toggleCarAPI: function () {
-        setStore({
-          carSearch:
-            store.carSearch === null
-              ? { model: "Berlingo Turbo", cv: "30", nm: "50", fuel: "10" }
-              : null,
-        });
-        console.log(store.carSearch);
+      goHome: function(){
+        return navigate("/", { replace: true });
+      },
+      goMap: function(){
+        return navigate("/map", { replace: true });
       },
       setToken: (token) => {
         localStorage.setItem("access_token_jwt", token);
@@ -98,18 +71,15 @@ const useFlux = () => {
 
       removeToken: () => {
         localStorage.setItem("access_token_jwt", "");
-        setStore({
-          loggedIn: false,
-          user_data: {
-            taller: {
-              w_address: "",
-              w_name: "",
-              w_services: [{ desc: "", name: "", value: true }],
-            },
-            user_info: { email: "", is_client: false, name: "", image: "" },
+        navigate("/", { replace: true });
+        return setStore({alert: "Sesión cerrada", loggedIn: false, user_data: {
+          taller: {
+            w_address: "",
+            w_name: "",
+            w_services: [{ desc: "", name: "", value: true }],
           },
-        });
-        return navigate("/", { replace: true });
+          user_info: { email: "", is_client: false, name: "", image: "" },
+        }})
       },
       getServices: async function () {
         try {
@@ -170,7 +140,6 @@ const useFlux = () => {
           });
 
           const data = await resp.json();
-          console.log(data); // N!!! Ver
           if (data.msg === "ok") {
             navigate("/login", { replace: true });
             return setStore({
@@ -248,7 +217,6 @@ const useFlux = () => {
 
           const data = await resp.json();
           if (data.msg === "ok") {
-            console.log(data);
             return setStore({
               map_markers: data.talleres,
               loggedIn: true,
@@ -275,7 +243,6 @@ const useFlux = () => {
           });
 
           const data = await resp.json();
-          console.log(data); // N!!! Ver
           if (data.msg === "ok") {
             return setStore({
               user_data: data,
@@ -292,7 +259,6 @@ const useFlux = () => {
       },
 
       postProfile: async function (data_front) {
-        console.log(data_front);
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/profile", {
@@ -307,7 +273,6 @@ const useFlux = () => {
             }),
           });
           const data = await resp.json();
-          console.log(data);
           if (data.msg === "ok") {
             return setStore({ alert: "Perfil Actualizado", user_data: data }); //Reset user data
           }
@@ -334,7 +299,6 @@ const useFlux = () => {
           });
 
           const data = await resp.json();
-          console.log(data); // N!!! Ver
           if (data.msg === "ok") {
             navigate("/", { replace: true });
             return setStore({
@@ -360,7 +324,6 @@ const useFlux = () => {
       },
 
       getMensaje: async function (data_front) {
-        console.log(data_front);
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/contact", {
@@ -373,18 +336,17 @@ const useFlux = () => {
           });
 
           const data = await resp.json();
-          console.log(data); // N!!! Ver
           if (data.msg === "ok") {
             return setStore({
-              alert: "Mensaje Enviado",
+              alert: "Mensaje enviado, en breve se pondrá en contacto contigo el taller",
             });
           }
         } catch (error) {
           return setStore({
-            alert: "Error enviando mensaje " + error,
+            alert: "Error enviando mensaje",
           });
         }
-        return setStore({ alert: "Error enviando" });
+        return setStore({ alert: "Error enviando mensaje" });
       },
 
       /** End of global functions. */

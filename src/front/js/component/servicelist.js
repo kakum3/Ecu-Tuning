@@ -28,15 +28,15 @@ export const Servicelist = ({ is_disabled }) => {
             <em className="fs-5 text-success mb-2">{store.carSearch.model}</em>
           </h5>
 
-          <span className="fs-5 text-white badge bg-success rounded mx-1">
+          <span className="fs-5 text-white badge bg-success rounded m-1">
             <i className="fa-solid fa-gauge"></i> +{store.carSearch.cv}CV
           </span>
 
-          <span className="fs-5 text-white badge bg-success rounded mx-1">
+          <span className="fs-5 text-white badge bg-success rounded m-1">
             <i className="fa-solid fa-gauge"></i> +{store.carSearch.nm}nm
           </span>
 
-          <span className="fs-5 text-white badge bg-success rounded mx-1">
+          <span className="fs-5 text-white badge bg-success rounded m-1">
             <i className="fa-solid fa-gas-pump"></i> -{store.carSearch.fuel}%
           </span>
         </small>
@@ -54,7 +54,7 @@ export const Servicelist = ({ is_disabled }) => {
                     <label className="accordion-header d-flex" id="headingOne">
                       <label className="m-auto ms-4 w-75 list-group-item d-flex gap-3">
                         {is_disabled ? (
-                          <i class="fa-solid fa-info mx-1"></i>
+                          <i className="fa-solid fa-info mx-1"></i>
                         ) : (
                           <input
                             className="form-check-input flex-shrink-0"

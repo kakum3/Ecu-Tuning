@@ -91,12 +91,18 @@ export const Home = () => {
     const mark = e.target.mark !== undefined ? e.target.mark.value : false;
     const model = e.target.model !== undefined ? e.target.model.value : false;
     const years = e.target.years !== undefined ? e.target.years.value : false;
-    const engine = e.target.engine !== undefined ? e.target.engine.value : false;
+    const engine =
+      e.target.engine !== undefined ? e.target.engine.value : false;
 
     if (!mark || !model || !years || !engine) {
-      setStore({ alert: "Error, seleccione correctamente todos los campos" })
+      setStore({ alert: "Error, seleccione correctamente todos los campos" });
     } else {
-      antonioFetch({ marks: mark, models: model, years: years, engines: engine });
+      antonioFetch({
+        marks: mark,
+        models: model,
+        years: years,
+        engines: engine,
+      });
     }
   };
   const antonioFetch = (datos) => {
@@ -123,20 +129,19 @@ export const Home = () => {
   return (
     <main className="container">
       <div className="row text-center">
-        <span className="img-fluid">
+        <span className="img-fluid" onClick={()=>(actions.goMap())}>
           <LogoWhite className="logo-home" />
         </span>
         <h1 className="title-header f-bold mb-4 text-white t-shadow">
           ECU Tuning
         </h1>
-        <h2 className="t-shadow-black text-white">
-          Encuentra talleres tuning
-        </h2>
+        <h3 className="t-shadow-black text-white">Encuentra talleres tuning</h3>
 
         <div className="m-auto col-12 col-md-8 col-lg-6 p-5">
           <h6 className="mb-3 t-shadow-black text-white">
             BUSCA EL MODELO DE TU COCHE:
-          </h6><form onSubmit={handleSubmit} id="form">
+          </h6>
+          <form onSubmit={handleSubmit} id="form">
             {loadmarks && loadmarks.length === 0 ? null : (
               <select
                 className="form-select form-select mb-3 shadow"
@@ -227,16 +232,15 @@ export const Home = () => {
             </div>
           </form>
         </div>
-        <div className="px-4 py-5 my-5 text-center">
+        <div className="px-4 py-5 text-center">
           <i className="logo-nav fa-solid title-header text-white my-5 t-shadow fa-car-on"></i>
 
-          <h1 className="w-75 m-auto fs-3 mb-4 t-shadow-black text-white">
+          <h1 className="m-auto fs-3 mb-4 t-shadow-black text-white">
             Red líder en servicios tuning
-            <hr />
           </h1>
 
           <div className="col-lg-6 mx-auto">
-            <p className="lead mb-4 t-shadow-black text-white">
+            <p className="home-shadow p-5 lead mb-4 t-shadow-black text-white">
               Porque sabemos lo importante que es tu coche, disponemos de la más
               amplia red de talleres tuning lideres en tecnologías con los
               profesionales mejor cualificados.
@@ -272,9 +276,9 @@ export const Home = () => {
                 <hr />
               </h2>
               <p className=" p-5 lead fs-5 mb-4 t-shadow-black text-white">
-                Modificaciones de tramos y colas de escapes, admisión, turbos, intercooler, filtros de alto rendimiento y
-                mecanica en general para sacar el máximo rendimiento a tu
-                vehículo.
+                Modificaciones de tramos y colas de escapes, admisión, turbos,
+                intercooler, filtros de alto rendimiento y mecanica en general
+                para sacar el máximo rendimiento a tu vehículo.
               </p>
             </div>
           </div>
@@ -288,9 +292,9 @@ export const Home = () => {
                 <hr />
               </h2>
               <p className=" p-5 lead fs-5 mb-4 t-shadow-black text-white">
-                Todo tipo de preparación tuning como tintado de lunas, llantas, alerones, pitura y vinilos,
-                taloneras, equipos de sonido, ilumación led,
-                pantallas digitales y mucho más.
+                Todo tipo de preparación tuning como tintado de lunas, llantas,
+                alerones, pitura y vinilos, taloneras, equipos de sonido,
+                ilumación led, pantallas digitales y mucho más.
               </p>
             </div>
           </div>

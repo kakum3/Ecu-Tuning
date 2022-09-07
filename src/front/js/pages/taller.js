@@ -18,18 +18,18 @@ export const Taller = () => {
       .then((data) => {
         setTaller(data.taller);
         setImage(data.img);
-        setStore({
-          sel_services: store.all_services.map((e, i) =>
-          data.taller.w_services.some((a) => e.name === a.name)
-              ? { ...e, value: true }
-              : { ...e, value: false }
-          ),
-        });
-        console.log(image)
       });
 
   }, []);
-
+  useEffect(() => {
+  setStore({
+    sel_services: store.all_services.map((e, i) =>
+    taller.w_services?.some((a) => e.name === a.name)
+        ? { ...e, value: true }
+        : { ...e, value: false }
+    ),
+  });
+}, [taller]);
   const formSubmit = (e) => {
     e.preventDefault();
     actions.getMensaje({
@@ -184,7 +184,7 @@ export const Taller = () => {
                         >
                           Cerrar
                         </button>
-                        <button type="submit" className="btn btn-success">
+                        <button data-bs-dismiss="modal" type="submit" className="btn btn-success">
                           Enviar
                         </button>
                       </div>

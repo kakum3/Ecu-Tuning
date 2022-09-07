@@ -97,9 +97,9 @@ def get_profile():
     # Accede a la identidad del usuario actual con get_jwt_identity
     current_user = get_jwt_identity()
     user = User.query.filter_by(id=current_user).first()
-    taller = user.taller
-    if taller is not None:
-        taller = taller.serialize()
+    taller = ""
+    if user.taller is not None:
+        taller = user.taller.serialize()
     return jsonify({"msg": "ok", "user_info": user.serialize(), "taller":taller}), 200
 
 @api.route("/profile", methods=["POST"])
@@ -121,6 +121,8 @@ def post_profile():
 
     if len(body["email"]) > 6:
         user.email = body["email"]
+        
+    taller_data = ""
 
     if user.is_client == False:
         services = Services.query.all()
@@ -135,14 +137,15 @@ def post_profile():
             taller.w_name = body["w_name"]
         if len(body["w_address"]) > 6:
             taller.w_address = body["w_address"]
-
-
+    
+        if taller is not None:
+            taller_data = taller.serialize()
 
     db.session.add(user)
     db.session.commit()
 
     return jsonify({"msg": "ok", "user_info": user.serialize(),
-     "taller":taller.serialize()}), 200
+     "taller":taller_data}), 200
 
 @api.route("/profile", methods=["DELETE"])
 @jwt_required()
@@ -153,10 +156,10 @@ def delete_profile():
     taller = user.taller
     if taller is not None:
         db.session.delete(taller)
+    
     db.session.delete(user)
     db.session.commit()
     return jsonify({"msg": "ok"}), 200
-
 
 @api.route("/contact", methods=["POST"])
 @jwt_required()

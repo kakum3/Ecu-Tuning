@@ -22,7 +22,6 @@ export const ImageUp = () => {
       });
       const data = await resp.json();
       if (data.msg === "ok") {
-        console.log(data);
         return setStore({ alert: "Imagen Actualizada" }); //Reset user data
       }
     } catch (error) {

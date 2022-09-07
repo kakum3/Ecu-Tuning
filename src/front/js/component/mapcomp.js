@@ -29,7 +29,7 @@ function Mapcomponent({ center }) {
           height: "89vh",
         }}
         center={{ lat: 40.420177, lng: -3.703928 }}
-        zoom={7}
+        zoom={6}
       >
         {!store.loggedIn ? (
           <Marker
@@ -46,7 +46,6 @@ function Mapcomponent({ center }) {
           />
         ) : store.map_markers[0].w_name === "EMPTY" ? null : (
           store.map_markers.map((e, i) => {
-            console.log("rendering: ", e);
             const coincidenceArray = e.w_services.map((e) =>
               store.sel_services[e.id - 1] === undefined
                 ? null

@@ -163,7 +163,7 @@ export const Contact = () => {
           </div>
         </main>
 
-        <div className="px-4 py-5 my-5 text-center">
+        <div className="px-4 py-5 text-center bblur border-bottom">
           <i className="fa-solid title-header text-white mb-5 t-shadow fa-people-line"></i>
           <h1 className="w-75 m-auto fs-4 mb-4 t-shadow-black text-white">
             Quienes Somos
@@ -180,10 +180,9 @@ export const Contact = () => {
           </div>
         </div>
 
-        <div className="container-fluid marketing text-center">
-          <div className="row">
+        <div className="container-fluid marketing text-center pt-5">
+          <div className="row pt-5">
             <div className="col-lg-4">
-              {/* <svg  className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> */}
               <img
                 className="mb-4 bd-placeholder-img shadow rounded-circle mb-3"
                 width="140"
@@ -191,9 +190,9 @@ export const Contact = () => {
                 src="https://avatars.githubusercontent.com/u/70114505?v=4"
               />
               <h2 className="fs-4 mb-4 t-shadow-black text-white">Luis</h2>
-              <em className="home-shadow py-3 m-4 d-block text-white">
+              <em className="home-shadow py-3 m-4 d-block text-white line-clamp">
                 {" "}
-                "El Rápido"
+                "El rápido. Independiente, decidido."
               </em>
               <i className="fa-brands fs-3 title-header text-white mb-5 t-shadow fa-github" />
               <a
@@ -245,7 +244,7 @@ export const Contact = () => {
               />
               <h2 className="fs-4 mb-4 t-shadow-black text-white">Antonio</h2>
               <em className="home-shadow py-3 m-4 d-block text-white">
-                "El repros"
+               <q>Un programador al nacer no llora, dice 'Hola Mundo' </q> 
               </em>
               <i className="fa-brands fs-3 title-header text-white mb-5 t-shadow fa-github" />
               <a

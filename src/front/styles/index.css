@@ -23,6 +23,7 @@
   left: 5%;
 }
 .product-device {
+  cursor: pointer;
   position: absolute;
   right: 10%;
   bottom: -30%;
@@ -54,6 +55,18 @@
     left: -5%;
   }
 }
+@media (max-width: 730px) {
+  .product-device {
+    width: 66px;
+    height: 125px;
+    bottom: -0%;
+    right: -5%;
+  }
+  .product-device-2 {
+    top: 1%;
+    left: -5%;
+  }
+}
 .background {
   background-image: url("https://i.ibb.co/JQDpN0w/bgJDM.png");
   background-repeat: no-repeat;
@@ -67,6 +80,10 @@
 }
 .home-shadow {
   box-shadow: 0.2rem 0.2rem 0.75rem rgb(75 191 115);
+  backdrop-filter: blur(1rem);
+}
+.bblur {
+  backdrop-filter: blur(1rem);
 }
 sub {
   margin: 1rem 0;
@@ -99,6 +116,7 @@ main {
   width: 8vh;
 }
 .logo-home {
+  cursor: pointer;
   transition: all 0.3s ease;
   height: 33vh;
   width: 33vh;

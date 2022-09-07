@@ -9,10 +9,18 @@ export const Profile = () => {
   const [taller, setTaller] = useState(true);
 
   useEffect(() => {
-    if (store.user_data.user_info.name === "") actions.getProfile();
-  }, [store.user_data]);
+    actions.getProfile();
+  }, []);
+  
   useEffect(() => {
     if (store.user_data.user_info.is_client === true) setTaller(false);
+    setStore({
+      sel_services: store.all_services.map((e, i) =>
+        store.user_data.taller.w_services.some((a) => e.name === a.name)
+          ? { ...e, value: true }
+          : { ...e, value: false }
+      ),
+    });
   }, [store.user_data.user_info]);
 
   const handleForm = (e) => {
@@ -22,10 +30,10 @@ export const Profile = () => {
       email: e.target.email.value,
       a_password: e.target.a_password.value,
       n_password: e.target.n_password.value,
-      w_name: e.target.w_name.value || null,
-      w_address: e.target.w_address.value || null,
-      lat: e.target.lat.value || null,
-      lng: e.target.lng.value || null,
+      w_name: e.target.w_name?.value || null,
+      w_address: e.target.w_address?.value || null,
+      lat: e.target.lat?.value || null,
+      lng: e.target.lng?.value || null,
     });
   };
   const handleDelete = () => actions.deleteProfile();

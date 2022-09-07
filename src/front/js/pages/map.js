@@ -8,8 +8,22 @@ import { useAppContext } from "../index";
 export const Map = () => {
   const { store, actions, setStore } = useAppContext();
   useEffect(() => {
-    if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
+    if (store.map_markers[0].w_name = "EMPTY") actions.getMap();
+    setStore({
+      sel_services: store.all_services.map((e) => ({
+        ...e,
+        value: e.name === "ECU" ? true : false,
+      })),
+    });
   }, []);
+  useEffect(() => {
+    setStore({
+      sel_services: store.all_services.map((e) => ({
+        ...e,
+        value: e.name === "ECU" ? true : false,
+      })),
+    });
+  }, [store.map_markers]);
   return (
     <main className="container-fluid">
       <div className="card rounded shadow">
