@@ -81,13 +81,14 @@ export const Navbar = () => {
               </NavLink>
 
               <span className=" nav-link d-flex ms-auto me-0 my-2">
-                <a className="mx-3 text-muted d-flex" href="#">
+                <a className="mx-3 text-muted d-flex" href="https://www.facebook.com/">
+
                   <i className="fs-4 fa-brands fa-facebook m-auto"></i>
                 </a>
-                <a className="mx-3 text-muted d-flex" href="#">
+                <a className="mx-3 text-muted d-flex" href="https://www.instagram.com">
                   <i className="fs-4 fa-brands fa-instagram m-auto"></i>
                 </a>
-                <a className="mx-3 text-muted d-flex" href="#">
+                <a className="mx-3 text-muted d-flex" href="https://twitter.com/">
                   <i className="fs-4 fa-brands fa-twitter m-auto"></i>
                 </a>
               </span>
