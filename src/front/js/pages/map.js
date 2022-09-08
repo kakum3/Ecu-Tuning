@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import Mapcomponent from "../component/mapcomp";
 import Servicelist from "../component/servicelist";
@@ -7,15 +7,12 @@ import { useAppContext } from "../index";
 
 export const Map = () => {
   const { store, actions, setStore } = useAppContext();
+  const location = useLocation();
+
   useEffect(() => {
     if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
-    setStore({
-      sel_services: store.all_services.map((e) => ({
-        ...e,
-        value: e.name === "ECU" ? true : false,
-      })),
-    });
   }, []);
+
   useEffect(() => {
     setStore({
       sel_services: store.all_services.map((e) => ({
@@ -23,7 +20,8 @@ export const Map = () => {
         value: e.name === "ECU" ? true : false,
       })),
     });
-  }, [store.map_markers]);
+  }, [location.pathname]);
+
   return (
     <main className="container-fluid">
       <div className="card rounded shadow">

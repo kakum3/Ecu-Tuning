@@ -22,6 +22,7 @@ tasks:
         python docs/assets/greeting.py back
     - command: >
         ((sed -i /BACKEND_URL/d .env && echo "" >> .env && echo "BACKEND_URL=https://3001-${GITPOD_WORKSPACE_URL:8}" >> .env) || true) && 
+        ((sed -i /BACKEND_URL/d .env && echo "" >> .env && echo "MAPS_API=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg" >> .env) || true) && 
         npm install &&
         python docs/assets/greeting.py front
       openMode: split-right

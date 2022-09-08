@@ -3,14 +3,6 @@ import { useAppContext } from "../index";
 
 export const Alert = () => {
   const { store, actions, setStore } = useAppContext();
-  function later(delay) {
-    return new Promise(function (resolve) {
-      setTimeout(resolve, 4000);
-    });
-  }
-  useEffect(() => {
-    if (store.alert !== null) later().then(() => setStore({ alert: null }));
-  }, [store.alert]);
   return store.alert === null ? null : (
     <>
       <div className="alert-wrapper w-100 position-fixed over">

@@ -10,7 +10,16 @@ export const Servicelist = ({ is_disabled }) => {
   useEffect(() => {
     if (store.all_services.length === 1) actions.getServices();
   }, [store.all_services]);
-
+  useEffect(() => {
+    if (location.pathname === "/profile")
+      setStore({
+        sel_services: store.all_services.map((e, i) =>
+          store.user_data.taller.w_services.some((a) => e.name === a.name)
+            ? { ...e, value: true }
+            : { ...e, value: false }
+        ),
+      });
+  }, []);
   const handleCheckChange = (e) => {
     const target = e.target;
     const name = target.name;

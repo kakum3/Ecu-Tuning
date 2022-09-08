@@ -31,17 +31,30 @@ const useFlux = () => {
   //on render(middle) and consts
   const navigate = useNavigate();
   const location = useLocation();
+  const later = () => new Promise((r) => setTimeout(r, 4000));
   useEffect(() => {
     if (store.alert !== null) {
+      later().then(() => setStore({ alert: null }));
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
   }, [store.alert]);
 
   useEffect(() => {
+    if (store.user_data.user_info.name.length === 1) actions.getProfile();
     setStore({ alert: null });
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+  }, [location.pathname]);
+  useEffect(() => {
+    if (location.pathname === "/profile")
+      setStore({
+        sel_services: store.all_services.map((e, i) =>
+          store.user_data.taller.w_services.some((a) => e.name === a.name)
+            ? { ...e, value: true }
+            : { ...e, value: false }
+        ),
+      });
   }, [location.pathname]);
 
   return {
@@ -93,10 +106,24 @@ const useFlux = () => {
 
           const data = await resp.json();
           if (data.msg === "ok") {
-            return setStore({
+            setStore({
               all_services: data.all_services,
-              sel_services: data.all_services,
             });
+            return location.pathname === "/profile"
+              ? setStore({
+                  all_services: data.all_services,
+                  sel_services: data.all_services.map((e, i) =>
+                    store.user_data.taller.w_services.some(
+                      (a) => e.name === a.name
+                    )
+                      ? { ...e, value: true }
+                      : { ...e, value: false }
+                  ),
+                })
+              : setStore({
+                  all_services: data.all_services,
+                  sel_services: data.all_services,
+                });
           }
         } catch (error) {
           return setStore({
@@ -225,6 +252,10 @@ const useFlux = () => {
             return setStore({
               map_markers: data.talleres,
               loggedIn: true,
+              sel_services: store.all_services.map((e) => ({
+                ...e,
+                value: e.name === "ECU" ? true : false,
+              })),
             });
           }
         } catch (error) {
@@ -264,6 +295,12 @@ const useFlux = () => {
       },
 
       postProfile: async function (data_front) {
+        console.log(
+          JSON.stringify({
+            ...data_front,
+            ...{ sel_services: store.sel_services },
+          })
+        );
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/profile", {

@@ -7,13 +7,23 @@ import ImageUp from "../component/imageupload.js";
 export const Profile = () => {
   const { store, actions, setStore } = useAppContext();
   const [taller, setTaller] = useState(true);
-
+  const location = useLocation();
   useEffect(() => {
-    actions.getProfile();
+    if (store.user_data.user_info.name === "") {
+      actions.getProfile();
+    } else {
+      setStore({
+        sel_services: store.all_services.map((e, i) =>
+          store.user_data.taller.w_services.some((a) => e.name === a.name)
+            ? { ...e, value: true }
+            : { ...e, value: false }
+        ),
+      });
+    }
   }, []);
-
   useEffect(() => {
     if (store.user_data.user_info.is_client === true) setTaller(false);
+
     setStore({
       sel_services: store.all_services.map((e, i) =>
         store.user_data.taller.w_services.some((a) => e.name === a.name)
@@ -22,7 +32,6 @@ export const Profile = () => {
       ),
     });
   }, [store.user_data.user_info]);
-
   const handleForm = (e) => {
     e.preventDefault();
     actions.postProfile({
