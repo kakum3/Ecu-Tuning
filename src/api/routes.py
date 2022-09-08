@@ -18,16 +18,6 @@ import cloudinary.uploader
 
 api = Blueprint('api', __name__)
 
-
-@api.route('/hello', methods=['GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
-
 @api.route('/signup', methods=['POST'])
 def Signup():
      body = request.get_json()
@@ -233,7 +223,3 @@ def upload():
         db.session.add(user)
         db.session.commit()
         return jsonify({"msg": "ok", "img_name": result['secure_url']})
-
-@api.route('/images/<path:path>')
-def send_image(path):
-    return send_from_directory('../images', path)
