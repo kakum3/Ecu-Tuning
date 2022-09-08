@@ -14,9 +14,11 @@ export const Profile = () => {
     } else {
       setStore({
         sel_services: store.all_services.map((e, i) =>
-          store.user_data.taller.w_services.some((a) => e.name === a.name)
+          ({ ...store.user_data.taller }.w_services?.some(
+            (a) => e.name === a.name
+          )
             ? { ...e, value: true }
-            : { ...e, value: false }
+            : { ...e, value: false })
         ),
       });
     }
@@ -26,9 +28,11 @@ export const Profile = () => {
 
     setStore({
       sel_services: store.all_services.map((e, i) =>
-        store.user_data.taller.w_services.some((a) => e.name === a.name)
+        ({ ...store.user_data.taller }.w_services?.some(
+          (a) => e.name === a.name
+        )
           ? { ...e, value: true }
-          : { ...e, value: false }
+          : { ...e, value: false })
       ),
     });
   }, [store.user_data.user_info]);

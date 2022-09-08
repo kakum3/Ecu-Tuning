@@ -226,7 +226,7 @@ def upload():
         current_user = get_jwt_identity()
         user = User.query.filter_by(id=current_user).first()
         filename = secure_filename(file.filename)
-        file.save(os.path.join('/images/', filename))
+        file.save(os.path.join('images/', filename))
         user.image = filename
         db.session.add(user)
         db.session.commit()

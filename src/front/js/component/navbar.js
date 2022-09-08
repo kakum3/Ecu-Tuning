@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAppContext } from "../index";
 import LogoWhite from "../svgs/logoWhite";
@@ -10,7 +10,9 @@ export const Navbar = () => {
     location.pathname.includes("login") ||
     location.pathname.includes("signup") ||
     location.pathname.includes("profile");
-
+    useEffect(() => {
+      if (store.user_data.user_info.name === "") actions.getProfile();
+    }, [location.pathname]);
   return (
     <>
       <nav className="position-fixed top-0 w-100 toptop navbar navbar-expand-lg navbar-dark bg-primary py-0  px-2 shadow">

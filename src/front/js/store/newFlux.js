@@ -32,6 +32,29 @@ const useFlux = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const later = () => new Promise((r) => setTimeout(r, 4000));
+  const resetFlux = () =>
+    setStore({
+      alert: null,
+      loggedIn: false,
+      carSearch: null,
+      map_markers: [
+        {
+          lat: 0,
+          lng: 0,
+          w_name: "EMPTY",
+        },
+      ],
+      all_services: [{ name: "ECU", id: 1, value: true }],
+      sel_services: [{ name: "EMPTY", id: 1, value: true }],
+      user_data: {
+        taller: {
+          w_address: "",
+          w_name: "",
+          w_services: [{ desc: "", name: "", value: true }],
+        },
+        user_info: { email: "", is_client: false, name: "", image: "" },
+      },
+    });
   useEffect(() => {
     if (store.alert !== null) {
       later().then(() => setStore({ alert: null }));
@@ -39,20 +62,18 @@ const useFlux = () => {
       document.documentElement.scrollTop = 0;
     }
   }, [store.alert]);
-
   useEffect(() => {
-    if (store.user_data.user_info.name.length === 1) actions.getProfile();
     setStore({ alert: null });
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }, [location.pathname]);
-  useEffect(() => {
     if (location.pathname === "/profile")
       setStore({
         sel_services: store.all_services.map((e, i) =>
-          store.user_data.taller.w_services.some((a) => e.name === a.name)
+          ({ ...store.user_data.taller }.w_services?.some(
+            (a) => e.name === a.name
+          )
             ? { ...e, value: true }
-            : { ...e, value: false }
+            : { ...e, value: false })
         ),
       });
   }, [location.pathname]);
@@ -86,18 +107,7 @@ const useFlux = () => {
       removeToken: () => {
         localStorage.setItem("access_token_jwt", "");
         navigate("/", { replace: true });
-        return setStore({
-          alert: "Sesión cerrada",
-          loggedIn: false,
-          user_data: {
-            taller: {
-              w_address: "",
-              w_name: "",
-              w_services: [{ desc: "", name: "", value: true }],
-            },
-            user_info: { email: "", is_client: false, name: "", image: "" },
-          },
-        });
+        return resetFlux();
       },
       getServices: async function () {
         try {
@@ -174,8 +184,8 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             navigate("/login", { replace: true });
+            resetFlux();
             return setStore({
-              user_data: data,
               alert: "Contraseña cambiada, accede ahora a tu cuenta",
             });
           }
@@ -286,12 +296,9 @@ const useFlux = () => {
             });
           }
         } catch (error) {
-          return setStore({
-            alert: "Error cargando usuario",
-            loggedIn: false,
-          });
+          return resetFlux();
         }
-        return setStore({ alert: "Error cargando usuario", loggedIn: false });
+        return resetFlux();
       },
 
       postProfile: async function (data_front) {
@@ -321,12 +328,10 @@ const useFlux = () => {
         } catch (error) {
           return setStore({
             alert: "Error Actualizar: Complete todos los campos",
-            loggedIn: false,
           });
         }
         return setStore({
           alert: "Error Actualizar desconocido",
-          loggedIn: false,
         });
       },
       deleteProfile: async function () {
@@ -343,26 +348,14 @@ const useFlux = () => {
           const data = await resp.json();
           if (data.msg === "ok") {
             navigate("/", { replace: true });
-            return setStore({
-              user_data: {
-                taller: {
-                  w_address: "",
-                  w_name: "",
-                  w_services: [{ desc: "", name: "", value: true }],
-                },
-                user_info: { email: "", is_client: false, name: "", image: "" },
-              },
-              loggedIn: false,
-              alert: "Usuario eliminado correctamente",
-            });
+            return resetFlux();
           }
         } catch (error) {
           return setStore({
             alert: "Error eliminando usuario",
-            loggedIn: false,
           });
         }
-        return setStore({ alert: "Error eliminando usuario", loggedIn: false });
+        return setStore({ alert: "Error eliminando usuario" });
       },
 
       getMensaje: async function (data_front) {

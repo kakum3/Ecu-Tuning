@@ -63,8 +63,9 @@ export const ImageUp = () => {
             src={
               file
                 ? file
-                : {...store.user_data.user_info}.image === "" || {...store.user_data.user_info}.image === null
-                ? "https://i.ibb.co/KNZ0Yx1/ecubk.png"
+                : { ...store.user_data.user_info }.image === "" ||
+                  { ...store.user_data.user_info }.image === null
+                ? "https://www.tuningblog.eu/wp-content/uploads/2019/05/Autowerkstatt-tuning-shop-workshop.jpg"
                 : process.env.BACKEND_URL +
                   "/images/" +
                   store.user_data.user_info.image
