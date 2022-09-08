@@ -13,6 +13,9 @@ from flask_jwt_extended import JWTManager
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash
 
+import cloudinary
+import cloudinary.uploader
+
 api = Blueprint('api', __name__)
 
 
@@ -225,12 +228,11 @@ def upload():
     if file and allowed_file(file.filename):
         current_user = get_jwt_identity()
         user = User.query.filter_by(id=current_user).first()
-        filename = secure_filename(file.filename)
-        file.save(os.path.join('images/', filename))
-        user.image = filename
+        result = cloudinary.uploader.upload(request.files['file'])
+        user.image = result['secure_url']
         db.session.add(user)
         db.session.commit()
-        return jsonify({"msg": "ok", "img_name": filename})
+        return jsonify({"msg": "ok", "img_name": result['secure_url']})
 
 @api.route('/images/<path:path>')
 def send_image(path):

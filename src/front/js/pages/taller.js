@@ -60,7 +60,7 @@ export const Taller = () => {
                   src={
                     image === "" || image === null
                       ? "https://www.tuningblog.eu/wp-content/uploads/2019/05/Autowerkstatt-tuning-shop-workshop.jpg"
-                      : process.env.BACKEND_URL + "/images/" + image
+                      : image
                   }
                   alt="Profile"
                 />
