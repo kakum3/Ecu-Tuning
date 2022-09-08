@@ -8,7 +8,10 @@ export const Profile = () => {
   const { store, actions, setStore } = useAppContext();
   const [taller, setTaller] = useState(true);
   const location = useLocation();
+
   useEffect(() => {
+    if (store.user_data.user_info.is_client === true) setTaller(false);
+
     if (store.user_data.user_info.name === "") {
       actions.getProfile();
     } else {
@@ -22,20 +25,7 @@ export const Profile = () => {
         ),
       });
     }
-  }, []);
-  useEffect(() => {
-    if (store.user_data.user_info.is_client === true) setTaller(false);
-
-    setStore({
-      sel_services: store.all_services.map((e, i) =>
-        ({ ...store.user_data.taller }.w_services?.some(
-          (a) => e.name === a.name
-        )
-          ? { ...e, value: true }
-          : { ...e, value: false })
-      ),
-    });
-  }, [store.user_data.user_info]);
+  }, [store.user_data, store.all_services]);
   const handleForm = (e) => {
     e.preventDefault();
     actions.postProfile({

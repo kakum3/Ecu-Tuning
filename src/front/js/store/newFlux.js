@@ -132,7 +132,10 @@ const useFlux = () => {
                 })
               : setStore({
                   all_services: data.all_services,
-                  sel_services: data.all_services,
+                  sel_services: data.all_services.map((e) => ({
+                    ...e,
+                    value: e.name === "ECU" ? true : false,
+                  })),
                 });
           }
         } catch (error) {
@@ -302,12 +305,6 @@ const useFlux = () => {
       },
 
       postProfile: async function (data_front) {
-        console.log(
-          JSON.stringify({
-            ...data_front,
-            ...{ sel_services: store.sel_services },
-          })
-        );
         try {
           // fetching data from the backend
           const resp = await fetch(process.env.BACKEND_URL + "/profile", {
