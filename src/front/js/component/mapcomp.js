@@ -19,10 +19,7 @@ function Mapcomponent({ center }) {
   const navigate = useNavigate();
   useEffect(() => {}, [store.map_markers]);
   return (
-    <LoadScript
-      googleMapsApiKey={process.env.MAPS_API}
-      libraries={libs}
-    >
+    <LoadScript googleMapsApiKey={process.env.MAPS_API} libraries={libs}>
       <GoogleMap
         mapContainerStyle={{
           width: "auto",

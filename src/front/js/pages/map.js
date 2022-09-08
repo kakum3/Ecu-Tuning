@@ -10,17 +10,8 @@ export const Map = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if ((store.map_markers[0].w_name = "EMPTY")) actions.getMap();
-  }, []);
-
-  useEffect(() => {
-    setStore({
-      sel_services: store.all_services.map((e) => ({
-        ...e,
-        value: e.name === "ECU" ? true : false,
-      })),
-    });
-  }, [location.pathname]);
+    if (store.map_markers[0].w_name === "EMPTY") actions.getMap();
+  }, [store]);
 
   return (
     <main className="container-fluid">
@@ -54,8 +45,11 @@ export const Map = () => {
                 </div>
               </span>
             )}
-
-            <Mapcomponent />
+            {store.map_markers[0].w_name === "EMPTY" ? (
+              "Cargando..."
+            ) : (
+              <Mapcomponent />
+            )}
           </div>
         </div>
       </div>

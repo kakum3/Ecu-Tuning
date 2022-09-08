@@ -50,7 +50,7 @@ export const Profile = () => {
         </div>
 
         <form onSubmit={handleForm} className="row gy-5 mt-3">
-          <div className="col-12 col-lg-6 m-auto">
+          <div className={"col-12 col-lg-6 m-auto "+ (!taller ? "w-100" : "")}>
             <section className="">
               <h1>Perfil</h1>
               <hr />
@@ -87,7 +87,7 @@ export const Profile = () => {
                   aria-label="Contraseña actual"
                   aria-describedby="Contraseña actual"
                   name="a_password"
-                  defaultValue="admin"
+                  defaultValue=""
                 />
                 <label htmlFor="floatingInput">Contraseña actual</label>
               </div>
@@ -99,7 +99,7 @@ export const Profile = () => {
                   aria-label="Contraseña nueva"
                   aria-describedby="Contraseña nueva"
                   name="n_password"
-                  defaultValue="admin"
+                  defaultValue=""
                 />
                 <label htmlFor="floatingInput">Contraseña nueva</label>
               </div>
