@@ -6,6 +6,8 @@
 !.github
 php_errorlog
 .log
+!.keep
+!/images
 
 # do not ignore gitpod files
 !.gitpod.Dockerfile
