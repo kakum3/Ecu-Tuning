@@ -27,7 +27,7 @@ function Placecomplete({ value }) {
   return (
     <>
       <LoadScript
-        googleMapsApiKey="AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
+        googleMapsApiKey={process.env.MAPS_API}
         value=""
         libraries={libs}
       >

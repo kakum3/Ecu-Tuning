@@ -20,7 +20,7 @@ function Mapcomponent({ center }) {
   useEffect(() => {}, [store.map_markers]);
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
+      googleMapsApiKey={process.env.MAPS_API}
       libraries={libs}
     >
       <GoogleMap
