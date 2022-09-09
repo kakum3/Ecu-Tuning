@@ -16,6 +16,10 @@ from werkzeug.security import generate_password_hash
 import cloudinary
 import cloudinary.uploader
 
+from socket import gaierror
+import smtplib
+
+
 api = Blueprint('api', __name__)
 
 @api.route('/signup', methods=['POST'])
@@ -223,3 +227,33 @@ def upload():
         db.session.add(user)
         db.session.commit()
         return jsonify({"msg": "ok", "img_name": result['secure_url']})
+        
+from mailjet_rest import Client
+@api.route('/test', methods=['GET'])
+def texst():
+    api_key = '72c626c238596b1e0a2bd4109e74374a'
+    api_secret = 'e1711e3b084fefebc06b5563a163de67'
+    mailjet = Client(auth=(api_key, api_secret), version='v3.1')
+    data = {
+        'Messages': [
+				        {
+				        		"From": {
+					        			"Email": "luisaguadovicaria@gmail.com",
+					        			"Name": "Me"
+					        	},
+					        	"To": [
+						        		{
+						        				"Email": "wofem14206@keyido.com",
+										        "Name": "You"
+								        }
+					        	],
+						        "Subject": "My first Mailjet Email!",
+						        "TextPart": "Greetings from Mailjet!",
+						        "HTMLPart": "<h3>Dear passenger 1, welcome to <a href=\"https://www.mailjet.com/\">Mailjet</a>!</h3><br />May the delivery force be with you!"
+			        	}
+		        ]
+            }
+    result = mailjet.send.create(data=data)
+    print(result.status_code)
+    print(result.json())
+    return "ok", 200

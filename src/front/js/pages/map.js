@@ -45,11 +45,9 @@ export const Map = () => {
                 </div>
               </span>
             )}
-            {store.map_markers[0].w_name === "EMPTY" ? (
-              "Cargando..."
-            ) : (
+            
               <Mapcomponent />
-            )}
+          
           </div>
         </div>
       </div>
