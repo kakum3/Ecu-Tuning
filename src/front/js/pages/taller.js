@@ -27,7 +27,7 @@ export const Taller = () => {
           : { ...e, value: false }
       ),
     });
-  }, [taller]);
+  }, [taller, store.all_services]);
   const formSubmit = (e) => {
     e.preventDefault();
     actions.getMensaje({

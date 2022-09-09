@@ -173,7 +173,7 @@ export const Contact = () => {
             <p className="lead mb-4 t-shadow-black text-white">
               <hr />
               Dos castellanos manchegos y un andaluz unen sus conocimientos para
-              crear una web donde hacer posible al ciente que quiere un servicio
+              crear una web donde hacer posible al cliente que quiere un servicio
               tuning ponerlo en contacto con los talleres mas cercanos a su
               ubicación que ofrecen dichos servicios
             </p>

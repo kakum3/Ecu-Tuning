@@ -42,8 +42,8 @@ export const Navbar = () => {
                 to="/map"
                 className={({ isActive }) =>
                   isActive
-                  ? "rounded  m-2  nav-link btn btn-secondary shadow-none text-black text-start"
-                  : "rounded  m-2  shadow-none nav-link"
+                  ? "rounded  m-2 px-2 nav-link btn btn-secondary shadow-none text-black text-start"
+                  : "rounded  m-2 px-2 shadow-none nav-link"
                 }
               >
                 <i className="fa-solid fa-map-location-dot  fs-4 me-3"></i>
@@ -54,8 +54,8 @@ export const Navbar = () => {
                 to={store.loggedIn ? "/profile" : "/login"}
                 className={
                   isUser() === true
-                  ? "rounded  m-2  nav-link btn btn-secondary shadow-none text-black text-start"
-                  : "rounded  m-2  shadow-none nav-link"
+                  ? "rounded  m-2 px-2 nav-link btn btn-secondary shadow-none text-black text-start"
+                  : "rounded  m-2 px-2 shadow-none nav-link"
                 }
                 aria-expanded="false"
               >
@@ -75,8 +75,8 @@ export const Navbar = () => {
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded  m-2  nav-link btn btn-secondary shadow-none text-black text-start"
-                    : "rounded  m-2  shadow-none nav-link"
+                    ? "rounded  m-2 px-2 nav-link btn btn-secondary shadow-none text-black text-start"
+                    : "rounded  m-2 px-2 shadow-none nav-link"
                 }
               >
                 <i className="fa-solid fa-circle-question fs-4 me-3"></i>Ayuda

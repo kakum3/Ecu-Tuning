@@ -248,7 +248,7 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="row g-4 py-5 row-eq-heights row-cols-1 row-cols-lg-3">
+        <div className="row m-0 g-4 py-5 row-eq-heights row-cols-1 row-cols-lg-3">
           <div className=" feature col">
             <div className="home-shadow m-3 h-100">
               <i className="fa-solid logo-nav title-header text-white my-5 t-shadow fa-microchip"></i>

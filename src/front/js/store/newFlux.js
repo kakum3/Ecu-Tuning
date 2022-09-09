@@ -34,9 +34,7 @@ const useFlux = () => {
   const later = () => new Promise((r) => setTimeout(r, 4000));
   const resetFlux = () =>
     setStore({
-      alert: null,
       loggedIn: false,
-      carSearch: null,
       map_markers: [
         {
           lat: 0,

@@ -10,8 +10,8 @@ export const Map = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (store.map_markers[0].w_name === "EMPTY") actions.getMap();
-  }, [store]);
+    actions.getMap();
+  }, []);
 
   return (
     <main className="container-fluid">

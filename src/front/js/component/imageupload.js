@@ -26,7 +26,7 @@ export const ImageUp = () => {
       }
     } catch (error) {
       return setStore({
-        alert: "Error Actualizar Imgen: " + error,
+        alert: "Error al actualizar la imagen",
       });
     }
     return setStore({
